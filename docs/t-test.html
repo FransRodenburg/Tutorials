@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Tutorial 1 T-Test | Statistics Tutorials &amp; Templates</title>
+  <meta name="description" content="Tutorial 1 T-Test | Statistics Tutorials &amp; Templates" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Tutorial 1 T-Test | Statistics Tutorials &amp; Templates" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tutorial 1 T-Test | Statistics Tutorials &amp; Templates" />
+  
+  
+  
+
+<meta name="author" content="Dr. F.J. Rodenburg © 2022" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="chi-squared-test.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics Tutorials & Templates</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="t-test.html"><a href="t-test.html"><i class="fa fa-check"></i><b>1</b> T-Test</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="t-test.html"><a href="t-test.html#read-t"><i class="fa fa-check"></i><b>1.1</b> Read the Data into R</a></li>
+<li class="chapter" data-level="1.2" data-path="t-test.html"><a href="t-test.html#vis-t"><i class="fa fa-check"></i><b>1.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="1.3" data-path="t-test.html"><a href="t-test.html#choose-an-appropriate-t-test"><i class="fa fa-check"></i><b>1.3</b> Choose an Appropriate T-Test</a></li>
+<li class="chapter" data-level="1.4" data-path="t-test.html"><a href="t-test.html#results-t"><i class="fa fa-check"></i><b>1.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="1.5" data-path="t-test.html"><a href="t-test.html#incorporating-this-in-a-paper"><i class="fa fa-check"></i><b>1.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chi-squared-test.html"><a href="chi-squared-test.html"><i class="fa fa-check"></i><b>2</b> Chi-Squared Test</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chi-squared-test.html"><a href="chi-squared-test.html#read-the-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Read the Data into R</a></li>
+<li class="chapter" data-level="2.2" data-path="chi-squared-test.html"><a href="chi-squared-test.html#vis-chi"><i class="fa fa-check"></i><b>2.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="2.3" data-path="chi-squared-test.html"><a href="chi-squared-test.html#conduct-a-chi-squared-test"><i class="fa fa-check"></i><b>2.3</b> Conduct a Chi-Squared Test</a></li>
+<li class="chapter" data-level="2.4" data-path="chi-squared-test.html"><a href="chi-squared-test.html#results-chi"><i class="fa fa-check"></i><b>2.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="2.5" data-path="chi-squared-test.html"><a href="chi-squared-test.html#incorporating-this-in-a-paper-1"><i class="fa fa-check"></i><b>2.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>3</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="anova.html"><a href="anova.html#read-ANOVA"><i class="fa fa-check"></i><b>3.1</b> Read the Data into R</a>
+<ul>
+<li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#reordering-a-factor"><i class="fa fa-check"></i>Reordering a Factor</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="anova.html"><a href="anova.html#vis-ANOVA"><i class="fa fa-check"></i><b>3.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="3.3" data-path="anova.html"><a href="anova.html#fit-an-anova"><i class="fa fa-check"></i><b>3.3</b> Fit an ANOVA</a></li>
+<li class="chapter" data-level="3.4" data-path="anova.html"><a href="anova.html#results-ANOVA"><i class="fa fa-check"></i><b>3.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="3.5" data-path="anova.html"><a href="anova.html#incorporating-this-in-a-paper-2"><i class="fa fa-check"></i><b>3.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-model.html"><a href="linear-model.html"><i class="fa fa-check"></i><b>4</b> Linear Model</a></li>
+<li class="chapter" data-level="5" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i><b>5</b> Generalized Linear Model</a></li>
+<li class="chapter" data-level="6" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>6</b> Mixed Model</a></li>
+<li class="chapter" data-level="7" data-path="glmm.html"><a href="glmm.html"><i class="fa fa-check"></i><b>7</b> GLMM</a></li>
+<li class="chapter" data-level="8" data-path="exploration-pca.html"><a href="exploration-pca.html"><i class="fa fa-check"></i><b>8</b> Exploration: PCA</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="exploration-pca.html"><a href="exploration-pca.html#read-the-data-into-r-1"><i class="fa fa-check"></i><b>8.1</b> Read the Data into R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reading-storing-data.html"><a href="reading-storing-data.html"><i class="fa fa-check"></i><b>9</b> Reading &amp; Storing Data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="reading-storing-data.html"><a href="reading-storing-data.html#tidy"><i class="fa fa-check"></i><b>9.1</b> Tidy Format</a></li>
+<li class="chapter" data-level="9.2" data-path="reading-storing-data.html"><a href="reading-storing-data.html#separate-data-entry-analysis"><i class="fa fa-check"></i><b>9.2</b> Separate Data Entry &amp; Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-storing-data.html"><a href="reading-storing-data.html#excel-is-not-statistical-software"><i class="fa fa-check"></i>Excel Is Not Statistical Software</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="reading-storing-data.html"><a href="reading-storing-data.html#metadata"><i class="fa fa-check"></i><b>9.3</b> Meta Data</a></li>
+<li class="chapter" data-level="9.4" data-path="reading-storing-data.html"><a href="reading-storing-data.html#csv"><i class="fa fa-check"></i><b>9.4</b> Reading Data as CSV</a></li>
+<li class="chapter" data-level="9.5" data-path="reading-storing-data.html"><a href="reading-storing-data.html#Excel"><i class="fa fa-check"></i><b>9.5</b> Reading Data from Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics Tutorials &amp; Templates</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="t-test" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Tutorial 1</span> T-Test<a href="t-test.html#t-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><small><i>A hypothesis test to <b>compare two means</b> to see if they differ significantly. Assumptions depend on the type of <span class="math inline">\(t\)</span>-test.</i></small></p>
+<hr />
+<details>
+<summary>
+Summary
+</summary>
+<ol style="list-style-type: decimal">
+<li><a href="https://youtu.be/BGUqZc-Pb8w">Read the data into R <font color = "red"><i class="fa fa-youtube-play"></i></font></a>;</li>
+<li>Visualize the data;</li>
+<li>Choose an appropriate <a href="https://youtu.be/qJA3CvFt_pc">type of <span class="math inline">\(t\)</span>-test <font color = "red"><i class="fa fa-youtube-play"></i></font></a>;</li>
+<li>Report a conclusion;</li>
+<li>Incorporating this in scientific literature.</li>
+</ol>
+</details>
+<p>You can download the tutorial <a href="files/tutorial_t-test.Rmd">here</a> and the required data set <a href="data/two-groups.csv">here</a>.</p>
+<div id="read-t" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Read the Data into R<a href="t-test.html#read-t" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I recommend saving data as <a href="https://youtu.be/BGUqZc-Pb8w">comma-separated values (CSV)</a>. If you prefer reading data directly from Excel, have a look <a href="reading-storing-data.html#Excel">here</a>.</p>
+<details>
+<summary>
+Details
+</summary>
+<ul>
+<li>Save the data in a folder;</li>
+<li>Open RStudio and create a new R markdown file; <small>(<strong>File</strong> &gt; <strong>New File</strong> &gt; <strong>R Markdown</strong>)</small></li>
+<li>Save your R markdown file to the same location as the data;</li>
+<li>Set working directory to source file location. <small>(<strong>Session</strong> &gt; <strong>Set Working Directory</strong> &gt; <strong>To Source File Location</strong>)</small></li>
+</ul>
+</details>
+<p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="t-test.html#cb1-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;two-groups.csv&quot;</span>)</span></code></pre></div>
+<p>Did that work? There are several ways to check:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="t-test.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span>
+<span id="cb2-2"><a href="t-test.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span>
+<span id="cb2-3"><a href="t-test.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code></pre></div>
+<details>
+<summary>
+Explanation of the output
+</summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="t-test.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    60 obs. of  3 variables:
+##  $ X        : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Pesticide: chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
+##  $ CropYield: num  101.5 98.9 105.9 100.9 101 ...</code></pre>
+<p>This command shows the structure of the data. It is a data frame with <span class="math inline">\(n = 60\)</span> observations and 2 variables. <code>Pesticide</code> is a character vector (<code>chr</code>) and <code>CropYield</code> a numeric vector (<code>num</code>).</p>
+<pre><code>##        X          Pesticide           CropYield     
+##  Min.   : 1.00   Length:60          Min.   : 92.90  
+##  1st Qu.:15.75   Class :character   1st Qu.: 98.08  
+##  Median :30.50   Mode  :character   Median : 99.85  
+##  Mean   :30.50                      Mean   : 99.96  
+##  3rd Qu.:45.25                      3rd Qu.:101.55  
+##  Max.   :60.00                      Max.   :105.90</code></pre>
+<pre><code>##   X Pesticide CropYield
+## 1 1         A     101.5
+## 2 2         A      98.9
+## 3 3         A     105.9
+## 4 4         A     100.9
+## 5 5         A     101.0
+## 6 6         A     100.4</code></pre>
+</details>
+<details>
+<summary>
+My output looks different
+</summary>
+<p>Then provided you did everything else correctly, the most likely reason is that your data was saved with a version of Excel where a comma is used as a decimal separator (e.g., the Dutch version). The solutions for this is simple, use <code>read.csv2</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="t-test.html#cb7-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;some-data-with-commas.csv&quot;</span>)</span></code></pre></div>
+If that doesn’t work either, go over the details shown above, or watch the instructions in the <a href="https://youtu.be/BGUqZc-Pb8w">video</a>.
+</details>
+<details>
+<summary>
+Common mistakes
+</summary>
+<ul>
+<li>Remember to include the file extension (e.g., “two-groups<strong>.csv</strong>”) when typing the file name.</li>
+<li>You cannot read Excel files (.xls, .xlsx) with this function. Instead, follow the guide <a href="#read">here</a>, or save your data as CSV.</li>
+<li>Don’t open the CSV file with Excel. You don’t need Excel or Google Sheets or any other program besides R and RStudio. If you have saved your data as CSV, you can close Excel.</li>
+</ul>
+</details>
+<p>
+<p>The next step is to ensure categorical variables are read as factors. This will allow us to use generic functions like <code>plot</code> and <code>summary</code> in a more meaningful way.</p>
+<details>
+<summary>
+Why not just use <code>character</code>?
+</summary>
+<p>A character vector is just strings of text, numbers and/or symbols. If you were to produce a <code>summary</code>, this happens:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="t-test.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF<span class="sc">$</span>Pesticide)</span></code></pre></div>
+<pre><code>##    Length     Class      Mode 
+##        60 character character</code></pre>
+<p>It tells us this object contains 60 values, and it is stored and treated as a string of text.</p>
+<p>The generic <code>plot</code> function doesn’t even work at all:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="t-test.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CropYield <span class="sc">~</span> Pesticide, DF)</span></code></pre></div>
+<p><font color = "#C5060B"></p>
+<pre><code>Error in plot.window(...) : need finite &#39;xlim&#39; values
+In addition: Warning messages:
+1: In xy.coords(x, y, xlabel, ylabel, log) : NAs introduced by coercion
+2: In min(x) : no non-missing arguments to min; returning Inf
+3: In max(x) : no non-missing arguments to max; returning -Inf</code></pre>
+<p></font></p>
+<p>Now convert the variables to factors and see how that changes the output. <br><small><em>(Run the code below, then run <code>summary(DF$Pesticide)</code>, or <code>plot(DF$Pesticide)</code> for example.)</em></small></p>
+</details>
+<p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="t-test.html#cb12-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>Pesticide <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>Pesticide)</span></code></pre></div>
+</div>
+<div id="vis-t" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Visualize the Data<a href="t-test.html#vis-t" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are different ways to go about this. A basic, but still very popular choice is the boxplot:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="t-test.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(CropYield <span class="sc">~</span> Pesticide, DF)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<details>
+<summary>
+What to look for
+</summary>
+<p><font size = 5><b>Potential Outliers</b></font></p>
+<p>A boxplot shows either of the following:</p>
+<div class="figure"><span style="display:block;" id="fig:IQR"></span>
+<img src="Tutorials_files/figure-html/IQR-1.png" alt="What is displayed in a boxplot in case all observations are within a certain distance from the box (A), or otherwise (B)." width="672" />
+<p class="caption">
+Figure 1.1: What is displayed in a boxplot in case all observations are within a certain distance from the box (A), or otherwise (B).
+</p>
+</div>
+<p>The interquartile range (IQR) is simply the size of the box. If all observations lie within <span class="math inline">\(1.5\times\)</span> this range from the box, then the whiskers show the extremes of the data (fig. <a href="t-test.html#fig:IQR">1.1</a> A). Otherwise, the observations are drawn separately <a href="t-test.html#fig:IQR">1.1</a> B). The IQR is usually not shown in a boxplot, but is used internally to calculate the location of the whiskers and marked observations (if any).</p>
+<details>
+<summary>
+<b>Marked observations are not outliers</b>
+</summary>
+<p>This is a common misconception. Though it can be an <em>indication</em> of outlyingness, a boxplot alone <u>cannot</u> tell you whether these observations will strongly affect your analysis:</p>
+<ul>
+<li>If you have a large enough sample size, you <em>will</em> find more extreme observations, which are eventually drawn outside the IQR.</li>
+<li>Skewed values (see next section) will almost always show ‘outliers’ in the direction of skew, but these are unlikely to be outliers in the context of an appropriate model for skewed data.</li>
+<li>The <span class="math inline">\(1.5\times\)</span> IQR rule is nothing special, it is merely convention. A boxplot is just a quick way to visualize numeric values.</li>
+</ul>
+</details>
+<p>
+<p><font size = 5><b>Skew</b></font></p>
+<p>Skew means the data-generating process follows a probability distribution that is not symmetric. In a boxplot, skew looks like this:</p>
+<div class="figure"><span style="display:block;" id="fig:skew"></span>
+<img src="Tutorials_files/figure-html/skew-1.png" alt="A boxplot of symmetric (A), right-skewed (B), and left-skewed values." width="672" />
+<p class="caption">
+Figure 1.2: A boxplot of symmetric (A), right-skewed (B), and left-skewed values.
+</p>
+</div>
+<p>Skew is not necessarily a problem, unless it persists in the residuals of a model that assumes normally distributed errors. For an explanation of skew, see the video on <a href="https://youtu.be/jdfG7rKPVNk">probability distributions <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
+<p><font size = 5><b>Differences Between Groups</b></font></p>
+<p>A boxplot is not just a nice tool for <em>yourself</em> to inspect your data, but is also an effective tool to visually communicate the evidence for difference between groups:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-11-1.png" alt="A comparison of crop yield for pesticides A and B." width="384" />
+<p class="caption">
+Figure 1.3: A comparison of crop yield for pesticides A and B.
+</p>
+</div>
+</details>
+<p>From the plot you can conclude:</p>
+<ul>
+<li>Neither group appears to have outliers;</li>
+<li>Neither group appears skewed;</li>
+<li>Pesticide A seems to yield more crop than B, but there is considerable overlap;</li>
+<li>The variance of both groups is similar, because the boxes are similarly sized.</li>
+</ul>
+<p>This is just a sample, so whether this difference is <em>significant</em>, should be determined with a test.</p>
+<details>
+<summary>
+How to improve your plot
+</summary>
+<p>Some basic adjustments that improve any plot:</p>
+<ul>
+<li>Use informative axis labels, with unit of measurement if appropriate;</li>
+<li>Add an informative caption;</li>
+<li>Keep the numbers on the axes horizontal where possible;</li>
+<li>Remove unnecessary plot elements, like the box around the figure.</li>
+</ul>
+<p>The changes to the code I made below can all be found in the help pages <code>?boxplot</code> and <code>?par</code>. I am also a big fan of the <code>eaxis</code> function from the package <code>sfsmisc</code>. The caption is added as a chunk option (i.e., <code>```{r, fig.cap = "..."}</code>).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="t-test.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a package for nice axes</span></span>
+<span id="cb14-2"><a href="t-test.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sfsmisc&quot;</span>)</span>
+<span id="cb14-3"><a href="t-test.html#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="t-test.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the margins (bottom, left, top, right)</span></span>
+<span id="cb14-5"><a href="t-test.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb14-6"><a href="t-test.html#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="t-test.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the coordinate system</span></span>
+<span id="cb14-8"><a href="t-test.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(CropYield <span class="sc">~</span> Pesticide, DF, <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>,</span>
+<span id="cb14-9"><a href="t-test.html#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Crop yield (kg)&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">92</span>, <span class="dv">108</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb14-10"><a href="t-test.html#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="t-test.html#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axes</span></span>
+<span id="cb14-12"><a href="t-test.html#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span>
+<span id="cb14-13"><a href="t-test.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">eaxis</span>(<span class="dv">2</span>)</span>
+<span id="cb14-14"><a href="t-test.html#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="t-test.html#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a lightgrey background</span></span>
+<span id="cb14-16"><a href="t-test.html#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">90</span>, <span class="dv">110</span>, <span class="dv">110</span>, <span class="dv">90</span>), <span class="at">col =</span> <span class="st">&quot;grey95&quot;</span>)</span>
+<span id="cb14-17"><a href="t-test.html#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="t-test.html#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a simple grid</span></span>
+<span id="cb14-19"><a href="t-test.html#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">90</span>, <span class="dv">110</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>)</span>
+<span id="cb14-20"><a href="t-test.html#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">90</span>, <span class="dv">110</span>, <span class="dv">2</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb14-21"><a href="t-test.html#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="t-test.html#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Redraw the boxplots on top</span></span>
+<span id="cb14-23"><a href="t-test.html#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(CropYield <span class="sc">~</span> Pesticide, DF, <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>,</span>
+<span id="cb14-24"><a href="t-test.html#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb14-25"><a href="t-test.html#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-26"><a href="t-test.html#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore the default margins for subsequent plots</span></span>
+<span id="cb14-27"><a href="t-test.html#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-13-1.png" alt="A comparison of crop yield for pesticides A and B." width="384" />
+<p class="caption">
+Figure 1.4: A comparison of crop yield for pesticides A and B.
+</p>
+</div>
+</details>
+<details>
+<summary>
+Alternative: Violin plot
+</summary>
+<p>A more modern take on the boxplot is a <strong>violin plot</strong>. It combines a boxplot and a density plot. This type of visualization is richer in information than just a boxplot, but it is only meaningful if you have enough observations per group (e.g., &gt;10):</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="t-test.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vioplot&quot;</span>) <span class="co"># install if missing</span></span>
+<span id="cb15-2"><a href="t-test.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vioplot</span>(CropYield <span class="sc">~</span> Pesticide, DF)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<details>
+<summary>
+How to interpret a violin plot
+</summary>
+<p>Here is a breakdown of the components shown in a violin plot:</p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>The density plot, if you are unfamiliar with it, is like a continuous version of a histogram. It shows which values are more and less likely in the sample.</p>
+</details>
+</details>
+<p>
+</div>
+<div id="choose-an-appropriate-t-test" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Choose an Appropriate T-Test<a href="t-test.html#choose-an-appropriate-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This part is still a work in progress. Refer to the <a href="https://youtu.be/qJA3CvFt_pc">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a> for now.</p>
+<details>
+<summary>
+One-sided or two-sided
+</summary>
+<p>You can test in two directions: Either the mean of A is greater than that of B, or the other way around. If you test for both possibilities, the test is called two-sided. Below is a short summary of the possibilities.</p>
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-16">Table 1.1: </span>The directions in which you can test and the corresponding null-hypothesis.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Question
+</th>
+<th style="text-align:left;">
+Syntax
+</th>
+<th style="text-align:left;">
+Null-hypothesis
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+two-sided
+</td>
+<td style="text-align:left;">
+Is there a difference in group means?
+</td>
+<td style="text-align:left;">
+<code>t.test(..., alternative = "two.sided"</code>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(H_0: \mu_A \neq \mu_B\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+one-sided
+</td>
+<td style="text-align:left;">
+Is the mean of A greater than that of B?
+</td>
+<td style="text-align:left;">
+<code>t.test(..., alternative = "greater"</code>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(H_0: \mu_A \leq \mu_B\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+one-sided
+</td>
+<td style="text-align:left;">
+Is the mean of A less than that of B?
+</td>
+<td style="text-align:left;">
+<code>t.test(..., alternative = "less"</code>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(H_0: \mu_A \geq \mu_B\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A one-sided test is more powerful than a two-sided test. For instance, if you want to know whether a treatment yields <em>lower</em> blood pressure than a control group, you should use a one-sided test.</p>
+<p>If you test one-sided, you have to be able to defend this choice without seeing the data, or any plots. If you are unsure, test <em>two-sided</em>.</p>
+</details>
+<details>
+<summary>
+Equal or unequal variance
+</summary>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="figures/sexHeight2.png" alt="Variance is the extent to which individuals differ from their group mean. In the case of male and female human height, which do you think is more realistic?" width="75%" /><img src="figures/unequalVariance2.png" alt="Variance is the extent to which individuals differ from their group mean. In the case of male and female human height, which do you think is more realistic?" width="75%" />
+<p class="caption">
+Figure 1.5: Variance is the extent to which individuals differ from their group mean. In the case of male and female human height, which do you think is more realistic?
+</p>
+</div>
+<p>First, think about it in the context of the research: Does it make sense for these groups to vary to the same extent; should they have similar individual differences?</p>
+<p>If you can’t think of the right answer to that question, the safer of the two assumptions is <em>unequal</em> variance. This will estimate a variance for both groups separately, at the cost of some power.</p>
+<p>From the <a href="t-test.html#vis-t">boxplot</a> we could already tell that the group variances are more or less equal in the example. In cases where it isn’t obvious, you could conduct an <span class="math inline">\(F\)</span>-test:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="t-test.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(CropYield <span class="sc">~</span> Pesticide, DF)</span></code></pre></div>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  CropYield by Pesticide
+## F = 1.0152, num df = 29, denom df = 29, p-value = 0.9678
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.4832202 2.1330227
+## sample estimates:
+## ratio of variances 
+##           1.015244</code></pre>
+<p>In this case, the ratio <span class="math inline">\(\frac{\text{Var}(A)}{\text{Var}(B)} \approx 1\)</span> (<code>1.015244</code>), with a <span class="math inline">\(p\)</span>-value of <code>0.9678</code>, indicating the variances do not differ significantly.</p>
+<p><small><em>(If these values came from populations with equal variance, you would have a <span class="math inline">\(96.8\%\)</span> chance of drawing a sample with at least this large a difference in variance. This chance is very large, so we do not reject the null-hypothesis.)</em></small></p>
+</details>
+<details>
+<summary>
+One-sample <span class="math inline">\(t\)</span>-test
+</summary>
+<p>It is also possible to compare a single group mean to a fixed point. For example, does the temperature in class rooms differ significantly from 20<span class="math inline">\(^\circ\)</span>C?</p>
+<p>You can do this in R as follows:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="t-test.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Measurements from 7 class rooms</span></span>
+<span id="cb18-2"><a href="t-test.html#cb18-2" aria-hidden="true" tabindex="-1"></a>Temp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">22</span>, <span class="dv">22</span>)</span>
+<span id="cb18-3"><a href="t-test.html#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="t-test.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Do these measurements differ from an average of 20 degrees?</span></span>
+<span id="cb18-5"><a href="t-test.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Temp, <span class="at">mu =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  Temp
+## t = 1.4292, df = 6, p-value = 0.2029
+## alternative hypothesis: true mean is not equal to 20
+## 95 percent confidence interval:
+##  19.18616 23.09955
+## sample estimates:
+## mean of x 
+##  21.14286</code></pre>
+<p>In this example, there is insufficient evidence to conclude a difference from 20<span class="math inline">\(^\circ\)</span>C (95% CI: 19.2–23.1).</p>
+</details>
+<details>
+<summary>
+Paired <span class="math inline">\(t\)</span>-test
+</summary>
+<p>…</p>
+</details>
+<details>
+<summary>
+Non-parametric alternative
+</summary>
+<p>…</p>
+<p>The advantage of this approach is that we use all observations (both A and B) at once to assess the assumptions. This is especially helpful when you only have a small number of observations in both groups, because diagnostics on small sample sizes is largely guesswork.</p>
+</details>
+<p>In the example shown here, the appropriate choice would be an independent, two-sample, two-sided, equal variance <span class="math inline">\(t\)</span>-test:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="t-test.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(CropYield <span class="sc">~</span> Pesticide, <span class="at">data =</span> DF, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  CropYield by Pesticide
+## t = 2.5604, df = 58, p-value = 0.01308
+## alternative hypothesis: true difference in means between group A and group B is not equal to 0
+## 95 percent confidence interval:
+##  0.3745639 3.0587694
+## sample estimates:
+## mean in group A mean in group B 
+##       100.82000        99.10333</code></pre>
+<p>In the output we see:</p>
+<ul>
+<li>The <span class="math inline">\(t\)</span>-value (<code>t = 2.5604</code>);</li>
+<li>The degrees of freedom used to compute the <span class="math inline">\(p\)</span>-value (<code>df = 58</code>);</li>
+<li>The resulting <span class="math inline">\(p\)</span>-value (<code>p-value = 0.01308</code>); <small><font color = "lightgray">Computed as <code>2 * pt(2.5604, 58, lower.tail = FALSE)</code></font></small></li>
+<li>A 95% confidence interval (0.37–3.06);</li>
+<li>The estimated group means (<span class="math inline">\(\bar{y}_A = 100.8\)</span>, <span class="math inline">\(\bar{y}_B = 99.1\)</span>).</li>
+</ul>
+<p>What to do with this output is described in the next section.</p>
+</details>
+</div>
+<div id="results-t" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Correctly Phrase the Results<a href="t-test.html#results-t" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-value is <strong>less</strong> than the chosen level of significance
+</summary>
+<p><em>(This is the case in the example.)</em></p>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Crop yield differed significantly by type of pesticide (<span class="math inline">\(p = 0.0131\)</span>), with pesticide A resulting in 1.7 kg higher crop yield on average;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Pesticide A yielded significantly higher crop yield than B (<span class="math inline">\(\hat{\beta} = 1.7\)</span> kg, <span class="math inline">\(p = 0.0131\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Pesticide A yielded on average 1.7 kg higher crop yield than B (95% CI: 0.38–3.1);</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The alternative hypothesis was true // The null-hypothesis was false;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The difference was significant (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> Pesticide A outperforms pesticide B.</li>
+</ul>
+<details>
+<summary>
+Why paste tense?
+</summary>
+<p>The results of a single experiment, no matter how convincing, can never prove something to be true. The results <em>were</em> observed, and in this one experiment, A <em>was</em> better than B.</p>
+<p>Use present tense only for statements that have been demonstrated repeatedly, are generally agreed upon, or are easily observable, e.g.:</p>
+<ul>
+<li>Smoking causes cancer;</li>
+<li>Current climate-change is mainly caused by human activities;</li>
+<li>Most people use smartphones nowadays.</li>
+</ul>
+</details>
+</details>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-value is <strong>greater</strong> than the chosen level of significance
+</summary>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Crop yield did not differ significantly by type of pesticide (<span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There is insufficient evidence to conclude either pesticide worked better (<span class="math inline">\(\hat{\beta} = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There was a trend towards higher crop yield with pesticide A (<span class="math inline">\(\hat{\beta} = \dots\)</span>), but this difference was not significant (95% CI: …).</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> Pesticide A performed equally well as pesticide B;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> There was no difference (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We accept the null-hypothesis.</li>
+</ul>
+<details>
+<summary>
+Why can’t I say I <em>accepted</em> the null-hypothesis?
+</summary>
+<p>This is imprecise language because it distorts the order of null-hypothesis significance testing. Every tests <em>starts</em> with pretending the null-hypothesis is true, and then considering how rare a result this would be. You did not accept the null-hypothesis <em>because</em> of the <span class="math inline">\(p\)</span>-value, but rather, you started by taking on the null-hypothesis to even compute that <span class="math inline">\(p\)</span>-value.</p>
+</details
+
+</details>
+</div>
+<div id="incorporating-this-in-a-paper" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Incorporating This in a Paper<a href="t-test.html#incorporating-this-in-a-paper" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here you can find examples of how to justify the methods used, explain the results found and write a discussion. This is meant to show you what belongs where, and what level of detail is common in scientific literature.</p>
+<p>Remember to use your own words—<strong>paraphrase to avoid plagiarism</strong>.</p>
+<details>
+<summary>
+Methods
+</summary>
+<p><small><em>(In this section, you should describe the data collection and analysis to an extent that a fellow expert could reproduce your study.)</em></small></p>
+<p>A total of <span class="math inline">\(n = 60\)</span> plots of land where corn is cultivated were selected from farms in South Holland, The Netherlands (figure …). Pesticide A or B was applied randomly in a concentration of … to 30 plots each.</p>
+<p>All statistical analyses were conducted in R, version 4.2.1, using the RStudio interface.<span class="citation"><sup><a href="#ref-R" role="doc-biblioref">1</a>,<a href="#ref-RStudio" role="doc-biblioref">2</a></sup></span> Difference in group means was assessed with an independent student’s <span class="math inline">\(t\)</span>-tests for equal variance. Conditional normality was assessed through normal quantile-quantile plots, using the <code>car</code> package.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">3</a></sup></span></p>
+<p>Note:</p>
+<ul>
+<li>Check your R version number with <code>version</code>;</li>
+<li>Justify the type of <span class="math inline">\(t\)</span>-test used; <small><em>(For example, if you use an independent <span class="math inline">\(t\)</span>-test, the methods section should sufficiently describe how observations were collected, such that the reader can judge whether these observations are indeed independent.)</em></small></li>
+<li>If you assume unequal variance, the test is called a <em>Welch <span class="math inline">\(t\)</span>-test</em>;</li>
+<li>You should cite any packages used to perform analyses, generate tables or figures that made it into the paper, e.g.;
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Normal quantile-quantile plots were generated with the <code>car</code> package.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">3</a></sup></span></li>
+</ul></li>
+<li>You should <em>not</em> cite packages used only internally, e.g.:
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We used <code>readxl</code> to enter the data in R.<span class="citation"><sup><a href="#ref-readxl" role="doc-biblioref">4</a></sup></span></li>
+</ul></li>
+</ul>
+</details>
+<details>
+<summary>
+Results
+</summary>
+<p><small><em>(In this section you should mention the results without giving any interpretation yet.)</em></small></p>
+<p>For general advice on phrasing, see: <a href="t-test.html#results-t">Correctly Phrase the Results</a>. In this section, you should include your boxplot and explain in brief what the outcome of the <span class="math inline">\(t\)</span>-test was.</p>
+<p>It is very common to see boxplots with significance stars, but the interpretation of these stars is not consistent and you should mention the actual, non-discretized <span class="math inline">\(p\)</span>-value at least somewhere in the results.</p>
+<p>When you perform multiple tests, you can summarize the results in a table, which you refer to in the results section. For example, here is how you could report the results of a qPCR experiment where 5 genes were tested for differential expression in cases and controls, and the resulting <span class="math inline">\(p\)</span>-values were corrected for multiple testing:</p>
+<table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:tab-t">Table 1.2: </span>Example fictive data set of differences in gene expression differences in cases and controls. Adjusted <span class="math inline">\(p\)</span>-values have been corrected for multiple testing using a Bonferroni correction.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Gene
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(t\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(p\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(p_{\text{adjusted}}\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ACTB
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(0.107\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(0.354\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(0.302\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.382\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(1.000\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CDH1
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(-0.842\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(0.251\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(-3.355\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(1.150\times 10^{-3}\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(5.750\times 10^{-3}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NF1
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(-0.481\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(0.334\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(-1.441\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.0805\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.4025\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PTEN
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(0.812\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(1.205\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(0.674\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.747\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(1.000\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TP53
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(3.419\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(0.682\)</span>
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(5.013\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(1.340\times 10^{-5}\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(6.700\times 10^{-5}\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary>
+Discussion
+</summary>
+<p><small><em>(In this section, you should not mention results, but the conclusions based on those results.)</em></small></p>
+<p>If the test was significant <strong>and</strong> the difference large enough to be biologically relevant:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> For corn grown in areas of similar climate as South Holland, The Netherlands, we recommend using pesticide A;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Further research could demonstrate whether this difference is similar in other plant species, and how it depends on other factors, such as soil composition and irrigation.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overclaiming)</em> Pesticide A has been proven to outperform B for corn grown in South Holland, The Netherlands.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overgeneralizing)</em> Pesticide A yields more crops than B.</li>
+</ul>
+<p>If the test was insignificant <strong>or</strong> the difference too small to be biologically relevant:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was sufficiently powerful)</em> Despite a fairly large sample size, we were unable to demonstrate a difference in crop yield, suggesting both pesticides work equally well.</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was underpowered)</em> We were unable to demonstrate a difference in crop yield, though a follow-up study with a larger sample size may conclude otherwise.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Appeal to ignorance)</em> We have demonstrated there is no difference between pesticide A and B.</li>
+</ul>
+<details>
+<summary>
+Why can’t I conclude there is no difference?
+</summary>
+<p>This is an inherent limitation of the <span class="math inline">\(p\)</span>-value. Under the null-hypothesis, any <span class="math inline">\(p\)</span>-value is as likely as any other (uniformity). Therefore, even if the <span class="math inline">\(p\)</span>-value is very large, this cannot be interpreted as evidence <em>for</em> the null-hypothesis.</p>
+<p>For example, a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(0.20\)</span> is just as common a result as <span class="math inline">\(0.80\)</span> when the null-hypothesis is correct. The <span class="math inline">\(p\)</span>-value can <em>only</em> be used as evidence <em>against</em> the null-hypothesis (when it is small).</p>
+<p>If you want to perform a test to find out whether the null-hypothesis is correct, what you are looking for is called an equivalence test. For <span class="math inline">\(t\)</span>-tests, this can be implemented easily through <a href="https://en.wikipedia.org/wiki/Equivalence_test#TOST_procedure">TOST</a>.</p>
+</details>
+</details>
+<details>
+<summary>
+Generating citations
+</summary>
+<p>Any packages used in analysis should be cited in the methods section. The citations used here can be easily obtained as follows (note that this requires the packages to be installed):</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="t-test.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>()        <span class="co"># Use this to cite R</span></span>
+<span id="cb22-2"><a href="t-test.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">RStudio.Version</span>() <span class="co"># Use this to cite RStudio</span></span>
+<span id="cb22-3"><a href="t-test.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;car&quot;</span>)   <span class="co"># Use this to cite a package (here: car)</span></span></code></pre></div>
+<p>You can add these entries to a reference manager (e.g., Zotero), or keep a BibTeX file yourself, as shown <a href="https://youtu.be/zuuOYjE8m98">here</a>.</p>
+</details>
+<details>
+<summary>
+Supplementary
+</summary>
+<p><small><em>(The following is not usually found in the main text, but can be included as supplementary material.)</em></small></p>
+<p>Including diagnostic plots can be an effective way to convince the reader you considered the assumptions of the test or model used:</p>
+<div class="figure"><span style="display:block;" id="fig:fig"></span>
+<img src="Tutorials_files/figure-html/fig-1.png" alt="Normal quantile-quantile plot of the studentized residuals showed no notable deviation from normality." width="528" />
+<p class="caption">
+Figure 1.6: Normal quantile-quantile plot of the studentized residuals showed no notable deviation from normality.
+</p>
+</div>
+<p><em>If</em> you include any supplementary material, you should refer to it in the main text.</p>
+</details>
+<hr />
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body" line-spacing="2">
+<div id="ref-R" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">R Core Team. <em><a href="https://www.R-project.org/">R: A language and environment for statistical computing</a></em>. (R Foundation for Statistical Computing, 2022).</div>
+</div>
+<div id="ref-RStudio" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">RStudio Team. <em><a href="http://www.rstudio.com/">RStudio: Integrated development environment for r</a></em>. (RStudio, PBC, 2022).</div>
+</div>
+<div id="ref-car" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Fox, J. &amp; Weisberg, S. <em><a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An <span>R</span> companion to applied regression</a></em>. (Sage, 2019).</div>
+</div>
+<div id="ref-readxl" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Wickham, H. &amp; Bryan, J. <em><a href="https://CRAN.R-project.org/package=readxl">Readxl: Read excel files</a></em>. (2022).</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chi-squared-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Tutorials.pdf", "Tutorials.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

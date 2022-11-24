@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Tutorial 2 Chi-Squared Test | Statistics Tutorials &amp; Templates</title>
+  <meta name="description" content="Tutorial 2 Chi-Squared Test | Statistics Tutorials &amp; Templates" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Tutorial 2 Chi-Squared Test | Statistics Tutorials &amp; Templates" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tutorial 2 Chi-Squared Test | Statistics Tutorials &amp; Templates" />
+  
+  
+  
+
+<meta name="author" content="Dr. F.J. Rodenburg © 2022" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="t-test.html"/>
+<link rel="next" href="anova.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics Tutorials & Templates</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="t-test.html"><a href="t-test.html"><i class="fa fa-check"></i><b>1</b> T-Test</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="t-test.html"><a href="t-test.html#read-t"><i class="fa fa-check"></i><b>1.1</b> Read the Data into R</a></li>
+<li class="chapter" data-level="1.2" data-path="t-test.html"><a href="t-test.html#vis-t"><i class="fa fa-check"></i><b>1.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="1.3" data-path="t-test.html"><a href="t-test.html#choose-an-appropriate-t-test"><i class="fa fa-check"></i><b>1.3</b> Choose an Appropriate T-Test</a></li>
+<li class="chapter" data-level="1.4" data-path="t-test.html"><a href="t-test.html#results-t"><i class="fa fa-check"></i><b>1.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="1.5" data-path="t-test.html"><a href="t-test.html#incorporating-this-in-a-paper"><i class="fa fa-check"></i><b>1.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chi-squared-test.html"><a href="chi-squared-test.html"><i class="fa fa-check"></i><b>2</b> Chi-Squared Test</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chi-squared-test.html"><a href="chi-squared-test.html#read-the-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Read the Data into R</a></li>
+<li class="chapter" data-level="2.2" data-path="chi-squared-test.html"><a href="chi-squared-test.html#vis-chi"><i class="fa fa-check"></i><b>2.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="2.3" data-path="chi-squared-test.html"><a href="chi-squared-test.html#conduct-a-chi-squared-test"><i class="fa fa-check"></i><b>2.3</b> Conduct a Chi-Squared Test</a></li>
+<li class="chapter" data-level="2.4" data-path="chi-squared-test.html"><a href="chi-squared-test.html#results-chi"><i class="fa fa-check"></i><b>2.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="2.5" data-path="chi-squared-test.html"><a href="chi-squared-test.html#incorporating-this-in-a-paper-1"><i class="fa fa-check"></i><b>2.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>3</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="anova.html"><a href="anova.html#read-ANOVA"><i class="fa fa-check"></i><b>3.1</b> Read the Data into R</a>
+<ul>
+<li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#reordering-a-factor"><i class="fa fa-check"></i>Reordering a Factor</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="anova.html"><a href="anova.html#vis-ANOVA"><i class="fa fa-check"></i><b>3.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="3.3" data-path="anova.html"><a href="anova.html#fit-an-anova"><i class="fa fa-check"></i><b>3.3</b> Fit an ANOVA</a></li>
+<li class="chapter" data-level="3.4" data-path="anova.html"><a href="anova.html#results-ANOVA"><i class="fa fa-check"></i><b>3.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="3.5" data-path="anova.html"><a href="anova.html#incorporating-this-in-a-paper-2"><i class="fa fa-check"></i><b>3.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-model.html"><a href="linear-model.html"><i class="fa fa-check"></i><b>4</b> Linear Model</a></li>
+<li class="chapter" data-level="5" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i><b>5</b> Generalized Linear Model</a></li>
+<li class="chapter" data-level="6" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>6</b> Mixed Model</a></li>
+<li class="chapter" data-level="7" data-path="glmm.html"><a href="glmm.html"><i class="fa fa-check"></i><b>7</b> GLMM</a></li>
+<li class="chapter" data-level="8" data-path="exploration-pca.html"><a href="exploration-pca.html"><i class="fa fa-check"></i><b>8</b> Exploration: PCA</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="exploration-pca.html"><a href="exploration-pca.html#read-the-data-into-r-1"><i class="fa fa-check"></i><b>8.1</b> Read the Data into R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reading-storing-data.html"><a href="reading-storing-data.html"><i class="fa fa-check"></i><b>9</b> Reading &amp; Storing Data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="reading-storing-data.html"><a href="reading-storing-data.html#tidy"><i class="fa fa-check"></i><b>9.1</b> Tidy Format</a></li>
+<li class="chapter" data-level="9.2" data-path="reading-storing-data.html"><a href="reading-storing-data.html#separate-data-entry-analysis"><i class="fa fa-check"></i><b>9.2</b> Separate Data Entry &amp; Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-storing-data.html"><a href="reading-storing-data.html#excel-is-not-statistical-software"><i class="fa fa-check"></i>Excel Is Not Statistical Software</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="reading-storing-data.html"><a href="reading-storing-data.html#metadata"><i class="fa fa-check"></i><b>9.3</b> Meta Data</a></li>
+<li class="chapter" data-level="9.4" data-path="reading-storing-data.html"><a href="reading-storing-data.html#csv"><i class="fa fa-check"></i><b>9.4</b> Reading Data as CSV</a></li>
+<li class="chapter" data-level="9.5" data-path="reading-storing-data.html"><a href="reading-storing-data.html#Excel"><i class="fa fa-check"></i><b>9.5</b> Reading Data from Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics Tutorials &amp; Templates</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chi-squared-test" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Tutorial 2</span> Chi-Squared Test<a href="chi-squared-test.html#chi-squared-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><small><i>A test for comparing observed to expected <b>frequencies</b></i></small></p>
+<hr />
+<details>
+<summary>
+Summary
+</summary>
+<ol style="list-style-type: decimal">
+<li><a href="https://youtu.be/BGUqZc-Pb8w">Read the data into R <font color = "red"><i class="fa fa-youtube-play"></i></font></a>;</li>
+<li>Visualize the data;</li>
+<li>Choose an appropriate <a href="https://youtu.be/PDl7mhpY4PI"><span class="math inline">\(\chi^2\)</span>-test <font color = "red"><i class="fa fa-youtube-play"></i></font></a>;</li>
+<li>Report a conclusion;</li>
+<li>Incorporating this in scientific literature.</li>
+</ol>
+</details>
+<p>You can download the tutorial <a href="files/tutorial_chi-squared-test.Rmd">here</a> and the required data set <a href="data/binary-data.csv">here</a>.</p>
+<div id="read-the-data-into-r" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Read the Data into R<a href="chi-squared-test.html#read-the-data-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Chi-squared tests usually involve a limited number of variables (otherwise you should probably use a binomial GLM instead). We can therefore just enter the data manually:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chi-squared-test.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 1: A vector of observed frequencies per category</span></span>
+<span id="cb23-2"><a href="chi-squared-test.html#cb23-2" aria-hidden="true" tabindex="-1"></a>Observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">rose =</span> <span class="dv">33</span>, <span class="at">tulip =</span> <span class="dv">6</span>, <span class="at">dandelion =</span> <span class="dv">11</span>)</span>
+<span id="cb23-3"><a href="chi-squared-test.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="chi-squared-test.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 2: A contingency table</span></span>
+<span id="cb23-5"><a href="chi-squared-test.html#cb23-5" aria-hidden="true" tabindex="-1"></a>ConTable <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-6"><a href="chi-squared-test.html#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">men   =</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">68</span>),</span>
+<span id="cb23-7"><a href="chi-squared-test.html#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">women =</span> <span class="fu">c</span>(<span class="dv">33</span>, <span class="dv">82</span>) </span>
+<span id="cb23-8"><a href="chi-squared-test.html#cb23-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-9"><a href="chi-squared-test.html#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(ConTable) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;non-smoking&quot;</span>, <span class="st">&quot;smoking&quot;</span>)</span></code></pre></div>
+<details>
+<summary>
+I have a tidy data file
+</summary>
+<table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-24">Table 2.1: </span>First 5 rows of a tidy data set with only categorical data.
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+smoking
+</th>
+<th style="text-align:center;">
+sex
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+FALSE
+</td>
+<td style="text-align:center;">
+man
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+FALSE
+</td>
+<td style="text-align:center;">
+man
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+FALSE
+</td>
+<td style="text-align:center;">
+man
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+FALSE
+</td>
+<td style="text-align:center;">
+man
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+FALSE
+</td>
+<td style="text-align:center;">
+man
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+…
+</td>
+<td style="text-align:center;">
+…
+</td>
+</tr>
+</tbody>
+</table>
+<p>If you have data in tidy format, you can easily generate a contingency table with the function <code>table</code>:</p>
+<details>
+<summary>
+Details
+</summary>
+<ul>
+<li>Save the data in a folder;</li>
+<li>Open RStudio and create a new R markdown file; <small>(<strong>File</strong> &gt; <strong>New File</strong> &gt; <strong>R Markdown</strong>)</small></li>
+<li>Save your R markdown file to the same location as the data;</li>
+<li>Set working directory to source file location. <small>(<strong>Session</strong> &gt; <strong>Set Working Directory</strong> &gt; <strong>To Source File Location</strong>)</small></li>
+</ul>
+</details>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chi-squared-test.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the data</span></span>
+<span id="cb24-2"><a href="chi-squared-test.html#cb24-2" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;binary-data.csv&quot;</span>)</span>
+<span id="cb24-3"><a href="chi-squared-test.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="chi-squared-test.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert tidy data to a contingency table</span></span>
+<span id="cb24-5"><a href="chi-squared-test.html#cb24-5" aria-hidden="true" tabindex="-1"></a>ConTable <span class="ot">&lt;-</span> <span class="fu">table</span>(DF)</span>
+<span id="cb24-6"><a href="chi-squared-test.html#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="chi-squared-test.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the object to confirm it worked</span></span>
+<span id="cb24-8"><a href="chi-squared-test.html#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ConTable)</span></code></pre></div>
+<pre><code>##        sex
+## smoking man woman
+##   FALSE  41    33
+##   TRUE   68    82</code></pre>
+<details>
+<summary>
+Common mistakes
+</summary>
+<ul>
+<li>Remember to include the file extension (e.g., “binary-data<strong>.csv</strong>”) when typing the file name.</li>
+<li>You cannot read Excel files (.xls, .xlsx) with this function. Instead, follow the guide <a href="#read">here</a>, or save your data as CSV.</li>
+<li>Don’t open the CSV file with Excel. You don’t need Excel or Google Sheets or any other program besides R and RStudio. If you have saved your data as CSV, you can close Excel.</li>
+</ul>
+</details>
+</details>
+</div>
+<div id="vis-chi" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Visualize the Data<a href="chi-squared-test.html#vis-chi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If your data can be summarized as a <span class="math inline">\(2 \times 2\)</span> contingency table, I recommend just including it as is:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-27">Table 2.2: </span>Contingency table of smoking and sex.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+men
+</th>
+<th style="text-align:right;">
+women
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+non-smoking
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+smoking
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+82
+</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+Plotting categorical data
+</summary>
+<p>There are several options for plotting categorical data. In summary:</p>
+<ul>
+<li><font color = "orange"><i class = "fa fa-warning"></i></font> Marginal bar charts cannot show combinations of variables;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Grouped bar charts <em>can</em> show combinations of variables;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> A mosaic plot is an alternative to a grouped bar chart.</li>
+</ul>
+<details>
+<summary>
+Marginal bar chart
+</summary>
+<p>A marginal bar chart shows you the totals of one variable, summed over all other variables. They are what you would find at the <em>margins</em> of a contingency table if you were to include the totals:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chi-squared-test.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rowSums</span>(ConTable))</span>
+<span id="cb26-2"><a href="chi-squared-test.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">colSums</span>(ConTable))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-29-1.png" alt="Marginal bar chart of smoking (A) and sex (B)." width="672" />
+<p class="caption">
+Figure 2.1: Marginal bar chart of smoking (A) and sex (B).
+</p>
+</div>
+<p>While this provides easy insight into the marginal distribution of smoking (A) and sex (B), it cannot show you combinations of the two, and is therefore not always informative.</p>
+<p>Of course, if your data only contains counts of a single variable, then a marginal bar chart is appropriate:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chi-squared-test.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(Observed, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>))</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</details>
+<details>
+<summary>
+Grouped bar chart
+</summary>
+<p>A grouped bar chart shows the frequencies of one variable, split by another:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="chi-squared-test.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">as.matrix</span>(ConTable), <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb28-2"><a href="chi-squared-test.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">rownames</span>(ConTable), <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-31-1.png" alt="Grouped bar chart of smoking and sex." width="672" />
+<p class="caption">
+Figure 2.2: Grouped bar chart of smoking and sex.
+</p>
+</div>
+<p>A grouped bar chart has the advantage of showing not the marginals, but combinations of smoking and sex in a single figure.</p>
+<details>
+<summary>
+Improving your plot
+</summary>
+<p>Some basic adjustments that improve bar charts:</p>
+<ul>
+<li>Add an informative caption;</li>
+<li>Keep the numbers on the axes horizontal where possible;</li>
+<li>Remove unnecessary plot elements, like boxes around the bars;</li>
+<li><strong>Never</strong> start a bar chart at a different height than zero. This is fine for just about every other type of plot, but in a bar chart, it warps the perceived difference in relative height.</li>
+</ul>
+<p>The changes to the code I made below can all be found in the help pages <code>?barplot</code> and <code>?par</code>. I am also a big fan of the <code>eaxis</code> function from the package <code>sfsmisc</code>. The caption is added as a chunk option (i.e., <code>```{r, fig.cap = "..."}</code>).</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="chi-squared-test.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the margins (bottom, left, top, right)</span></span>
+<span id="cb29-2"><a href="chi-squared-test.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb29-3"><a href="chi-squared-test.html#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="chi-squared-test.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># barplot() expects a matrix. We will need this object several times:</span></span>
+<span id="cb29-5"><a href="chi-squared-test.html#cb29-5" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(ConTable)</span>
+<span id="cb29-6"><a href="chi-squared-test.html#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="chi-squared-test.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Color-blind friendly colors picked from: https://colorbrewer2.org/</span></span>
+<span id="cb29-8"><a href="chi-squared-test.html#cb29-8" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#1f78b4&quot;</span>, <span class="st">&quot;#b2df8a&quot;</span>)</span>
+<span id="cb29-9"><a href="chi-squared-test.html#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="chi-squared-test.html#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the coordinate system</span></span>
+<span id="cb29-11"><a href="chi-squared-test.html#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(M, <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>), <span class="at">axes =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb29-12"><a href="chi-squared-test.html#cb29-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> cols, <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">xaxs =</span> <span class="st">&quot;i&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>)</span>
+<span id="cb29-13"><a href="chi-squared-test.html#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="chi-squared-test.html#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add y-axis</span></span>
+<span id="cb29-15"><a href="chi-squared-test.html#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">eaxis</span>(<span class="dv">2</span>)</span>
+<span id="cb29-16"><a href="chi-squared-test.html#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="chi-squared-test.html#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a lightgrey background</span></span>
+<span id="cb29-18"><a href="chi-squared-test.html#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">7</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>), </span>
+<span id="cb29-19"><a href="chi-squared-test.html#cb29-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;grey95&quot;</span>, <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb29-20"><a href="chi-squared-test.html#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-21"><a href="chi-squared-test.html#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a simple grid</span></span>
+<span id="cb29-22"><a href="chi-squared-test.html#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>)</span>
+<span id="cb29-23"><a href="chi-squared-test.html#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb29-24"><a href="chi-squared-test.html#cb29-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-25"><a href="chi-squared-test.html#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Redraw the barplot on top</span></span>
+<span id="cb29-26"><a href="chi-squared-test.html#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(M, <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-27"><a href="chi-squared-test.html#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> cols, <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb29-28"><a href="chi-squared-test.html#cb29-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-29"><a href="chi-squared-test.html#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a legend</span></span>
+<span id="cb29-30"><a href="chi-squared-test.html#cb29-30" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">rownames</span>(M), <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">col =</span> cols, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb29-31"><a href="chi-squared-test.html#cb29-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-32"><a href="chi-squared-test.html#cb29-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore the default margins for subsequent plots</span></span>
+<span id="cb29-33"><a href="chi-squared-test.html#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-33-1.png" alt="Grouped bar chart of smoking and sex." width="672" />
+<p class="caption">
+Figure 2.3: Grouped bar chart of smoking and sex.
+</p>
+</div>
+</details>
+<p>From the plot we can conclude there are more smokers than non-smokers. Smoking appears slightly more common in females.</p>
+</details>
+<details>
+<summary>
+Mosaic plot
+</summary>
+<p>A mosaic plot is <em>similar</em> to a stacked bar chart (groups pasted on top of each other). However, in a mosaic plot, both the height <em>and</em> the width of the bars is proportional to the frequency of that group:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="chi-squared-test.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(ConTable, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-35-1.png" alt="Mosaic plot of smoking and sex shows smoking is relatively, slightly more common in women." width="336" />
+<p class="caption">
+Figure 2.4: Mosaic plot of smoking and sex shows smoking is relatively, slightly more common in women.
+</p>
+</div>
+<p>Mosaic plots are not very commonly used, but can provide an alternative to bar charts to summarize categorical data effectively, especially with an appropriate color scheme to distinguish between categories.</p>
+</details>
+</details>
+</div>
+<div id="conduct-a-chi-squared-test" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Conduct a Chi-Squared Test<a href="chi-squared-test.html#conduct-a-chi-squared-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details>
+<summary>
+If you have a single set of observed values
+</summary>
+<p>To compare a single set of observed values to their expected proportions:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="chi-squared-test.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportions in which the flowers were planted</span></span>
+<span id="cb31-2"><a href="chi-squared-test.html#cb31-2" aria-hidden="true" tabindex="-1"></a>expected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb31-3"><a href="chi-squared-test.html#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="chi-squared-test.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Did the flowers sprout in a different ratio than I planted them?</span></span>
+<span id="cb31-5"><a href="chi-squared-test.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Observed, <span class="at">p =</span> expected)</span></code></pre></div>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  Observed
+## X-squared = 6.12, df = 2, p-value = 0.04689</code></pre>
+</details>
+<details>
+<summary>
+If you have a contingency table
+</summary>
+<p>To conduct a <span class="math inline">\(\chi^2\)</span>-test for independence:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="chi-squared-test.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(ConTable)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  ConTable
+## X-squared = 1.6293, df = 1, p-value = 0.2018</code></pre>
+</details>
+<details>
+<summary>
+I received a warning
+</summary>
+<p>If you receive the following warning:</p>
+<p><font color = "#C5060B"></p>
+<pre><code>Warning message:
+In chisq.test(Observed, p = expected) :
+  Chi-squared approximation may be incorrect</code></pre>
+<p></font></p>
+<p>That means at least one of the expected values is less than 5. The solution is to use Monte Carlo simulation to estimate the <span class="math inline">\(p\)</span>-value (for a vector of observed frequencies) use an exact test (for contingency tables):</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="chi-squared-test.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monte Carlo (for a vector of observed frequencies)</span></span>
+<span id="cb36-2"><a href="chi-squared-test.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Observed, <span class="at">simulate.p.value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-3"><a href="chi-squared-test.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="chi-squared-test.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Exact test (for contingency tables)</span></span>
+<span id="cb36-5"><a href="chi-squared-test.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(ConTable)</span></code></pre></div>
+</details>
+</div>
+<div id="results-chi" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Correctly Phrase the Results<a href="chi-squared-test.html#results-chi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For a <strong>vector of observed frequencies</strong>:</p>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-value is <strong>less</strong> than the chosen level of significance
+</summary>
+<p><small><em>(This is the case in the flower example.)</em></small></p>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Flowers species were counted in a ratio significantly different from the <span class="math inline">\(2:1:1\)</span> ratio in which they were planted (<span class="math inline">\(\chi^2 = 24.8\)</span>, <span class="math inline">\(p = 4.20 \cdot 10^{-6}\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> We observed significantly different proportions of flower species than expected (<span class="math inline">\(\chi^2 = 24.8\)</span>, <span class="math inline">\(p = 4.20 \cdot 10^{-6}\)</span>).</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The alternative hypothesis was true // The null-hypothesis was false;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The difference was significant (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> Flowers species sprout in a different ratio than the ratio in which they are planted.</li>
+</ul>
+<details>
+<summary>
+Why paste tense?
+</summary>
+<p>The results of a single experiment, no matter how convincing, can never prove something to be true. The results <em>were</em> observed, and in this one experiment, A <em>was</em> better than B.</p>
+<p>Use present tense only for statements that have been demonstrated repeatedly, are generally agreed upon, or are easily observable, e.g.:</p>
+<ul>
+<li>Smoking causes cancer;</li>
+<li>Current climate-change is mainly caused by human activities;</li>
+<li>Most people use smartphones nowadays.</li>
+</ul>
+</details>
+</details>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-value is <strong>greater</strong> than the chosen level of significance
+</summary>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Counts of flowers species did not differ significantly from the <span class="math inline">\(2:1:1\)</span> ratio in which they were planted (<span class="math inline">\(\chi^2 = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There is insufficient evidence to conclude a difference from a <span class="math inline">\(2:1:1\)</span> ratio (<span class="math inline">\(\chi^2 = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There was a trend towards more rose and fewer tulips than expected under a <span class="math inline">\(2:1:1\)</span> ratio, but this difference was not significant (<span class="math inline">\(\chi^2 = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>).</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> Planting and sprouting ratios were equal // The <span class="math inline">\(2:1:1\)</span> ratio was correct;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> There was no difference (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We accept the null-hypothesis.</li>
+</ul>
+<details>
+<summary>
+Why can’t I say I <em>accepted</em> the null-hypothesis?
+</summary>
+<p>This is imprecise language because it distorts the order of null-hypothesis significance testing. Every tests <em>starts</em> with pretending the null-hypothesis is true, and then considering how rare a result this would be. You did not accept the null-hypothesis <em>because</em> of the <span class="math inline">\(p\)</span>-value, but rather, you started by taking on the null-hypothesis to even compute that <span class="math inline">\(p\)</span>-value.</p>
+</details
+</details>
+</details>
+<p>
+<p>For <strong>contingency tables</strong>:</p>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-value is <strong>less</strong> than the chosen level of significance
+</summary>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Smoking behavior differed significantly by sex (<span class="math inline">\(\chi^2 = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Females were proportionally significantly more likely to be smokers (<span class="math inline">\(\chi^2 = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>).</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Smoking behavior and sex were significantly dependent (<span class="math inline">\(\chi^2 = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>).</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The alternative hypothesis was true // The null-hypothesis was false;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The difference was significant (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> Sex and smoking are independent of each other.</li>
+</ul>
+<details>
+<summary>
+Why paste tense?
+</summary>
+<p>The results of a single experiment, no matter how convincing, can never prove something to be true. The results <em>were</em> observed, and in this one experiment, A <em>was</em> better than B.</p>
+<p>Use present tense only for statements that have been demonstrated repeatedly, are generally agreed upon, or are easily observable, e.g.:</p>
+<ul>
+<li>Smoking causes cancer;</li>
+<li>Current climate-change is mainly caused by human activities;</li>
+<li>Most people use smartphones nowadays.</li>
+</ul>
+</details>
+</details>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-value is <strong>greater</strong> than the chosen level of significance
+</summary>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Smoking behavior did not differ significantly by sex (<span class="math inline">\(\chi^2 = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There is insufficient evidence to conclude a difference in smoking behavior between men and women (<span class="math inline">\(\chi^2 = \dots\)</span>, <span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Smoking behavior and sex did not depend significantly on each other (<span class="math inline">\(\chi^2\)</span>, <span class="math inline">\(p\)</span>).</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> Smoking behavior was equal for men and women // Sex and smoking were independent;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> There was no difference (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We accept the null-hypothesis.</li>
+</ul>
+<details>
+<summary>
+Why can’t I say I <em>accepted</em> the null-hypothesis?
+</summary>
+<p>This is imprecise language because it distorts the order of null-hypothesis significance testing. Every tests <em>starts</em> with pretending the null-hypothesis is true, and then considering how rare a result this would be. You did not accept the null-hypothesis <em>because</em> of the <span class="math inline">\(p\)</span>-value, but rather, you started by taking on the null-hypothesis to even compute that <span class="math inline">\(p\)</span>-value.</p>
+</details
+</details>
+</details>
+</div>
+<div id="incorporating-this-in-a-paper-1" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Incorporating This in a Paper<a href="chi-squared-test.html#incorporating-this-in-a-paper-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here you can find examples of how to justify the methods used, explain the results found and write a discussion. This is meant to show you what belongs where, and what level of detail is common in scientific literature.</p>
+<p>Remember to use your own words—<strong>paraphrase to avoid plagiarism</strong>.</p>
+<details>
+<summary>
+Methods
+</summary>
+<p><small><em>(In this section, you should describe the data collection and analysis to an extent that a fellow expert could reproduce your study.)</em></small></p>
+<p>All 226 employees at Example company were inquired about their sex and smoking behavior in November 2022. A total of <span class="math inline">\(n = 224\)</span> employees responded.</p>
+<p>All statistical analyses were conducted in R, version 4.2.1, using the RStudio interface.<span class="citation"><sup><a href="#ref-R" role="doc-biblioref">1</a>,<a href="#ref-RStudio" role="doc-biblioref">2</a></sup></span> Observed and expected frequencies were compared with a Pearson’s chi-squared test.</p>
+<p>Note:</p>
+<ul>
+<li>Check your R version number with <code>version</code>;</li>
+<li>Justify the type of test used; <small><em>(If you use a <span class="math inline">\(\chi^2\)</span>-test, all expected (not observed) counts should be greater than 5.)</em></small></li>
+<li>You should cite any packages used to perform analyses, generate tables or figures that made it into the paper, e.g.;
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Figures were created with the <code>ggplot2</code> package.<span class="citation"><sup><a href="#ref-ggplot2" role="doc-biblioref">5</a></sup></span> <small><em>(Not the case in the tutorial.)</em></small></li>
+</ul></li>
+<li>You should <em>not</em> cite packages used only internally, e.g.:
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We used <code>readxl</code> to enter the data in R.<span class="citation"><sup><a href="#ref-readxl" role="doc-biblioref">4</a></sup></span></li>
+</ul></li>
+<li>It is important to mention adequately how the data was collected. For survey research like that in the example, the respondence rate can have a large influence on the conclusions: What if smoking females are less likely to respond?</li>
+</ul>
+</details>
+<details>
+<summary>
+Results
+</summary>
+<p><small><em>(In this section you should mention the results without giving any interpretation yet.)</em></small></p>
+<p>For general advice on phrasing, see: <a href="chi-squared-test.html#results-chi">Correctly Phrase the Results</a>. In this section, you should include your table and/or figure of the data and explain in brief what the outcome of the <span class="math inline">\(\chi^2\)</span>-test was.</p>
+<p>It is very common to see bar charts with significance stars, but the interpretation of these stars is not consistent and you should mention the actual, non-discretized <span class="math inline">\(p\)</span>-value at least somewhere in the results.</p>
+</details>
+<details>
+<summary>
+Discussion
+</summary>
+<p><small><em>(In this section, you should not mention results, but the conclusions based on those results.)</em></small></p>
+<p>For a <strong>vector of observed frequencies</strong>:</p>
+<details>
+<summary>
+If the test was significant <strong>and</strong> the difference large enough to be biologically relevant
+</summary>
+<p><small><em>(This is the case in the flower example.)</em></small></p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Roses appear to sprout more often, and tulips less often than dandelions, though more replicates of the experiment are necessary for a conclusive answer;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Differences in seed resilience of roses, tulips and dandelions may cause them to sprout disproportional to their planting ratios.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overclaiming)</em> Roses are better at sprouting than tulips or dandelions.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overgeneralizing)</em> Thorned flowers appear to sprout more often than flowers without thorns.</li>
+</ul>
+</details>
+<details>
+<summary>
+If the test was insignificant <strong>or</strong> the difference too small to be biologically relevant:
+</summary>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was sufficiently powerful)</em> Despite a fairly large sample size, we were unable to demonstrate a difference in planting and sprouting ratios, suggesting these species are equally likely to sprout when planted.</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was underpowered)</em> We were unable to demonstrate a difference in planting and sprouting ratios, though a multiple replications of the experiment in different fields may yield a more conclusive answer.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Appeal to ignorance)</em> We have demonstrated there is no difference in planting and sprouting ratios.</li>
+</ul>
+<details>
+<summary>
+Why can’t I conclude there is no difference?
+</summary>
+<p>This is an inherent limitation of the <span class="math inline">\(p\)</span>-value. Under the null-hypothesis, any <span class="math inline">\(p\)</span>-value is as likely as any other (uniformity). Therefore, even if the <span class="math inline">\(p\)</span>-value is very large, this cannot be interpreted as evidence <em>for</em> the null-hypothesis.</p>
+<p>For example, a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(0.20\)</span> is just as common a result as <span class="math inline">\(0.80\)</span> when the null-hypothesis is correct. The <span class="math inline">\(p\)</span>-value can <em>only</em> be used as evidence <em>against</em> the null-hypothesis (when it is small).</p>
+<p>If you want to perform a test to find out whether the null-hypothesis is correct, what you are looking for is called an <a href="https://en.wikipedia.org/wiki/Equivalence_test">equivalence test</a>.</p>
+</details>
+</details>
+<p>
+<p>For <strong>contingency tables</strong>:</p>
+<details>
+<summary>
+If the test was significant <strong>and</strong> the difference large enough to be biologically relevant
+</summary>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Women may be more inclined to smoke at work, though more replicates of the experiment at different companies are necessary for a conclusive answer;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Anti-smoking campaigns at Example company may have been relatively more effective at targeting men, though a longitudinal intervention study could provide a more conclusive answer.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overclaiming)</em> Anti-smoking campaigns at Example company have been more successful in targeting men.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overgeneralizing)</em> Men are less inclined to smoke at work.</li>
+</ul>
+</details>
+<details>
+<summary>
+If the test was insignificant <strong>or</strong> the difference too small to be biologically relevant:
+</summary>
+<p><small><em>(This is the case in the smoking example.)</em></small></p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was sufficiently powerful)</em> Smoking remains prevalent at Example company, irrespective of sex.</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was underpowered)</em> We were unable to demonstrate a difference in smoking ratios of men and women at Example company.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Appeal to ignorance)</em> We have demonstrated smoking and sex are independent at Example company.</li>
+</ul>
+<details>
+<summary>
+Why can’t I conclude there is no difference?
+</summary>
+<p>This is an inherent limitation of the <span class="math inline">\(p\)</span>-value. Under the null-hypothesis, any <span class="math inline">\(p\)</span>-value is as likely as any other (uniformity). Therefore, even if the <span class="math inline">\(p\)</span>-value is very large, this cannot be interpreted as evidence <em>for</em> the null-hypothesis.</p>
+<p>For example, a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(0.20\)</span> is just as common a result as <span class="math inline">\(0.80\)</span> when the null-hypothesis is correct. The <span class="math inline">\(p\)</span>-value can <em>only</em> be used as evidence <em>against</em> the null-hypothesis (when it is small).</p>
+<p>If you want to perform a test to find out whether the null-hypothesis is correct, what you are looking for is called an <a href="https://en.wikipedia.org/wiki/Equivalence_test">equivalence test</a>.</p>
+</details>
+</details>
+<p>
+<p>General note: Counts from a single location, work place, or petri dish are never convincing enough for strong conclusive remarks. It is better to have multiple replicates of the whole experiment (fields, companies, petri dishes) and analyze the results with, for instance, a binomial GLM.</p>
+</details>
+<details>
+<summary>
+Generating citations
+</summary>
+<p>Any packages used in analysis should be cited in the methods section. The citations used here can be easily obtained as follows (note that this requires the packages to be installed):</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="chi-squared-test.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>()          <span class="co"># Use this to cite R</span></span>
+<span id="cb37-2"><a href="chi-squared-test.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">RStudio.Version</span>()   <span class="co"># Use this to cite RStudio</span></span>
+<span id="cb37-3"><a href="chi-squared-test.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;ggplot2&quot;</span>) <span class="co"># Use this to cite a package (here: ggplot2)</span></span></code></pre></div>
+<p>You can add these entries to a reference manager (e.g., Zotero), or keep a BibTeX file yourself, as shown <a href="https://youtu.be/zuuOYjE8m98">here</a>.</p>
+</details>
+<hr />
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body" line-spacing="2">
+<div id="ref-R" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">R Core Team. <em><a href="https://www.R-project.org/">R: A language and environment for statistical computing</a></em>. (R Foundation for Statistical Computing, 2022).</div>
+</div>
+<div id="ref-RStudio" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">RStudio Team. <em><a href="http://www.rstudio.com/">RStudio: Integrated development environment for r</a></em>. (RStudio, PBC, 2022).</div>
+</div>
+<div id="ref-readxl" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Wickham, H. &amp; Bryan, J. <em><a href="https://CRAN.R-project.org/package=readxl">Readxl: Read excel files</a></em>. (2022).</div>
+</div>
+<div id="ref-ggplot2" class="csl-entry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Wickham, H. <em><a href="https://ggplot2.tidyverse.org">ggplot2: Elegant graphics for data analysis</a></em>. (Springer-Verlag New York, 2016).</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="t-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Tutorials.pdf", "Tutorials.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

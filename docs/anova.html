@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Tutorial 3 ANOVA | Statistics Tutorials &amp; Templates</title>
+  <meta name="description" content="Tutorial 3 ANOVA | Statistics Tutorials &amp; Templates" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Tutorial 3 ANOVA | Statistics Tutorials &amp; Templates" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tutorial 3 ANOVA | Statistics Tutorials &amp; Templates" />
+  
+  
+  
+
+<meta name="author" content="Dr. F.J. Rodenburg © 2022" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chi-squared-test.html"/>
+<link rel="next" href="linear-model.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics Tutorials & Templates</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="t-test.html"><a href="t-test.html"><i class="fa fa-check"></i><b>1</b> T-Test</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="t-test.html"><a href="t-test.html#read-t"><i class="fa fa-check"></i><b>1.1</b> Read the Data into R</a></li>
+<li class="chapter" data-level="1.2" data-path="t-test.html"><a href="t-test.html#vis-t"><i class="fa fa-check"></i><b>1.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="1.3" data-path="t-test.html"><a href="t-test.html#choose-an-appropriate-t-test"><i class="fa fa-check"></i><b>1.3</b> Choose an Appropriate T-Test</a></li>
+<li class="chapter" data-level="1.4" data-path="t-test.html"><a href="t-test.html#results-t"><i class="fa fa-check"></i><b>1.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="1.5" data-path="t-test.html"><a href="t-test.html#incorporating-this-in-a-paper"><i class="fa fa-check"></i><b>1.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chi-squared-test.html"><a href="chi-squared-test.html"><i class="fa fa-check"></i><b>2</b> Chi-Squared Test</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chi-squared-test.html"><a href="chi-squared-test.html#read-the-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Read the Data into R</a></li>
+<li class="chapter" data-level="2.2" data-path="chi-squared-test.html"><a href="chi-squared-test.html#vis-chi"><i class="fa fa-check"></i><b>2.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="2.3" data-path="chi-squared-test.html"><a href="chi-squared-test.html#conduct-a-chi-squared-test"><i class="fa fa-check"></i><b>2.3</b> Conduct a Chi-Squared Test</a></li>
+<li class="chapter" data-level="2.4" data-path="chi-squared-test.html"><a href="chi-squared-test.html#results-chi"><i class="fa fa-check"></i><b>2.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="2.5" data-path="chi-squared-test.html"><a href="chi-squared-test.html#incorporating-this-in-a-paper-1"><i class="fa fa-check"></i><b>2.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>3</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="anova.html"><a href="anova.html#read-ANOVA"><i class="fa fa-check"></i><b>3.1</b> Read the Data into R</a>
+<ul>
+<li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#reordering-a-factor"><i class="fa fa-check"></i>Reordering a Factor</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="anova.html"><a href="anova.html#vis-ANOVA"><i class="fa fa-check"></i><b>3.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="3.3" data-path="anova.html"><a href="anova.html#fit-an-anova"><i class="fa fa-check"></i><b>3.3</b> Fit an ANOVA</a></li>
+<li class="chapter" data-level="3.4" data-path="anova.html"><a href="anova.html#results-ANOVA"><i class="fa fa-check"></i><b>3.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="3.5" data-path="anova.html"><a href="anova.html#incorporating-this-in-a-paper-2"><i class="fa fa-check"></i><b>3.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-model.html"><a href="linear-model.html"><i class="fa fa-check"></i><b>4</b> Linear Model</a></li>
+<li class="chapter" data-level="5" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i><b>5</b> Generalized Linear Model</a></li>
+<li class="chapter" data-level="6" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>6</b> Mixed Model</a></li>
+<li class="chapter" data-level="7" data-path="glmm.html"><a href="glmm.html"><i class="fa fa-check"></i><b>7</b> GLMM</a></li>
+<li class="chapter" data-level="8" data-path="exploration-pca.html"><a href="exploration-pca.html"><i class="fa fa-check"></i><b>8</b> Exploration: PCA</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="exploration-pca.html"><a href="exploration-pca.html#read-the-data-into-r-1"><i class="fa fa-check"></i><b>8.1</b> Read the Data into R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reading-storing-data.html"><a href="reading-storing-data.html"><i class="fa fa-check"></i><b>9</b> Reading &amp; Storing Data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="reading-storing-data.html"><a href="reading-storing-data.html#tidy"><i class="fa fa-check"></i><b>9.1</b> Tidy Format</a></li>
+<li class="chapter" data-level="9.2" data-path="reading-storing-data.html"><a href="reading-storing-data.html#separate-data-entry-analysis"><i class="fa fa-check"></i><b>9.2</b> Separate Data Entry &amp; Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="reading-storing-data.html"><a href="reading-storing-data.html#excel-is-not-statistical-software"><i class="fa fa-check"></i>Excel Is Not Statistical Software</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="reading-storing-data.html"><a href="reading-storing-data.html#metadata"><i class="fa fa-check"></i><b>9.3</b> Meta Data</a></li>
+<li class="chapter" data-level="9.4" data-path="reading-storing-data.html"><a href="reading-storing-data.html#csv"><i class="fa fa-check"></i><b>9.4</b> Reading Data as CSV</a></li>
+<li class="chapter" data-level="9.5" data-path="reading-storing-data.html"><a href="reading-storing-data.html#Excel"><i class="fa fa-check"></i><b>9.5</b> Reading Data from Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics Tutorials &amp; Templates</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anova" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Tutorial 3</span> ANOVA<a href="anova.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><small><i>A method test to <b>compare any number of means</b> to see if they differ significantly. Observations are assumed to be <strong>independent</strong>, deviations from the group means are assumed to follow a <strong>normal distribution</strong>, and groups are assumed to have <strong>equal variance</strong>.</i></small></p>
+<hr />
+<details>
+<summary>
+Summary
+</summary>
+<ol style="list-style-type: decimal">
+<li><a href="https://youtu.be/BGUqZc-Pb8w">Read the data into R <font color = "red"><i class="fa fa-youtube-play"></i></font></a>;</li>
+<li>Visualize the data;</li>
+<li>Fit an ANOVA:
+<ul>
+<li>Perform visual diagnostics to look for deviations from the assumptions;</li>
+<li>Perform an omnibus test if the assumptions appear reasonable;</li>
+<li>Perform a post-hoc test if the omnibus test was significant;</li>
+</ul></li>
+<li>Report a conclusion;</li>
+<li>Incorporating this in scientific literature.</li>
+</ol>
+</details>
+<p>You can download the tutorial <a href="files/tutorial_ANOVA.Rmd">here</a> and the required data set <a href="data/three-groups.csv">here</a>.</p>
+<div id="read-ANOVA" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Read the Data into R<a href="anova.html#read-ANOVA" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I recommend saving data as <a href="https://youtu.be/BGUqZc-Pb8w">comma-separated values (CSV)</a>. If you prefer reading data directly from Excel, have a look <a href="reading-storing-data.html#Excel">here</a>.</p>
+<details>
+<summary>
+Details
+</summary>
+<ul>
+<li>Save the data in a folder;</li>
+<li>Open RStudio and create a new R markdown file; <small>(<strong>File</strong> &gt; <strong>New File</strong> &gt; <strong>R Markdown</strong>)</small></li>
+<li>Save your R markdown file to the same location as the data;</li>
+<li>Set working directory to source file location. <small>(<strong>Session</strong> &gt; <strong>Set Working Directory</strong> &gt; <strong>To Source File Location</strong>)</small></li>
+</ul>
+</details>
+<p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="anova.html#cb38-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;three-groups.csv&quot;</span>)</span></code></pre></div>
+<p>Did that work? There are several ways to check:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="anova.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span>
+<span id="cb39-2"><a href="anova.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span>
+<span id="cb39-3"><a href="anova.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code></pre></div>
+<details>
+<summary>
+Explanation of the output
+</summary>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="anova.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    90 obs. of  4 variables:
+##  $ SBP      : int  122 119 120 129 127 118 120 124 126 117 ...
+##  $ treatment: chr  &quot;thiazide&quot; &quot;thiazide&quot; &quot;thiazide&quot; &quot;thiazide&quot; ...
+##  $ age      : int  32 34 36 41 35 38 36 33 39 32 ...
+##  $ sex      : chr  &quot;female&quot; &quot;female&quot; &quot;female&quot; &quot;male&quot; ...</code></pre>
+<p>This command shows the structure of the data. It is a data frame with <span class="math inline">\(n = 60\)</span> observations of 4 variables. <code>SBP</code> and age are stored as integers (<code>int</code>), while <code>treatment</code> and <code>sex</code> are stored character vectors (<code>chr</code>).</p>
+<pre><code>##       SBP         treatment              age            sex           
+##  Min.   :114.0   Length:90          Min.   :23.00   Length:90         
+##  1st Qu.:122.0   Class :character   1st Qu.:32.00   Class :character  
+##  Median :127.0   Mode  :character   Median :35.00   Mode  :character  
+##  Mean   :131.5                      Mean   :35.69                     
+##  3rd Qu.:142.0                      3rd Qu.:38.00                     
+##  Max.   :201.0                      Max.   :83.00</code></pre>
+<pre><code>##   SBP treatment age    sex
+## 1 122  thiazide  32 female
+## 2 119  thiazide  34 female
+## 3 120  thiazide  36 female
+## 4 129  thiazide  41   male
+## 5 127  thiazide  35 female
+## 6 118  thiazide  38 female</code></pre>
+</details>
+<details>
+<summary>
+My output looks different
+</summary>
+<p>Then provided you did everything else correctly, the most likely reason is that your data was saved with a version of Excel where a comma is used as a decimal separator (e.g., the Dutch version). The solutions for this is simple, use <code>read.csv2</code>:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="anova.html#cb44-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;some-data-with-commas.csv&quot;</span>)</span></code></pre></div>
+If that doesn’t work either, go over the details shown above, or watch the instructions in the <a href="https://youtu.be/BGUqZc-Pb8w">video</a>.
+</details>
+<details>
+<summary>
+Common mistakes
+</summary>
+<ul>
+<li>Remember to include the file extension (e.g., “two-groups<strong>.csv</strong>”) when typing the file name.</li>
+<li>You cannot read Excel files (.xls, .xlsx) with this function. Instead, follow the guide <a href="#read">here</a>, or save your data as CSV.</li>
+<li>Don’t open the CSV file with Excel. You don’t need Excel or Google Sheets or any other program besides R and RStudio. If you have saved your data as CSV, you can close Excel.</li>
+</ul>
+</details>
+<p>
+<p>The next step is to ensure categorical variables are read as factors. This will allow us to use generic functions like <code>plot</code> and <code>summary</code> in a more meaningful way.</p>
+<details>
+<summary>
+Why not just use <code>character</code>?
+</summary>
+<p>A character vector is just strings of text, numbers and/or symbols. If you were to produce a <code>summary</code>, this happens:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="anova.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>##    Length     Class      Mode 
+##        90 character character</code></pre>
+<p>It tells us this object contains 60 values, and it is stored and treated as a string of text.</p>
+<p>The generic <code>plot</code> function doesn’t even work at all:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="anova.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
+<p><font color = "#C5060B"></p>
+<pre><code>Error in plot.window(...) : need finite &#39;xlim&#39; values
+In addition: Warning messages:
+1: In xy.coords(x, y, xlabel, ylabel, log) : NAs introduced by coercion
+2: In min(x) : no non-missing arguments to min; returning Inf
+3: In max(x) : no non-missing arguments to max; returning -Inf</code></pre>
+<p></font></p>
+<p>Now convert the variables to factors and see how that changes the output. <br><small><em>(Run the code below, then run <code>summary(DF$treatment)</code>, or <code>plot(DF$treatment)</code> for example.)</em></small></p>
+</details>
+<p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="anova.html#cb49-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment)</span>
+<span id="cb49-2"><a href="anova.html#cb49-2" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>sex       <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>sex)</span></code></pre></div>
+<div id="reordering-a-factor" class="section level3 unnumbered hasAnchor">
+<h3>Reordering a Factor<a href="anova.html#reordering-a-factor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While it does not change any of the conclusions, it can help yourself and any readers if you put the groups in a logical order. For sex there is no logical order, but for treatment it would make sense to have the placebo first, as a reference to compare the other groups to.</p>
+<p>To check the order of levels in a factor, use <code>levels</code>:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="anova.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>## [1] &quot;CCB&quot;      &quot;placebo&quot;  &quot;thiazide&quot;</code></pre>
+<p>To change which treatment appears first, use <code>relevel</code>:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="anova.html#cb52-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(DF<span class="sc">$</span>treatment, <span class="st">&quot;placebo&quot;</span>)</span></code></pre></div>
+<p><small><em>(Run <code>levels(DF$treatment)</code> again to see if it worked.)</em></small></p>
+<details>
+<summary>
+Reordering multiple categories at once
+</summary>
+<p>If you want to change the order entirely, you can define the order manually as follows:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="anova.html#cb53-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;placebo&quot;</span>, <span class="st">&quot;CCB&quot;</span>, <span class="st">&quot;thiazide&quot;</span>))</span></code></pre></div>
+</details>
+<details>
+<summary>
+Change the names of the categories
+</summary>
+<p><font color = "orange"><i class = "fa fa-warning"></i></font> Careful, only use this if you know what you are doing. Check the order of labels first, using <code>levels</code>. It is easy to accidentally flip the labels of a factor and end up with nonsense.</p>
+<p>If you want to rename the labels of a factor, for instance because you think the names are too long, you can do so as follows:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="anova.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this first, you have been warned</span></span>
+<span id="cb54-2"><a href="anova.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span>
+<span id="cb54-3"><a href="anova.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="anova.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the names, taking into account the order of the labels above</span></span>
+<span id="cb54-5"><a href="anova.html#cb54-5" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Ctrl&quot;</span>, <span class="st">&quot;CCB&quot;</span>, <span class="st">&quot;Thzd&quot;</span>))</span></code></pre></div>
+<p><small><em>(Run <code>levels(DF$treatment)</code> again to see if it worked.)</em></small></p>
+</details>
+</div>
+</div>
+<div id="vis-ANOVA" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Visualize the Data<a href="anova.html#vis-ANOVA" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In summary:</p>
+<ul>
+<li><font color = "orange"><i class = "fa fa-warning"></i></font> Marginal boxplots cannot show combinations of variables;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Grouped boxplots <em>can</em> show combinations of variables;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> A violin plot is an alternative to a boxplot.</li>
+</ul>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="anova.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<details>
+<summary>
+What to look for
+</summary>
+<p><font size = 5><b>Potential Outliers</b></font></p>
+<p>A boxplot shows either of the following:</p>
+<div class="figure"><span style="display:block;" id="fig:IQR3"></span>
+<img src="Tutorials_files/figure-html/IQR3-1.png" alt="What is displayed in a boxplot in case all observations are within a certain distance from the box (A), or otherwise (B)." width="672" />
+<p class="caption">
+Figure 3.1: What is displayed in a boxplot in case all observations are within a certain distance from the box (A), or otherwise (B).
+</p>
+</div>
+<p>The interquartile range (IQR) is simply the size of the box. If all observations lie within <span class="math inline">\(1.5\times\)</span> this range from the box, then the whiskers show the extremes of the data (fig. <a href="t-test.html#fig:IQR">1.1</a> A). Otherwise, the observations are drawn separately <a href="t-test.html#fig:IQR">1.1</a> B). The IQR is usually not shown in a boxplot, but is used internally to calculate the location of the whiskers and marked observations (if any).</p>
+<details>
+<summary>
+<b>Marked observations are not outliers</b>
+</summary>
+<p>This is a common misconception. Though it can be an <em>indication</em> of outlyingness, a boxplot alone <u>cannot</u> tell you whether these observations will strongly affect your analysis:</p>
+<ul>
+<li>If you have a large enough sample size, you <em>will</em> find more extreme observations, which are eventually drawn outside the IQR.</li>
+<li>Skewed values (see next section) will almost always show ‘outliers’ in the direction of skew, but these are unlikely to be outliers in the context of an appropriate model for skewed data.</li>
+<li>The <span class="math inline">\(1.5\times\)</span> IQR rule is nothing special, it is merely convention. A boxplot is just a quick way to visualize numeric values.</li>
+</ul>
+</details>
+<p>
+<p><font size = 5><b>Skew</b></font></p>
+<p>Skew means the data-generating process follows a probability distribution that is not symmetric. In a boxplot, skew looks like this:</p>
+<div class="figure"><span style="display:block;" id="fig:skew3"></span>
+<img src="Tutorials_files/figure-html/skew3-1.png" alt="A boxplot of symmetric (A), right-skewed (B), and left-skewed values." width="672" />
+<p class="caption">
+Figure 3.2: A boxplot of symmetric (A), right-skewed (B), and left-skewed values.
+</p>
+</div>
+<p>Skew is not necessarily a problem, unless it persists in the residuals of a model that assumes normally distributed errors. For an explanation of skew, see the video on <a href="https://youtu.be/jdfG7rKPVNk">probability distributions <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
+<p><font size = 5><b>Differences Between Groups</b></font></p>
+<p>A boxplot is not just a nice tool for <em>yourself</em> to inspect your data, but is also an effective tool to visually communicate the evidence for difference between groups:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-54"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-54-1.png" alt="A comparison of systolic blood pressure for different treatments and sex." width="384" />
+<p class="caption">
+Figure 3.3: A comparison of systolic blood pressure for different treatments and sex.
+</p>
+</div>
+</details>
+<p>
+<p>From the plot you can conclude:</p>
+<ul>
+<li>There appears to be a clear outlier in the female CCB group;</li>
+<li>None of the groups appear skewed;</li>
+<li>Both the CCB and thiazide group have substantially lower blood pressure than the control, with thiazide appearing the lowest;</li>
+<li>This difference appears to be similar for males and females;</li>
+<li>Systolic blood pressure does not appear to differ by sex at all;</li>
+<li>The variance of all groups is similar, because the boxes are similarly sized (ignoring the group with an outlier).</li>
+</ul>
+<p>This is just a sample, so whether this difference is <em>significant</em>, should be determined with a test.</p>
+<details>
+<summary>
+How to improve your plot
+</summary>
+<p>Some basic adjustments that improve any plot:</p>
+<ul>
+<li>Use informative axis labels, with unit of measurement if appropriate;</li>
+<li>Add an informative caption;</li>
+<li>Keep the numbers on the axes horizontal where possible;</li>
+<li>Remove unnecessary plot elements, like the box around the figure.</li>
+</ul>
+<p>The changes to the code I made below can all be found in the help pages <code>?boxplot</code> and <code>?par</code>. I am also a big fan of the <code>eaxis</code> function from the package <code>sfsmisc</code>. The caption is added as a chunk option (i.e., <code>```{r, fig.cap = "..."}</code>).</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="anova.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a package for nice axes</span></span>
+<span id="cb56-2"><a href="anova.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sfsmisc&quot;</span>)</span>
+<span id="cb56-3"><a href="anova.html#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="anova.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the margins (bottom, left, top, right)</span></span>
+<span id="cb56-5"><a href="anova.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb56-6"><a href="anova.html#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="anova.html#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the locations (helps discern between combinations of groups)</span></span>
+<span id="cb56-8"><a href="anova.html#cb56-8" aria-hidden="true" tabindex="-1"></a>where <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb56-9"><a href="anova.html#cb56-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-10"><a href="anova.html#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the coordinate system</span></span>
+<span id="cb56-11"><a href="anova.html#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF, <span class="at">at =</span> where, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb56-12"><a href="anova.html#cb56-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">200</span>),</span>
+<span id="cb56-13"><a href="anova.html#cb56-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Treatment&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span>
+<span id="cb56-14"><a href="anova.html#cb56-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-15"><a href="anova.html#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axes</span></span>
+<span id="cb56-16"><a href="anova.html#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="fl">7.5</span>), <span class="fu">levels</span>(DF<span class="sc">$</span>treatment))</span>
+<span id="cb56-17"><a href="anova.html#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="fu">eaxis</span>(<span class="dv">2</span>)</span>
+<span id="cb56-18"><a href="anova.html#cb56-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-19"><a href="anova.html#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a lightgrey background</span></span>
+<span id="cb56-20"><a href="anova.html#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">210</span>, <span class="dv">210</span>, <span class="dv">100</span>), <span class="at">col =</span> <span class="st">&quot;grey95&quot;</span>)</span>
+<span id="cb56-21"><a href="anova.html#cb56-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-22"><a href="anova.html#cb56-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a simple grid</span></span>
+<span id="cb56-23"><a href="anova.html#cb56-23" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">10</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>)</span>
+<span id="cb56-24"><a href="anova.html#cb56-24" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">20</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb56-25"><a href="anova.html#cb56-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-26"><a href="anova.html#cb56-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Redraw the boxplots on top</span></span>
+<span id="cb56-27"><a href="anova.html#cb56-27" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF, <span class="at">at =</span> where, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb56-28"><a href="anova.html#cb56-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb56-29"><a href="anova.html#cb56-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb56-30"><a href="anova.html#cb56-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-31"><a href="anova.html#cb56-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore the default margins for subsequent plots</span></span>
+<span id="cb56-32"><a href="anova.html#cb56-32" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-56"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-56-1.png" alt="A comparison of systolic blood pressure for three groups." width="384" />
+<p class="caption">
+Figure 3.4: A comparison of systolic blood pressure for three groups.
+</p>
+</div>
+</details>
+<details>
+<summary>
+Alternative: Violin plot
+</summary>
+<p>A more modern take on the boxplot is a <strong>violin plot</strong>. It combines a boxplot and a density plot. This type of visualization is richer in information than just a boxplot, but it is only meaningful if you have enough observations per group (e.g., &gt;10):</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="anova.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vioplot&quot;</span>) <span class="co"># install if missing</span></span>
+<span id="cb57-2"><a href="anova.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vioplot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<details>
+<summary>
+How to interpret a violin plot
+</summary>
+<p>Here is a breakdown of the components shown in a violin plot:</p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p>The density plot, if you are unfamiliar with it, is like a continuous version of a histogram. It shows which values are more and less likely in the sample.</p>
+</details>
+</details>
+<p>
+</div>
+<div id="fit-an-anova" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Fit an ANOVA<a href="anova.html#fit-an-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="results-ANOVA" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Correctly Phrase the Results<a href="anova.html#results-ANOVA" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="incorporating-this-in-a-paper-2" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Incorporating This in a Paper<a href="anova.html#incorporating-this-in-a-paper-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chi-squared-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Tutorials.pdf", "Tutorials.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
