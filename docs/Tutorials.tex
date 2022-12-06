@@ -722,6 +722,8 @@ Why can't I say I \emph{accepted} the null-hypothesis?
 
 This is imprecise language because it distorts the order of null-hypothesis significance testing. Every tests \emph{starts} with pretending the null-hypothesis is true, and then considering how rare a result this would be. You did not accept the null-hypothesis \emph{because} of the \(p\)-value, but rather, you started by taking on the null-hypothesis to even compute that \(p\)-value.
 
+Also see: \href{https://stats.stackexchange.com/a/85914/176202}{Why do statisticians say a non-significant result means ``you can't reject the null'' as opposed to accepting the null hypothesis?}
+
 \hypertarget{incorporating-this-in-a-paper}{%
 \section{Incorporating This in a Paper}\label{incorporating-this-in-a-paper}}
 
@@ -1457,6 +1459,8 @@ For example, a \(p\)-value of \(0.20\) is just as common a result as \(0.80\) wh
 
 If you want to perform a test to find out whether the null-hypothesis is correct, what you are looking for is called an \href{https://en.wikipedia.org/wiki/Equivalence_test}{equivalence test}.
 
+Also see: \href{https://stats.stackexchange.com/a/85914/176202}{Why do statisticians say a non-significant result means ``you can't reject the null'' as opposed to accepting the null hypothesis?}
+
 For \textbf{contingency tables}:
 
 If the test was significant \textbf{and} the difference large enough to be biologically relevant
@@ -1494,6 +1498,8 @@ This is an inherent limitation of the \(p\)-value. Under the null-hypothesis, an
 For example, a \(p\)-value of \(0.20\) is just as common a result as \(0.80\) when the null-hypothesis is correct. The \(p\)-value can \emph{only} be used as evidence \emph{against} the null-hypothesis (when it is small).
 
 If you want to perform a test to find out whether the null-hypothesis is correct, what you are looking for is called an \href{https://en.wikipedia.org/wiki/Equivalence_test}{equivalence test}.
+
+Also see: \href{https://stats.stackexchange.com/a/85914/176202}{Why do statisticians say a non-significant result means ``you can't reject the null'' as opposed to accepting the null hypothesis?}
 
 General note: Counts from a single location, work place, or petri dish are never convincing enough for strong conclusive remarks. It is better to have multiple replicates of the whole experiment (fields, companies, petri dishes) and analyze the results with, for instance, a binomial GLM.
 
@@ -1708,6 +1714,32 @@ To check the order of levels in a factor, use \texttt{levels}:
 ## [1] "CCB"      "placebo"  "thiazide"
 \end{verbatim}
 
+My output is \texttt{NULL}
+
+That means you forgot to convert your variable to a factor first:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{levels}\NormalTok{(DF}\SpecialCharTok{$}\NormalTok{treatment)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Solution}
+\NormalTok{DF}\SpecialCharTok{$}\NormalTok{treatment }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(DF}\SpecialCharTok{$}\NormalTok{treatment)}
+\FunctionTok{levels}\NormalTok{(DF}\SpecialCharTok{$}\NormalTok{treatment)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "CCB"      "placebo"  "thiazide"
+\end{verbatim}
+
 To change which treatment appears first, use \texttt{relevel}:
 
 \begin{Shaded}
@@ -1754,9 +1786,9 @@ In summary:
 \begin{itemize}
 \tightlist
 \item
-  Marginal boxplots cannot show combinations of variables;
+  Boxplots can be used as simple data exploration and to compare groups;
 \item
-  Grouped boxplots \emph{can} show combinations of variables;
+  If you have \protect\hyperlink{tidy}{multiple variables}, grouped boxplots can show combinations of groups;
 \item
   A violin plot is an alternative to a boxplot.
 \end{itemize}
@@ -1767,7 +1799,7 @@ In summary:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-53-1.pdf}
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 What to look for
 
@@ -1790,9 +1822,9 @@ This is a common misconception. Though it can be an \emph{indication} of outlyin
 \begin{itemize}
 \tightlist
 \item
-  If you have a large enough sample size, you \emph{will} find more extreme observations, which are eventually drawn outside the IQR.
+  If you have a large enough sample size, you \emph{will} find more extreme observations, which are eventually drawn outside the IQR. Try running: \texttt{boxplot(rnorm(1000))}
 \item
-  Skewed values (see next section) will almost always show `outliers' in the direction of skew, but these are unlikely to be outliers in the context of an appropriate model for skewed data.
+  Skewed values (next section) will almost always show `outliers' in the direction of skew, but these are unlikely to be outliers in the context of an appropriate model for skewed data.
 \item
   The \(1.5\times\) IQR rule is nothing special, it is merely convention. A boxplot is just a quick way to visualize numeric values.
 \end{itemize}
@@ -1815,29 +1847,9 @@ A boxplot is not just a nice tool for \emph{yourself} to inspect your data, but 
 
 \begin{figure}
 \centering
-\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-54-1.pdf}
-\caption{\label{fig:unnamed-chunk-54}A comparison of systolic blood pressure for different treatments and sex.}
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-57-1.pdf}
+\caption{\label{fig:unnamed-chunk-57}A comparison of systolic blood pressure for different treatments and sex.}
 \end{figure}
-
-From the plot you can conclude:
-
-\begin{itemize}
-\tightlist
-\item
-  There appears to be a clear outlier in the female CCB group;
-\item
-  None of the groups appear skewed;
-\item
-  Both the CCB and thiazide group have substantially lower blood pressure than the control, with thiazide appearing the lowest;
-\item
-  This difference appears to be similar for males and females;
-\item
-  Systolic blood pressure does not appear to differ by sex at all;
-\item
-  The variance of all groups is similar, because the boxes are similarly sized (ignoring the group with an outlier).
-\end{itemize}
-
-This is just a sample, so whether this difference is \emph{significant}, should be determined with a test.
 
 How to improve your plot
 
@@ -1861,7 +1873,6 @@ The changes to the code I made below can all be found in the help pages \texttt{
 \begin{Highlighting}[]
 \CommentTok{\# Load a package for nice axes}
 \FunctionTok{library}\NormalTok{(}\StringTok{"sfsmisc"}\NormalTok{)}
-
 \CommentTok{\# Change the margins (bottom, left, top, right)}
 \FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{) }\SpecialCharTok{+} \FloatTok{0.1}\NormalTok{)}
 
@@ -1870,7 +1881,8 @@ The changes to the code I made below can all be found in the help pages \texttt{
 
 \CommentTok{\# Create the coordinate system}
 \FunctionTok{boxplot}\NormalTok{(SBP }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sex }\SpecialCharTok{+}\NormalTok{ treatment, DF, }\AttributeTok{at =}\NormalTok{ where, }\AttributeTok{axes =} \ConstantTok{FALSE}\NormalTok{,}
-        \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{110}\NormalTok{, }\DecValTok{200}\NormalTok{),}
+        \AttributeTok{pch =} \DecValTok{19}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{boxwex =} \FloatTok{0.25}\NormalTok{, }\AttributeTok{staplewex =} \DecValTok{0}\NormalTok{, }
+        \AttributeTok{lwd =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{lty =} \DecValTok{1}\NormalTok{, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{110}\NormalTok{, }\DecValTok{200}\NormalTok{), }\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DecValTok{12}\NormalTok{),}
         \AttributeTok{xlab =} \StringTok{"Treatment"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Systolic blood pressure (mmHg)"}\NormalTok{)}
 
 \CommentTok{\# Add axes}
@@ -1878,16 +1890,23 @@ The changes to the code I made below can all be found in the help pages \texttt{
 \FunctionTok{eaxis}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
 \CommentTok{\# Add a lightgrey background}
-\FunctionTok{polygon}\NormalTok{(}\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{9}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }\AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{210}\NormalTok{, }\DecValTok{210}\NormalTok{, }\DecValTok{100}\NormalTok{), }\AttributeTok{col =} \StringTok{"grey95"}\NormalTok{)}
+\FunctionTok{polygon}\NormalTok{(}\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{9}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }\AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{210}\NormalTok{, }\DecValTok{210}\NormalTok{, }\DecValTok{100}\NormalTok{), }\AttributeTok{col =} \StringTok{"grey95"}\NormalTok{,}
+        \AttributeTok{border =} \ConstantTok{NA}\NormalTok{)}
 
 \CommentTok{\# Add a simple grid}
 \FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \FunctionTok{seq}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{10}\NormalTok{), }\AttributeTok{col =} \StringTok{"white"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{1}\NormalTok{)}
 \FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \FunctionTok{seq}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{20}\NormalTok{), }\AttributeTok{col =} \StringTok{"white"}\NormalTok{, }\AttributeTok{lwd =} \FloatTok{1.5}\NormalTok{)}
 
+\CommentTok{\# Define two colors (picked from colorbrewer2.org):}
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"\#fb9a99"}\NormalTok{, }\StringTok{"\#a6cee3"}\NormalTok{)}
+
 \CommentTok{\# Redraw the boxplots on top}
 \FunctionTok{boxplot}\NormalTok{(SBP }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sex }\SpecialCharTok{+}\NormalTok{ treatment, DF, }\AttributeTok{at =}\NormalTok{ where, }\AttributeTok{axes =} \ConstantTok{FALSE}\NormalTok{,}
-        \AttributeTok{boxwex =} \FloatTok{0.25}\NormalTok{, }\AttributeTok{staplewex =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"steelblue"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{, }
-        \AttributeTok{pch =} \DecValTok{19}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{, }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+        \AttributeTok{boxwex =} \FloatTok{0.25}\NormalTok{, }\AttributeTok{staplewex =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =}\NormalTok{ cols, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{, }
+        \AttributeTok{pch =} \DecValTok{19}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Add a legend}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{levels}\NormalTok{(DF}\SpecialCharTok{$}\NormalTok{sex), }\AttributeTok{pch =} \DecValTok{15}\NormalTok{, }\AttributeTok{col =}\NormalTok{ cols, }\AttributeTok{bty =} \StringTok{"n"}\NormalTok{)}
 
 \CommentTok{\# Restore the default margins for subsequent plots}
 \FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{) }\SpecialCharTok{+} \FloatTok{0.1}\NormalTok{)}
@@ -1896,9 +1915,29 @@ The changes to the code I made below can all be found in the help pages \texttt{
 
 \begin{figure}
 \centering
-\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-56-1.pdf}
-\caption{\label{fig:unnamed-chunk-56}A comparison of systolic blood pressure for three groups.}
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-59-1.pdf}
+\caption{\label{fig:unnamed-chunk-59}A comparison of systolic blood pressure for three groups.}
 \end{figure}
+
+From the plot you can conclude:
+
+\begin{itemize}
+\tightlist
+\item
+  There appears to be a clear outlier in the female CCB group;
+\item
+  None of the groups appear skewed;
+\item
+  Both the CCB and thiazide group have substantially lower blood pressure than the control, with thiazide appearing the lowest;
+\item
+  This difference appears to be similar for males and females;
+\item
+  Systolic blood pressure does not appear to differ by sex at all;
+\item
+  The variance of all groups is similar, because the boxes are similarly sized.
+\end{itemize}
+
+This is just a sample, so whether this difference is \emph{significant}, should be determined with a test.
 
 Alternative: Violin plot
 
@@ -1911,24 +1950,341 @@ A more modern take on the boxplot is a \textbf{violin plot}. It combines a boxpl
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-57-1.pdf}
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-60-1.pdf}
 
 How to interpret a violin plot
 
 Here is a breakdown of the components shown in a violin plot:
 
-\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-58-1.pdf}
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-61-1.pdf}
 
 The density plot, if you are unfamiliar with it, is like a continuous version of a histogram. It shows which values are more and less likely in the sample.
 
-\hypertarget{fit-an-anova}{%
-\section{Fit an ANOVA}\label{fit-an-anova}}
+\hypertarget{analyze-the-data}{%
+\section{Analyze the Data}\label{analyze-the-data}}
+
+Summary (code)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load packages used (install if missing)}
+\FunctionTok{require}\NormalTok{(}\StringTok{"car"}\NormalTok{)}
+\FunctionTok{require}\NormalTok{(}\StringTok{"emmeans"}\NormalTok{)}
+
+\CommentTok{\# Fit the model}
+\NormalTok{LM }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(SBP }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, DF)}
+
+\CommentTok{\# Perform visual diagnostics}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))   }\CommentTok{\# Plot in a 2x2 grid}
+\FunctionTok{plot}\NormalTok{(LM, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)    }\CommentTok{\# Residuals vs fitted}
+\FunctionTok{qqPlot}\NormalTok{(LM, }\AttributeTok{reps =} \FloatTok{1e4}\NormalTok{) }\CommentTok{\# QQ{-}plot}
+\FunctionTok{plot}\NormalTok{(LM, }\AttributeTok{which =} \DecValTok{3}\NormalTok{)    }\CommentTok{\# Scale{-}location}
+\FunctionTok{plot}\NormalTok{(LM, }\AttributeTok{which =} \DecValTok{4}\NormalTok{)    }\CommentTok{\# Cook\textquotesingle{}s distance}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))   }\CommentTok{\# Restore the default}
+
+\CommentTok{\# Obs. 31 appears to be outlying:}
+\NormalTok{DF[}\DecValTok{31}\NormalTok{, ]}
+
+\CommentTok{\# Omitting this observation can be justified based on age}
+\NormalTok{LM }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(SBP }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, DF[}\SpecialCharTok{{-}}\DecValTok{31}\NormalTok{, ])}
+
+\CommentTok{\# Perform an omnibus test}
+\FunctionTok{summary.aov}\NormalTok{(LM)}
+
+\CommentTok{\# If the omnibus test is significant, perform a post{-}hoc}
+\NormalTok{EMM }\OtherTok{\textless{}{-}} \FunctionTok{emmeans}\NormalTok{(LM, }\AttributeTok{specs =} \StringTok{"treatment"}\NormalTok{)}
+\FunctionTok{pairs}\NormalTok{(EMM)}
+
+\CommentTok{\# Visualize the post hoc (see the emmeans vignette)}
+\FunctionTok{plot}\NormalTok{(EMM, }\AttributeTok{comparisons =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Fit the Model
+
+In the example, we are only interested in the effect of \texttt{treatment}. For a single grouping variable, use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LM }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(SBP }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, DF)}
+\end{Highlighting}
+\end{Shaded}
+
+The general notation is \texttt{Outcome\ \textasciitilde{}\ GroupingVariable,\ Data}. Adding more grouping variables is simple, but model selection is not, so two-way and multi-way ANOVA are explained separately in the \protect\hyperlink{twowaymultiway}{next chapter}.
+
+Why use a linear model (\texttt{lm})?
+
+\emph{(The short answer is that ANOVA is linear and we decided to use \texttt{emmeans} throughout the tutorials for consistency.)}
+
+Linear means that we can express the model as intercept and slope(s):
+
+\[\text{intercept} + \text{slope} \times \text{explanatory variable}\]
+
+Categorical explanatory variables, like \texttt{treatment}, can be represented by \href{https://youtu.be/3ZY9OSXmOrU?t=657}{dummy variables }:
+
+\[
+\begin{aligned}
+  x_1 &= 
+    \begin{cases}
+      1 \; \text{if CCB} \\
+      0 \; \text{otherwise}
+    \end{cases} \\ \\
+  x_2 &= 
+    \begin{cases}
+      1 \; \text{if thiazide} \\
+      0 \; \text{otherwise}
+    \end{cases}
+\end{aligned}
+\]
+These variables are equal to \(1\) if the observation belongs to that group and \(0\) otherwise. Our example model then becomes:
+
+\[\text{SBP} = \text{intercept} + \text{slope} \cdot x_1 + \text{slope} \cdot x_2\]
+
+That might look confusing at first, because this isn't a slope in the everyday meaning of the word. But all that `slope' means in statistics is the extent to which the outcome changes, if the explanatory variable increases by \(1\). For example, \textbf{if you belong to the thiazide group}, then the equation becomes:
+
+\[\text{SBP} = \text{intercept} + \text{slope} \cdot 0 + \text{slope} \cdot 1\]
+
+\textbf{If you belong to the control group}, the equation becomes:
+
+\[\text{SBP} = \text{intercept} + \text{slope} \cdot 0 + \text{slope} \cdot 0\]
+
+Which is simply the value of the intercept.
+
+Hence, comparing group means is the same as fitting a linear model with only dummy variables. This is useful for a number of reasons, but primarily:
+
+\begin{itemize}
+\tightlist
+\item
+  We can use the same notation for everything from \(t\)-test to ANCOVA;
+\item
+  We can use \texttt{lm}, which is supported by far more functions than \texttt{aov};
+\item
+  We can easily correct for \href{https://youtu.be/RUX94txw4Qo}{multiple testing }. \emph{(The traditional \texttt{aov} + \texttt{TukeyHSD} approach does not correct for two-way or multi-way ANOVA.)}
+\end{itemize}
+
+Perform Diagnostics
+
+The calculation of confidence intervals and \(p\)-values is based on several assumptions. If these are not reasonable, conclusions drawn from the analysis are invalid.
+
+Additionally, outliers can have a strong influence on the estimates and \(p\)-values, so you should always check and decide whether outlying observations are genuine, or outlying for reasons that warrant exclusion.
+
+Checking assumptions and outlyingness can be done trough \href{https://youtu.be/upJJmfSbBuQ}{visual diagnostics }.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(}\StringTok{"car"}\NormalTok{)         }\CommentTok{\# Install if missing}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))   }\CommentTok{\# Plot in a 2x2 grid}
+\FunctionTok{plot}\NormalTok{(LM, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)    }\CommentTok{\# Residuals vs fitted}
+\FunctionTok{qqPlot}\NormalTok{(LM, }\AttributeTok{reps =} \FloatTok{1e4}\NormalTok{) }\CommentTok{\# QQ{-}plot}
+\FunctionTok{plot}\NormalTok{(LM, }\AttributeTok{which =} \DecValTok{3}\NormalTok{)    }\CommentTok{\# Scale{-}location}
+\FunctionTok{plot}\NormalTok{(LM, }\AttributeTok{which =} \DecValTok{4}\NormalTok{)    }\CommentTok{\# Cook\textquotesingle{}s distance}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))   }\CommentTok{\# Restore the default}
+\end{Highlighting}
+\end{Shaded}
+
+Show output
+
+\emph{(For general advice on diagnostic plots, see the \href{https://youtu.be/upJJmfSbBuQ}{video }.)}
+
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-65-1.pdf}
+
+The visual diagnostics confirm what was already visible in the boxplots, there is an outlier (\#31) visible in each of the plots. Its Cook's distance is well over \(0.5\).
+
+Let's see what the diagnostics would look like without this observation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fit a model on the data, excluding obs. 31}
+\NormalTok{LM2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(SBP }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, DF[}\SpecialCharTok{{-}}\DecValTok{31}\NormalTok{, ])}
+
+\CommentTok{\# Run the diagnostics}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))    }\CommentTok{\# Plot in a 2x2 grid}
+\FunctionTok{plot}\NormalTok{(LM2, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)    }\CommentTok{\# Residuals vs fitted}
+\FunctionTok{qqPlot}\NormalTok{(LM2, }\AttributeTok{reps =} \FloatTok{1e4}\NormalTok{) }\CommentTok{\# QQ{-}plot}
+\FunctionTok{plot}\NormalTok{(LM2, }\AttributeTok{which =} \DecValTok{3}\NormalTok{)    }\CommentTok{\# Scale{-}location}
+\FunctionTok{plot}\NormalTok{(LM2, }\AttributeTok{which =} \DecValTok{4}\NormalTok{)    }\CommentTok{\# Cook\textquotesingle{}s distance}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))    }\CommentTok{\# Restore the default}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-67-1.pdf}
+
+Now the diagnostics look fine. If you are concerned about the staircase in the QQ-plot, that is an artifact of the way these data were collected: Systolic blood pressure was rounded to whole numbers, but the actual underlying values can reasonably be assumed to be normally distributed within groups.
+
+Significance tests for assumptions
+
+All significance tests can produce false positives. Always judge the severity of any supposed problems with \emph{visual} diagnostics.
+
+In cases where you are not sure an assumption is violated, it is possible to conduct a test.
+
+Normality
+
+Deviations from conditional normality can be formally tested using a variety of tests, all of which have different sensitivities to different aspects of the normal probability distribution. Commonly used is the Shapiro--Wilks test, which is particularly sensitive to skew and light-tailedness.\citep{ShapiroSensitivities}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(}\FunctionTok{residuals}\NormalTok{(LM))}
+\end{Highlighting}
+\end{Shaded}
+
+Show output
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuals(LM)
+## W = 0.48457, p-value = 3.255e-16
+\end{verbatim}
+
+The residuals differ significantly from a theoretical normal distribution (\(p = 3.23 \cdot 10^{-16}\)), though this is likely due to the outlier seen in the visual diagnostics, which is something you can try out:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LM2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(SBP }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, DF[}\SpecialCharTok{{-}}\DecValTok{31}\NormalTok{, ])}
+\FunctionTok{shapiro.test}\NormalTok{(}\FunctionTok{residuals}\NormalTok{(LM2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuals(LM2)
+## W = 0.97918, p-value = 0.1634
+\end{verbatim}
+
+And indeed, now there is no detected deviation from normality anymore.
+
+This does not demonstrate the values are normally distributed
+
+This is a common misconception. All we found is a lack of evidence against normality. But for these values to be normally distributed, they would need to range all the way from \(-\infty\) to \(\infty\), which is obviously not realistic for blood pressure.
+
+\emph{Also see: \href{https://stats.stackexchange.com/a/85914/176202}{Why do statisticians say a non-significant result means ``you can't reject the null'' as opposed to accepting the null hypothesis?}}
+
+Constant Variance
+
+A robust test for non-constant variance that is not sensitive to other common issues like outliers and non-normality is the Breusch--Pagan test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(}\StringTok{"lmtest"}\NormalTok{) }\CommentTok{\# Install if missing}
+\FunctionTok{bptest}\NormalTok{(LM)}
+\end{Highlighting}
+\end{Shaded}
+
+Show output
+
+\begin{verbatim}
+## 
+##  studentized Breusch-Pagan test
+## 
+## data:  LM
+## BP = 2.2161, df = 2, p-value = 0.3302
+\end{verbatim}
+
+As expected from the visual diagnostics, group variances are not significantly different (\(p = 0.330\)).
+
+This does not demonstrate the groups have equal variance
+
+This is a common misconception. All we found is a lack of evidence \emph{against} equal variance.
+
+\emph{Also see: \href{https://stats.stackexchange.com/a/85914/176202}{Why do statisticians say a non-significant result means ``you can't reject the null'' as opposed to accepting the null hypothesis?}}
+
+Outliers
+
+A test for outlyingness is included in the \texttt{car} package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(}\StringTok{"car"}\NormalTok{)}
+\FunctionTok{outlierTest}\NormalTok{(LM)}
+\end{Highlighting}
+\end{Shaded}
+
+Show output
+
+\begin{verbatim}
+##    rstudent unadjusted p-value Bonferroni p
+## 31 18.55085         8.3005e-32   7.4705e-30
+\end{verbatim}
+
+The test looks at every individual residual and whether it might be outlying. That of course, poses a major multiple testing issue, so the rersulting \(p\)-values are adjusted for this. When looking for outliyngness, always check the \emph{adjusted} \(p\)-value.
+
+In this case, the test is significant (\(p_{\text{adj}} = 7.47 \cdot 10^{-30}\)) and observation 31 is again pointed out to be the offending observation.
+
+The \texttt{car} package contains another set of residual plots specifically to assess outlyingness:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{influenceIndexPlot}\NormalTok{(LM)}
+\end{Highlighting}
+\end{Shaded}
+
+Show output
+
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-76-1.pdf}
+
+These show, in order:
+
+\begin{itemize}
+\tightlist
+\item
+  The Cook's distance; \emph{(Greater than \(0.5\) is noteworthy, greater than \(1.0\) is outlying.)}
+\item
+  The studentized residuals; \emph{(Divided by their standard deviation for standardized interpretation.)}
+\item
+  \(P\)-values for outlyingess; \emph{(Corrected for \href{https://youtu.be/RUX94txw4Qo}{multiple testing}.)}
+\item
+  The hat-values. \emph{(A measure of relative influence.)}
+\end{itemize}
+
+Observation 31 is again pointed out.
+
+What to do if an assumption is violated?
+
+Unfortunately this is where statistics ends. Uninstall R and RStudio from your computer and find a different profession. (\ldots) under construction.
+
+xxxxxxxxxxxxxxxxx
+
+Perform an Omnibus Test
+
+To print a classic ANOVA table, run the following:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary.aov}\NormalTok{(LM)}
+\end{Highlighting}
+\end{Shaded}
+
+Show output
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value   Pr(>F)    
+## treatment    2   8391    4196   53.96 5.77e-16 ***
+## Residuals   87   6765      78                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+The omnibus test is significant (\(F = 54.0\), \(p = 5.77 \cdot 10^{-16}\)), meaning there is a significant difference among group means. For a full explanation of the table above, see the \href{https://youtu.be/BFB4o4uBgPs}{video }.
 
 \hypertarget{results-ANOVA}{%
 \section{Correctly Phrase the Results}\label{results-ANOVA}}
 
+We used ANOVA because we don't know what we're doing.
+
 \hypertarget{incorporating-this-in-a-paper-2}{%
 \section{Incorporating This in a Paper}\label{incorporating-this-in-a-paper-2}}
+
+\hypertarget{twowaymultiway}{%
+\chapter{Two-Way \& Multi-Way ANOVA}\label{twowaymultiway}}
+
+\ldots{}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\ldots{}
 
 \hypertarget{linear-model}{%
 \chapter{Linear Model}\label{linear-model}}
@@ -2012,8 +2368,8 @@ Collect data in a simple, consistent format called \emph{tidy data},\citep{tidy}
 
 \begin{figure}
 \centering
-\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-60-1.pdf}
-\caption{\label{fig:unnamed-chunk-60}The basic principle of tidy data. This data set has 5 observations of 4 variables.}
+\includegraphics{Tutorials_files/figure-latex/unnamed-chunk-80-1.pdf}
+\caption{\label{fig:unnamed-chunk-80}The basic principle of tidy data. This data set has 5 observations of 4 variables.}
 \end{figure}
 
 Good example
@@ -2022,7 +2378,7 @@ The \texttt{iris} data set (preinstalled with R) is in tidy format:
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-61}The first 5 rows of the <tt>iris</tt> data set. Each row is a flower and each column a property.}
+\caption{\label{tab:unnamed-chunk-81}The first 5 rows of the <tt>iris</tt> data set. Each row is a flower and each column a property.}
 \centering
 \fontsize{11}{13}\selectfont
 \begin{tabular}[t]{c|c|c|c|c}
@@ -2052,7 +2408,7 @@ A common deviation from tidy format is to represent groups as columns:
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-62}Systolic blood pressure (SBP) of 10 individuals. <font color = 'red'>(untidy)</font>}
+\caption{\label{tab:unnamed-chunk-82}Systolic blood pressure (SBP) of 10 individuals. <font color = 'red'>(untidy)</font>}
 \centering
 \fontsize{11}{13}\selectfont
 \begin{tabular}[t]{c|c}
@@ -2076,7 +2432,7 @@ Do you have different groups? Time points? Replicates of the experiment? Then tr
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-63}Sex and systolic blood pressure (SBP) of 10 individuals. <font color = 'blue'>(tidy)</font>}
+\caption{\label{tab:unnamed-chunk-83}Sex and systolic blood pressure (SBP) of 10 individuals. <font color = 'blue'>(tidy)</font>}
 \centering
 \fontsize{11}{13}\selectfont
 \begin{tabular}[t]{c|c}
@@ -2166,7 +2522,7 @@ Beware `intelligent' conversions
 Programming requires exact precision in syntax, which can be very frustrating for beginners. To address this, many programs try to intelligently interpret your input:
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{figures/typo} \caption{My hasty attempt to figure out which clothes to wear to work.}\label{fig:unnamed-chunk-65}
+\includegraphics[width=1\linewidth]{figures/typo} \caption{My hasty attempt to figure out which clothes to wear to work.}\label{fig:unnamed-chunk-85}
 \end{figure}
 
 While this usually a good thing, Excel does many such corrections without notice, and some even irreversibly. This can have serious repercussions for scientific research. For example, a 2016 article found widespread errors in gene names due to autocorrected Excel input.\citep{genenameerrors} Always check whether your input is correctly interpreted, or change the data type to ``text'' instead of ``general'' for everything you enter.
