@@ -16,11 +16,11 @@ fig:IQR3
 fig:skew3
 fig:unnamed-chunk-57
 fig:unnamed-chunk-59
-fig:unnamed-chunk-80
-tab:unnamed-chunk-81
-tab:unnamed-chunk-82
-tab:unnamed-chunk-83
 fig:unnamed-chunk-85
+tab:unnamed-chunk-86
+tab:unnamed-chunk-87
+tab:unnamed-chunk-88
+fig:unnamed-chunk-90
 t-test
 read-t
 vis-t

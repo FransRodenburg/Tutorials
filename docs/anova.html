@@ -589,9 +589,10 @@ Why use a linear model (<code>lm</code>)?
 \]</span>
 These variables are equal to <span class="math inline">\(1\)</span> if the observation belongs to that group and <span class="math inline">\(0\)</span> otherwise. Our example model then becomes:</p>
 <p><span class="math display">\[\text{SBP} = \text{intercept} + \text{slope} \cdot x_1 + \text{slope} \cdot x_2\]</span></p>
-<p>That might look confusing at first, because this isn’t a slope in the everyday meaning of the word. But all that ‘slope’ means in statistics is the extent to which the outcome changes, if the explanatory variable increases by <span class="math inline">\(1\)</span>. For example, <strong>if you belong to the thiazide group</strong>, then the equation becomes:</p>
+<p>That might look confusing at first, because this isn’t a slope in the everyday meaning of the word. But all that ‘slope’ means in statistics is the extent to which the outcome changes, if the explanatory variable increases by <span class="math inline">\(1\)</span>.</p>
+<p>For example, if you belong to the thiazide group, then the equation becomes:</p>
 <p><span class="math display">\[\text{SBP} = \text{intercept} + \text{slope} \cdot 0 + \text{slope} \cdot 1\]</span></p>
-<p><strong>If you belong to the control group</strong>, the equation becomes:</p>
+<p>If you belong to the control group, the equation becomes:</p>
 <p><span class="math display">\[\text{SBP} = \text{intercept} + \text{slope} \cdot 0 + \text{slope} \cdot 0\]</span></p>
 <p>Which is simply the value of the intercept.</p>
 <p>Hence, comparing group means is the same as fitting a linear model with only dummy variables. This is useful for a number of reasons, but primarily:</p>
@@ -727,22 +728,92 @@ Show output
 <summary>
 What to do if an assumption is violated?
 </summary>
-<p><s>Unfortunately this is where statistics ends. Uninstall R and RStudio from your computer and find a different profession.</s> (…) under construction.</p>
+<p>Unfortunately this is where statistics ends. Uninstall R and RStudio from your computer and find a different profession. (…) Just kidding, under construction.</p>
 </details>
-<p>xxxxxxxxxxxxxxxxx</p>
+<p>
+<p><font size = 5><b>Dealing with Potential Outliers</b></font></p>
+<p>In general, outliers should <strong>not</strong> be removed from the data, barring some exceptions.</p>
+<p><font color = "green"><i class = "fa fa-check"></i></font> The following are valid reasons for exclusion:</p>
+<ol style="list-style-type: decimal">
+<li>The observation is clearly an unrealistic value; <br><small><em>(For example, a blood pressure of “2000 mmHg” due to a misplaced decimal separator.)</em></small></li>
+<li>The cause of outlyingness can be traced back, invalidating the observation; <br><small><em>(For example, because the blood pressure monitor was placed incorrectly.)</em></small></li>
+<li>The observation differs in another way from the rest, invalidating comparisons. <br><small><em>(For example, this person smoked and all others did not.)</em></small></li>
+</ol>
+<p><font color = "red"><i class = "fa fa-times"></i></font> The following are insufficient reasons for exclusion:</p>
+<ul>
+<li>The observation stands out in the diagnostic plots;</li>
+<li>The observation has a high Cook’s distance;</li>
+<li>An outlier test showed the value was significantly outlying.</li>
+</ul>
+<p>These are all measures that assume your model is right, but the opposite could very well be the case: The fact that there <em>are</em> ‘outliers’ is often an indication the proposed model is wrong.</p>
+<p>Which is the case in our example? Let’s inspect observation 31 once again:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="anova.html#cb75-1" aria-hidden="true" tabindex="-1"></a>DF[<span class="dv">31</span>, ]</span></code></pre></div>
+<pre><code>##    SBP treatment age    sex
+## 31 201       CCB  83 female</code></pre>
+<p>The observation belongs to an 83-year old individual, which is considerably older than any of the other participants. If there had been more elderly individuals, we could opt to include <code>age</code> in the model. In this case though, there is only one observation this much older than the rest <em>and</em> it happens to have an outlying value for blood pressure, making this fall into category 3, warranting exclusion.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="anova.html#cb77-1" aria-hidden="true" tabindex="-1"></a>DF2 <span class="ot">&lt;-</span> DF[<span class="sc">-</span><span class="dv">31</span>, ]</span>
+<span id="cb77-2"><a href="anova.html#cb77-2" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF2)</span></code></pre></div>
+<p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>This is a new model, fitted to a different data set, so you should rerun the diagnostics.</small></p>
+<details>
+<summary>
+I can’t trace back the source of outlyingness
+</summary>
+<p>Then you have two options:</p>
+<ul>
+<li>Compare the results with and without the suspected outlier. If you end up with similar numbers and arrive more or less at the same conclusion, you could opt to simply mention the outlier (and its influence) in the results and write your conclusion normally; <br><small><em>(Even better would be to include both outputs (e.g., as supplementary.)</em></small></li>
+<li>Use an alternative to ANOVA, like the Kruskal–Wallis test, which does not make the same distributional assumptions.</li>
+</ul>
+</details>
+<details>
+<summary>
+My data set has many outliers
+</summary>
+<p>This is more often than not an indication that the assumptions of the model are not reasonable in the first place: Perhaps the data-generating process produced skewed values, or has far heavier tails than the normal distribution does. Perhaps there is an error in how the data are collected, or maybe your data were not read correctly by the software.</p>
+<p>Simple removal is at best a questionable research practice and at worst plain falsification. Unless you can trace back the origin of the outliers, consider consulting a statistician.</p>
+</details>
+<p>
 <p><font size = 5><b>Perform an Omnibus Test</b></font></p>
 <p>To print a classic ANOVA table, run the following:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="anova.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(LM)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="anova.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(LM)</span></code></pre></div>
 <details>
 <summary>
 Show output
 </summary>
-<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## treatment    2   8391    4196   53.96 5.77e-16 ***
-## Residuals   87   6765      78                     
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## treatment    2   8921    4460   283.6 &lt;2e-16 ***
+## Residuals   86   1353      16                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The omnibus test is significant (<span class="math inline">\(F = 54.0\)</span>, <span class="math inline">\(p = 5.77 \cdot 10^{-16}\)</span>), meaning there is a significant difference among group means. For a full explanation of the table above, see the <a href="https://youtu.be/BFB4o4uBgPs">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
+</details>
+<p>
+<p><font size = 5><b>Perform a Post Hoc Analysis</b></font></p>
+<p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>A post hoc should only be conducted if the omnibus test was significant.</small></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="anova.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
+<span id="cb80-2"><a href="anova.html#cb80-2" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> <span class="st">&quot;treatment&quot;</span>)</span>
+<span id="cb80-3"><a href="anova.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(EMM)</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>##  contrast           estimate   SE df t.ratio p.value
+##  placebo - CCB         18.33 1.03 86  17.746  &lt;.0001
+##  placebo - thiazide    23.13 1.02 86  22.592  &lt;.0001
+##  CCB - thiazide         4.81 1.03 86   4.653  &lt;.0001
+## 
+## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+</details>
+<details>
+<summary>
+Obtaining confidence intervals for the group means
+</summary>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="anova.html#cb82-1" aria-hidden="true" tabindex="-1"></a>EMM</span></code></pre></div>
+<pre><code>##  treatment emmean    SE df lower.CL upper.CL
+##  placebo      144 0.724 86      143      146
+##  CCB          126 0.736 86      125      128
+##  thiazide     121 0.724 86      120      123
+## 
+## Confidence level used: 0.95</code></pre>
 </details>
 </div>
 <div id="results-ANOVA" class="section level2 hasAnchor" number="3.4">
