@@ -753,7 +753,7 @@ What to do if an assumption is violated?
 <p>The observation belongs to an 83-year old individual, which is considerably older than any of the other participants. If there had been more elderly individuals, we could opt to include <code>age</code> in the model. In this case though, there is only one observation this much older than the rest <em>and</em> it happens to have an outlying value for blood pressure, making this fall into category 3, warranting exclusion.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="anova.html#cb77-1" aria-hidden="true" tabindex="-1"></a>DF2 <span class="ot">&lt;-</span> DF[<span class="sc">-</span><span class="dv">31</span>, ]</span>
 <span id="cb77-2"><a href="anova.html#cb77-2" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF2)</span></code></pre></div>
-<p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>This is a new model, fitted to a different data set, so you should rerun the diagnostics.</small></p>
+<p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>This is a new model, fitted to different data, so you should rerun the diagnostics.</small></p>
 <details>
 <summary>
 I can’t trace back the source of outlyingness
@@ -784,7 +784,7 @@ Show output
 ## Residuals   86   1353      16                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>The omnibus test is significant (<span class="math inline">\(F = 54.0\)</span>, <span class="math inline">\(p = 5.77 \cdot 10^{-16}\)</span>), meaning there is a significant difference among group means. For a full explanation of the table above, see the <a href="https://youtu.be/BFB4o4uBgPs">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
+<p>The omnibus test is significant (<span class="math inline">\(F = 54.0\)</span>, <span class="math inline">\(p = 5.77 \cdot 10^{-16}\)</span>), meaning there is a significant difference among group means. For a full explanation of the table above, see the <a href="https://youtu.be/87ECInQIY9k?t=129">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
 </details>
 <p>
 <p><font size = 5><b>Perform a Post Hoc Analysis</b></font></p>
@@ -802,26 +802,73 @@ Show output
 ##  CCB - thiazide         4.81 1.03 86   4.653  &lt;.0001
 ## 
 ## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+<p>All groups differ significantly from each other (<span class="math inline">\(p &lt; 0.0001\)</span>), with thiazide appearing most effective. These <span class="math inline">\(p\)</span>-values are already corrected for multiple testing.</p>
+<p>If you want to obtain the actual, non-discretized <span class="math inline">\(p\)</span>-values, you can use <code>as.data.frame</code>:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="anova.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">pairs</span>(EMM))</span></code></pre></div>
+<pre><code>##             contrast  estimate       SE df   t.ratio      p.value
+## 1      placebo - CCB 18.327586 1.032768 86 17.746090 2.591527e-10
+## 2 placebo - thiazide 23.133333 1.023978 86 22.591634 2.591527e-10
+## 3     CCB - thiazide  4.805747 1.032768 86  4.653271 3.476791e-05</code></pre>
 </details>
 <details>
 <summary>
 Obtaining confidence intervals for the group means
 </summary>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="anova.html#cb82-1" aria-hidden="true" tabindex="-1"></a>EMM</span></code></pre></div>
-<pre><code>##  treatment emmean    SE df lower.CL upper.CL
-##  placebo      144 0.724 86      143      146
-##  CCB          126 0.736 86      125      128
-##  thiazide     121 0.724 86      120      123
-## 
-## Confidence level used: 0.95</code></pre>
+<p>What we just saw were the estimated <em>differences</em>. But what if you wanted to include confidence intervals for the estimated <em>group means</em>? You can obtain those by printing the object we just created:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="anova.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(EMM) <span class="co"># as.data.frame prevents rounding</span></span></code></pre></div>
+<pre><code>##   treatment   emmean        SE df lower.CL upper.CL
+## 1   placebo 144.5000 0.7240617 86 143.0606 145.9394
+## 2       CCB 126.1724 0.7364397 86 124.7084 127.6364
+## 3  thiazide 121.3667 0.7240617 86 119.9273 122.8061</code></pre>
+<p>The confidence intervals are:</p>
+<ul>
+<li>Placebo: 143.1–145.9</li>
+<li>CCB: 124.7–127.6</li>
+<li>Thiazide: 119.9–122.8</li>
+</ul>
+<p>It is also possible to plot the confidence intervals:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="anova.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">xlab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 </details>
 </div>
 <div id="results-ANOVA" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Correctly Phrase the Results<a href="anova.html#results-ANOVA" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We used ANOVA because we don’t know what we’re doing.</p>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-value of the omnibus test is <strong>less</strong> than the chosen level of significance
+</summary>
+<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+</details>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-values of the omnibus test is <strong>greater</strong> than the chosen level of significance
+</summary>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Systolic blood pressure did not differ significantly by type of treatment (<span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There is insufficient evidence to conclude either treatment worked (<span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There was a trend towards lower blood pressure on either treatment, but the differences were not significant (<span class="math inline">\(p = \dots\)</span>).</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The treatments did not work;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> There was no difference (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We accept the null-hypothesis.</li>
+</ul>
+<details>
+<summary>
+Why can’t I say I <em>accepted</em> the null-hypothesis?
+</summary>
+<p>This is imprecise language because it distorts the order of null-hypothesis significance testing. Every tests <em>starts</em> with pretending the null-hypothesis is true, and then considering how rare a result this would be. You did not accept the null-hypothesis <em>because</em> of the <span class="math inline">\(p\)</span>-value, but rather, you started by taking on the null-hypothesis to even compute that <span class="math inline">\(p\)</span>-value.</p>
+<p><small>Also see: <a href="https://stats.stackexchange.com/a/85914/176202">Why do statisticians say a non-significant result means “you can’t reject the null” as opposed to accepting the null hypothesis?</a></small></p>
+</details>
+<p>
+<p>If the omnibus test was insignificant, this is where the analysis ends. Do not include a post hoc, as that could be considered a form of <a href="https://en.wikipedia.org/wiki/Data_dredging">fishing</a>.</p>
+</details>
 </div>
 <div id="incorporating-this-in-a-paper-2" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Incorporating This in a Paper<a href="anova.html#incorporating-this-in-a-paper-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>…</p>
 
 </div>
 </div>

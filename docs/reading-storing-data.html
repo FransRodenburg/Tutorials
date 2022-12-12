@@ -246,8 +246,8 @@ Summary
 <div id="tidy" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Tidy Format<a href="reading-storing-data.html#tidy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Collect data in a simple, consistent format called <em>tidy data</em>,<span class="citation"><sup><a href="#ref-tidy" role="doc-biblioref">7</a></sup></span> such that minimal effort is required to clean the data once you get to the analysis: Rows represent observations, columns represent the variables measured for those observations:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-85"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-85-1.png" alt="The basic principle of tidy data. This data set has 5 observations of 4 variables." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-87"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-87-1.png" alt="The basic principle of tidy data. This data set has 5 observations of 4 variables." width="672" />
 <p class="caption">
 Figure 10.1: The basic principle of tidy data. This data set has 5 observations of 4 variables.
 </p>
@@ -259,7 +259,7 @@ Good example
 <p>The <code>iris</code> data set (preinstalled with R) is in tidy format:</p>
 <table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:unnamed-chunk-86">Table 10.1: </span>The first 5 rows of the <tt>iris</tt> data set. Each row is a flower and each column a property.
+<span id="tab:unnamed-chunk-88">Table 10.1: </span>The first 5 rows of the <tt>iris</tt> data set. Each row is a flower and each column a property.
 </caption>
 <thead>
 <tr>
@@ -394,7 +394,7 @@ Bad example
 <p>A common deviation from tidy format is to represent groups as columns:</p>
 <table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:unnamed-chunk-87">Table 10.2: </span>Systolic blood pressure (SBP) of 10 individuals. <font color="red">(untidy)</font>
+<span id="tab:unnamed-chunk-89">Table 10.2: </span>Systolic blood pressure (SBP) of 10 individuals. <font color="red">(untidy)</font>
 </caption>
 <thead>
 <tr>
@@ -452,7 +452,7 @@ men
 <p>Do you have different groups? Time points? Replicates of the experiment? Then try to adhere to the same principle: Columns are variables. Simply add a variable that indicates which group/time point/replicate this observation belongs to:</p>
 <table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:unnamed-chunk-88">Table 10.3: </span>Sex and systolic blood pressure (SBP) of 10 individuals. <font color="blue">(tidy)</font>
+<span id="tab:unnamed-chunk-90">Table 10.3: </span>Sex and systolic blood pressure (SBP) of 10 individuals. <font color="blue">(tidy)</font>
 </caption>
 <thead>
 <tr>
@@ -553,23 +553,23 @@ male
 Converting to tidy format
 </summary>
 <p>If you have data split by group/time point/replicate here is how you can convert it to tidy format:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="reading-storing-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The untidy data set</span></span>
-<span id="cb84-2"><a href="reading-storing-data.html#cb84-2" aria-hidden="true" tabindex="-1"></a>Untidy</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="reading-storing-data.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The untidy data set</span></span>
+<span id="cb87-2"><a href="reading-storing-data.html#cb87-2" aria-hidden="true" tabindex="-1"></a>Untidy</span></code></pre></div>
 <pre><code>##   women men
 ## 1   114 123
 ## 2   121 117
 ## 3   125 117
 ## 4   108 117
 ## 5   122 116</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="reading-storing-data.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert by hand</span></span>
-<span id="cb86-2"><a href="reading-storing-data.html#cb86-2" aria-hidden="true" tabindex="-1"></a>Tidy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb86-3"><a href="reading-storing-data.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>), <span class="at">each =</span> <span class="fu">nrow</span>(Untidy)),</span>
-<span id="cb86-4"><a href="reading-storing-data.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SBP =</span> <span class="fu">c</span>(Untidy<span class="sc">$</span>women, Untidy<span class="sc">$</span>men)</span>
-<span id="cb86-5"><a href="reading-storing-data.html#cb86-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb86-6"><a href="reading-storing-data.html#cb86-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-7"><a href="reading-storing-data.html#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert using a package (install if missing)</span></span>
-<span id="cb86-8"><a href="reading-storing-data.html#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;reshape2&quot;</span>)</span>
-<span id="cb86-9"><a href="reading-storing-data.html#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="fu">melt</span>(Untidy)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="reading-storing-data.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert by hand</span></span>
+<span id="cb89-2"><a href="reading-storing-data.html#cb89-2" aria-hidden="true" tabindex="-1"></a>Tidy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb89-3"><a href="reading-storing-data.html#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>), <span class="at">each =</span> <span class="fu">nrow</span>(Untidy)),</span>
+<span id="cb89-4"><a href="reading-storing-data.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SBP =</span> <span class="fu">c</span>(Untidy<span class="sc">$</span>women, Untidy<span class="sc">$</span>men)</span>
+<span id="cb89-5"><a href="reading-storing-data.html#cb89-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-6"><a href="reading-storing-data.html#cb89-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-7"><a href="reading-storing-data.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert using a package (install if missing)</span></span>
+<span id="cb89-8"><a href="reading-storing-data.html#cb89-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;reshape2&quot;</span>)</span>
+<span id="cb89-9"><a href="reading-storing-data.html#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="fu">melt</span>(Untidy)</span></code></pre></div>
 <pre><code>##    variable value
 ## 1     women   114
 ## 2     women   121
@@ -591,7 +591,7 @@ Converting to tidy format
 Beware ‘intelligent’ conversions
 </summary>
 <p>Programming requires exact precision in syntax, which can be very frustrating for beginners. To address this, many programs try to intelligently interpret your input:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-90"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-92"></span>
 <img src="figures/typo.png" alt="My hasty attempt to figure out which clothes to wear to work." width="100%" />
 <p class="caption">
 Figure 10.2: My hasty attempt to figure out which clothes to wear to work.
@@ -667,19 +667,19 @@ Setting up your working directory
 </ul>
 </details>
 <p>Provided your working directory is set up correctly, you can read CSV files as follows:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="reading-storing-data.html#cb88-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;NameOfYourFile.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="reading-storing-data.html#cb91-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;NameOfYourFile.csv&quot;</span>)</span></code></pre></div>
 <p>Here, <code>DF</code> is an arbitrary name. I use it because it is short (you will be typing this name a lot) and because it is an abbreviation of ‘data frame’, so it keeps code easy to read for others and your future self.</p>
 <p>To check that your data has been read correctly by the software, try one of the following:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="reading-storing-data.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span>
-<span id="cb89-2"><a href="reading-storing-data.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span>
-<span id="cb89-3"><a href="reading-storing-data.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span>
-<span id="cb89-4"><a href="reading-storing-data.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(DF)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="reading-storing-data.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span>
+<span id="cb92-2"><a href="reading-storing-data.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span>
+<span id="cb92-3"><a href="reading-storing-data.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span>
+<span id="cb92-4"><a href="reading-storing-data.html#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(DF)</span></code></pre></div>
 <details>
 <summary>
 What it should look like
 </summary>
 <p>The <code>str</code> function displays the structure of the object. In case your file is in tidy format and read correctly, it will look something like this:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="reading-storing-data.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="reading-storing-data.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
 ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
 ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
@@ -699,11 +699,11 @@ More explanation
 <li>Some <a href="https://adv-r.hadley.nz/vectors-chap.html#s3-atomic-vectors">less common ones</a>.</li>
 </ul>
 <p>In the example shown here, the data has been read correctly, because numbers show as <code>num</code> and the flower species shows as <code>Factor</code>. If your factor shows up as a character (<code>chr</code>), you can convert it as follows:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="reading-storing-data.html#cb92-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>x <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>x)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="reading-storing-data.html#cb95-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>x <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>x)</span></code></pre></div>
 Where <code>x</code> is the name of the variable you want to convert to factor.
 </details>
 <p>The <code>summary</code> shows some summary statistics for numeric variables, and counts of categories for factors:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="reading-storing-data.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="reading-storing-data.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code></pre></div>
 <pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
 ##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
 ##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
@@ -726,7 +726,7 @@ More explanation
 <p>For factors, the counts of categories are useful to see whether the data are balanced (same number of observations per category).</p>
 </details>
 <p>Finally, <code>head</code> and <code>tail</code> show the first and last rows of the data, respectively (6 rows by default):</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="reading-storing-data.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="reading-storing-data.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
 ## 2          4.9         3.0          1.4         0.2  setosa
@@ -734,7 +734,7 @@ More explanation
 ## 4          4.6         3.1          1.5         0.2  setosa
 ## 5          5.0         3.6          1.4         0.2  setosa
 ## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="reading-storing-data.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(iris)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="reading-storing-data.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(iris)</span></code></pre></div>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 ## 145          6.7         3.3          5.7         2.5 virginica
 ## 146          6.7         3.0          5.2         2.3 virginica
@@ -754,7 +754,7 @@ My output looks different
 \end{aligned}\]</span></p>
 <p>If you have a Dutch version of Excel, then CSV files are actually not separated by commas but semi-colons, because the software would otherwise not be able to tell new numbers and decimal numbers apart.</p>
 <p>The solution for this is fortunately very simple, use <tt>read.csv<b>2</b></tt>:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="reading-storing-data.html#cb99-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;NameOfYourFile.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="reading-storing-data.html#cb102-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;NameOfYourFile.csv&quot;</span>)</span></code></pre></div>
 <p>If this too does not solve your problem, try copying the entire error message and searching for it online. Usually, there will have been someone else with the same problem on <a href="stackoverflow.com">StackOverflow</a>, so you can try the solutions offered there.</p>
 </details>
 </div>
@@ -773,17 +773,17 @@ Setting up your working directory
 </ul>
 </details>
 <p>Provided your working directory is set up correctly, there are many ways to directly read your Excel file into R, for example:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="reading-storing-data.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using readxl</span></span>
-<span id="cb100-2"><a href="reading-storing-data.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
-<span id="cb100-3"><a href="reading-storing-data.html#cb100-3" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;NameOfYourFile.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
-<span id="cb100-4"><a href="reading-storing-data.html#cb100-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-5"><a href="reading-storing-data.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using xlsx</span></span>
-<span id="cb100-6"><a href="reading-storing-data.html#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;xlsx&quot;</span>)</span>
-<span id="cb100-7"><a href="reading-storing-data.html#cb100-7" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;NameOfYourFile.xlsx&quot;</span>, <span class="at">sheetIndex =</span> <span class="dv">1</span>)</span>
-<span id="cb100-8"><a href="reading-storing-data.html#cb100-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-9"><a href="reading-storing-data.html#cb100-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Using fread</span></span>
-<span id="cb100-10"><a href="reading-storing-data.html#cb100-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
-<span id="cb100-11"><a href="reading-storing-data.html#cb100-11" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="st">&quot;NameOfYourFile.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="reading-storing-data.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using readxl</span></span>
+<span id="cb103-2"><a href="reading-storing-data.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
+<span id="cb103-3"><a href="reading-storing-data.html#cb103-3" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;NameOfYourFile.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb103-4"><a href="reading-storing-data.html#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-5"><a href="reading-storing-data.html#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using xlsx</span></span>
+<span id="cb103-6"><a href="reading-storing-data.html#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;xlsx&quot;</span>)</span>
+<span id="cb103-7"><a href="reading-storing-data.html#cb103-7" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;NameOfYourFile.xlsx&quot;</span>, <span class="at">sheetIndex =</span> <span class="dv">1</span>)</span>
+<span id="cb103-8"><a href="reading-storing-data.html#cb103-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-9"><a href="reading-storing-data.html#cb103-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Using fread</span></span>
+<span id="cb103-10"><a href="reading-storing-data.html#cb103-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
+<span id="cb103-11"><a href="reading-storing-data.html#cb103-11" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="st">&quot;NameOfYourFile.xlsx&quot;</span>)</span></code></pre></div>
 <p>If you are already familiar with the syntax of one of these packages, there is no need to switch. If people send me Excel sheets, I usually use <code>readxl</code>. A more general and high-performance function is <code>fread</code> from the package <code>data.table</code>.</p>
 
 </div>
