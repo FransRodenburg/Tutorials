@@ -616,38 +616,123 @@ These variables are equal to <span class="math inline">\(1\)</span> if the obser
 <span id="cb64-7"><a href="anova.html#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># Restore the default</span></span></code></pre></div>
 <details>
 <summary>
+Show output
+</summary>
+<p><small><em>(For general advice on diagnostic plots, see the <a href="https://youtu.be/upJJmfSbBuQ">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.)</em></small></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p>The visual diagnostics confirm what was already visible in the boxplots, there is an outlier (#31) visible in each of the plots. Its Cook’s distance is well over <span class="math inline">\(0.5\)</span>.</p>
+<p>Let’s see what the diagnostics would look like without this observation:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="anova.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model on the data, excluding obs. 31</span></span>
+<span id="cb65-2"><a href="anova.html#cb65-2" aria-hidden="true" tabindex="-1"></a>LM2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF[<span class="sc">-</span><span class="dv">31</span>, ])</span>
+<span id="cb65-3"><a href="anova.html#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="anova.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the diagnostics</span></span>
+<span id="cb65-5"><a href="anova.html#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))    <span class="co"># Plot in a 2x2 grid</span></span>
+<span id="cb65-6"><a href="anova.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
+<span id="cb65-7"><a href="anova.html#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM2, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
+<span id="cb65-8"><a href="anova.html#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
+<span id="cb65-9"><a href="anova.html#cb65-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
+<span id="cb65-10"><a href="anova.html#cb65-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))    <span class="co"># Restore the default</span></span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+Now the diagnostics look fine. If you are concerned about the staircase in the QQ-plot, that is an artifact of the way these data were collected: Systolic blood pressure was rounded to whole numbers, but the actual underlying values can reasonably be assumed to be approximately normally distributed within groups.
+</details>
+<details>
+<summary>
+What to look for in general
+</summary>
+<p><font size = 5><b>Deviations from Normality</b></font></p>
+<p>In a QQ-plot, you can check whether the residuals deviate problematically from a normal distribution. The straight line represents a theoretical normal distribution and the black dots show where the actual residuals fall. Since the values a sample will <em>always</em> deviate somewhat, a confidence band is drawn around the line to provide an indication of the severity of the non-normality.</p>
+<p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random values drawn from an actual, exact normal distribution:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-68"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-68-1.png" alt="Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution." width="672" />
+<p class="caption">
+Figure 3.5: Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution.
+</p>
+</div>
+<p>Note how even in data drawn from an <em>exact</em> normal distribution, occasional observations outside the confidence bands are quite common. This is important to keep in mind when judging the severity of a violation.</p>
+<p>A great write-up (with examples) on what patterns to look for can be found in this <a href="https://stats.stackexchange.com/a/101290/176202">answer on CrossValidated <i class="fa fa-external-link"></i></a>. A quick summary of problematic patterns include:</p>
+<ul>
+<li>Gaps; <small><em>(Lack of values within a certain range.)</em></small></li>
+<li>Bulging (concave or convex); <small><em>(Usually an indication of skew.)</em></small></li>
+<li>S-shape; <small><em>(Implying light- or heavy-tailedness.)</em></small></li>
+</ul>
+<p><font color = "red"><i class="fa fa-times"></i></font> Here are three examples of problematic patterns: <font color = "grey">(confidence band hidden for clarity)</font></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-69-1.png" alt="Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness ." width="672" />
+<p class="caption">
+Figure 3.6: Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness .
+</p>
+</div>
+<p><font size = 5><b>Non-Constant Variance</b></font></p>
+<p>In the <strong>residuals vs fitted</strong> plot, you can see whether the observations are more or less equally dispersed around their group means. The <span class="math inline">\(x\)</span>-axis shows the value of the group means and the <span class="math inline">\(y\)</span>-axis the deviation from the group mean.</p>
+<p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random values with equal group variance:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-70"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-70-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance." width="672" />
+<p class="caption">
+Figure 3.7: Residuals vs fitted plots of values drawn from a normal distribution with equal variance.
+</p>
+</div>
+<p>Important to note here is that small deviations will always be present, and a smoothing line will be drawn that is not useful for ANOVA (but will be used in linear regression).</p>
+<p><small><em>(The smoothing line can be suppressed with <code>add.smooth = FALSE</code>.)</em></small></p>
+<p><font color = "red"><i class="fa fa-times"></i></font> Examples of unequal variance in a residuals vs fitted plot:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-71-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with unequal variance." width="672" />
+<p class="caption">
+Figure 3.8: Residuals vs fitted plots of values drawn from a normal distribution with unequal variance.
+</p>
+</div>
+<p><font color = "orange"><i class="fa fa-warning"></i></font> Careful, unequal sample size can give the false appearance of unequal variance in a residuals vs fitted plot:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-72-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
+<p class="caption">
+Figure 3.9: Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes.
+</p>
+</div>
+<p><font color = "green"><i class="fa fa-check"></i></font> This is why you should also look at the <strong>scale-location</strong> plot:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-73-1.png" alt="Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
+<p class="caption">
+Figure 3.10: Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes.
+</p>
+</div>
+<p>The scale-location plot takes the residuals and performs a transformation that allows for a simple interpretation: Rather than looking at the <em>dispersion</em> in the black dots, you can look at the <em>average</em>. Higher variance means the red smoothing line is also higher.</p>
+<p>As a rule of thumb, you should conclude non-constant variance from a scale-location plot if the smoothing line is more than <span class="math inline">\(0.5\)</span> higher/lower than other groups, or there is a consistent trend up/down.</p>
+<p><font color = "red"><i class="fa fa-times"></i></font> Examples of non-constant variance in a scale-location plot:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-74"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-74-1.png" alt="Scale-location plots of values drawn from a normal distribution with unequal variance." width="672" />
+<p class="caption">
+Figure 3.11: Scale-location plots of values drawn from a normal distribution with unequal variance.
+</p>
+</div>
+<p><font size = 5><b>Potential Outliers</b></font></p>
+<p>The Cook’s distance can be used to assess outlyingness. This is a simple measure: Greater than <span class="math inline">\(0.5\)</span> warrants further inspection and greater than <span class="math inline">\(1.0\)</span> is statistically outlying.</p>
+<p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random normally distributed values without any apparent outliers:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-75-1.png" alt="Cook's distance of values drawn from a normal distribution." width="672" />
+<p class="caption">
+Figure 3.12: Cook’s distance of values drawn from a normal distribution.
+</p>
+</div>
+<p><font color = "red"><i class="fa fa-times"></i></font> Here are three examples of outliers:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-76"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-76-1.png" alt="Cook's distance of values drawn from a $t$-distribution. Due to the larger mass in the tails, the $t$-distribution is more likely to yield outlying values." width="672" />
+<p class="caption">
+Figure 3.13: Cook’s distance of values drawn from a <span class="math inline">\(t\)</span>-distribution. Due to the larger mass in the tails, the <span class="math inline">\(t\)</span>-distribution is more likely to yield outlying values.
+</p>
+</div>
+</details>
+<details>
+<summary>
 Why <span class="math inline">\(t\)</span>-quantiles instead of normal?
 </summary>
-<p><small><em>(This is a bit technical and only important if, for example, a reviewer asks questions about it.)</em></small></p>
+<p><small><em>(This is a bit technical and only important if, for example, a reviewer asks about it.)</em></small></p>
 <p>In short, I recommend using this over a normal QQ-plot, because it reflects the general notion that minor deviations in the tails should be ignored.</p>
 <p>You may have noticed that the example code here does not actually produce a normal QQ-plot, but instead a QQ-plot for a theoretical <span class="math inline">\(t\)</span>-distribution. <small><em>(Try: <code>qqPlot(lm(rnorm(10) ~ 1))</code> and look at the <span class="math inline">\(x\)</span>-axis label.)</em></small></p>
 <p>A little digging in the <code>qqPlot</code>’s <a href="https://github.com/cran/car/blob/master/R/qqPlot.R#L233">github repository <i class = "fa fa-external-link"></i></a> shows what happens:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="anova.html#cb65-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="cf">if</span> (distribution <span class="sc">==</span> <span class="st">&#39;t&#39;</span>) <span class="fu">qt</span>(P, <span class="at">df=</span>res.df<span class="dv">-1</span>) <span class="cf">else</span> <span class="fu">qnorm</span>(P)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="anova.html#cb66-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="cf">if</span> (distribution <span class="sc">==</span> <span class="st">&#39;t&#39;</span>) <span class="fu">qt</span>(P, <span class="at">df=</span>res.df<span class="dv">-1</span>) <span class="cf">else</span> <span class="fu">qnorm</span>(P)</span></code></pre></div>
 <p><small><em>(Here, <code>z</code> is the theoretical quantile on the <span class="math inline">\(x\)</span>-axis of a QQ-plot.)</em></small></p>
 <p>These quantiles are used to compute where the confidence band should be drawn. If you use <code>qqPlot(LM)</code>, these are based on a <span class="math inline">\(t\)</span>-distribution with degrees of freedom equal to the residual degrees of freedom of the model minus one. This is done to reflect the additional uncertainty from the limited sample size. As the sample size grows (and the model complexity remains constant), the two approaches grow closer. In practical terms, this allows for slightly wider bands near the tails, the smaller the sample size is, which is a desirable property, because the smaller the sample size, the harder it is to decide whether an observation is outlying.</p>
 <p>Another important difference you may have noticed is that <code>qqPlot(LM)</code> yields a narrower confidence band than <code>qqPlot(residuals(LM))</code>. This actually has nothing to do with the <span class="math inline">\(t\)</span>-distribution, but with the type of confidence band drawn when using <code>qqPlot(LM)</code>: The default argument for <code>qqPlot(residuals(LM))</code> is <code>line = "quartiles"</code>, whereas <code>qqPlot(LM)</code> defaults to <code>line = "robust"</code>. The latter provides simulation-based robust regression confidence bands, which are more sensitive to non-normality, while simultaneously being less prone to false positives.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">3</a></sup></span></p>
 <p>On a general note, these bands are (both) point-based 95% confidence, meaning that there is a large chance of at least one observation outside the bands, even if the values come from a theoretical normal distribution.</p>
-</details>
-<details>
-<summary>
-Show output
-</summary>
-<p><small><em>(For general advice on diagnostic plots, see the <a href="https://youtu.be/upJJmfSbBuQ">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.)</em></small></p>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
-<p>The visual diagnostics confirm what was already visible in the boxplots, there is an outlier (#31) visible in each of the plots. Its Cook’s distance is well over <span class="math inline">\(0.5\)</span>.</p>
-<p>Let’s see what the diagnostics would look like without this observation:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="anova.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model on the data, excluding obs. 31</span></span>
-<span id="cb66-2"><a href="anova.html#cb66-2" aria-hidden="true" tabindex="-1"></a>LM2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF[<span class="sc">-</span><span class="dv">31</span>, ])</span>
-<span id="cb66-3"><a href="anova.html#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-4"><a href="anova.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the diagnostics</span></span>
-<span id="cb66-5"><a href="anova.html#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))    <span class="co"># Plot in a 2x2 grid</span></span>
-<span id="cb66-6"><a href="anova.html#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
-<span id="cb66-7"><a href="anova.html#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM2, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
-<span id="cb66-8"><a href="anova.html#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
-<span id="cb66-9"><a href="anova.html#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
-<span id="cb66-10"><a href="anova.html#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))    <span class="co"># Restore the default</span></span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
-Now the diagnostics look fine. If you are concerned about the staircase in the QQ-plot, that is an artifact of the way these data were collected: Systolic blood pressure was rounded to whole numbers, but the actual underlying values can reasonably be assumed to be approximately normally distributed within groups.
 </details>
 <details>
 <summary>
@@ -727,7 +812,7 @@ Show output
 <summary>
 Show output
 </summary>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p>These show, in order:</p>
 <ul>
 <li>The Cook’s distance; <small><em>(Greater than <span class="math inline">\(0.5\)</span> is noteworthy, greater than <span class="math inline">\(1.0\)</span> is outlying.)</em></small></li>
@@ -798,7 +883,7 @@ Show output
 ## Residuals   86   1353      16                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>The omnibus test is significant (<span class="math inline">\(F = 54.0\)</span>, <span class="math inline">\(p = 5.77 \cdot 10^{-16}\)</span>), meaning there is a significant difference among group means. For a full explanation of the table above, see the <a href="https://youtu.be/87ECInQIY9k?t=129">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
+<p>The omnibus test is significant (<span class="math inline">\(F = 283.6\)</span>, <span class="math inline">\(p &lt; 2 \cdot 10^{-16}\)</span>), meaning there is a significant difference among group means. For a full explanation of the table above, see the <a href="https://youtu.be/87ECInQIY9k?t=129">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
 </details>
 <p>
 <p><font size = 5><b>Perform a Post Hoc Analysis</b></font></p>
@@ -857,12 +942,10 @@ Obtaining confidence intervals for group means
 </summary>
 <p>Comparisons show you the estimated <em>differences</em>. But what if you wanted to include confidence intervals for the estimated <em>group means</em> (a common request by reviewers)? You can obtain those by printing the object we just created:</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="anova.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(EMM) <span class="co"># as.data.frame prevents rounding</span></span></code></pre></div>
-<pre><code>##   treatment           contrast    emmean        SE df  lower.CL  upper.CL
-## 1   placebo                  . 144.50000 0.7240617 86 142.59267 146.40733
-## 2       CCB                  . 126.17241 0.7364397 86 124.23248 128.11235
-## 3  thiazide                  . 121.36667 0.7240617 86 119.45933 123.27400
-## 4         .      CCB - placebo -18.32759 1.0327675 86 -21.04812 -15.60706
-## 5         . thiazide - placebo -23.13333 1.0239779 86 -25.83071 -20.43596</code></pre>
+<pre><code>##   treatment   emmean        SE df lower.CL upper.CL
+## 1   placebo 144.5000 0.7240617 86 143.0606 145.9394
+## 2       CCB 126.1724 0.7364397 86 124.7084 127.6364
+## 3  thiazide 121.3667 0.7240617 86 119.9273 122.8061</code></pre>
 <p>The confidence intervals are:</p>
 <ul>
 <li>Placebo: 143.1–145.9</li>
@@ -871,7 +954,7 @@ Obtaining confidence intervals for group means
 </ul>
 <p>It is also possible to plot the confidence intervals:</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="anova.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">xlab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 </details>
 </div>
 <div id="results-ANOVA" class="section level2 hasAnchor" number="3.4">
@@ -880,7 +963,32 @@ Obtaining confidence intervals for group means
 <summary>
 If the <span class="math inline">\(p\)</span>-value of the omnibus test is <strong>less</strong> than the chosen level of significance
 </summary>
-<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+<p><Small><em>(This is the case in the example.)</em></small></p>
+<p>While you can technically still summarize three comparisons in writing, it is right at the border of what should be put in a table instead, and referred to in brief. Generally, for post hoc analyses I recommend showing the average differences, confidence intervals and <span class="math inline">\(p\)</span>-values in a table and/or figure. However, this section is meant to help you <em>phrase</em> results, so examples are provided regardless.</p>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Systolic blood pressure differed significantly by type of treatment (<span class="math inline">\(p &lt; 2 \cdot 10^{-16}\)</span>), with CCB and thiazide resulting in 18.3 and 23.1 mmHg lower blood pressure on average, respectively (CCB: <span class="math inline">\(p = 2.59 \cdot 10^{-10}\)</span>, thiazide: <span class="math inline">\(p = 2.59 \cdot 10^{-10}\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> The thiazide group had significantly lower systolic blood pressure than CCB (<span class="math inline">\(\hat{\beta} = 4.8\)</span> mmHg, <span class="math inline">\(p = 3.48 \cdot 10^{-5}\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Thiazide resulted in 4.8 mmHg lower systolic blood pressure on average (95% CI: 2.3–7.3);</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The alternative hypothesis was true // The null-hypothesis was false;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The difference was significant (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The treatments outperform the control.</li>
+</ul>
+<details>
+<summary>
+Why paste tense?
+</summary>
+<p>The results of a single experiment, no matter how convincing, can never prove something to be true. The results <em>were</em> observed, and in this one experiment, the treatments outperformed the control.</p>
+<p>Use present tense only for statements that have been demonstrated repeatedly, are generally agreed upon, or are easily observable, e.g.:</p>
+<ul>
+<li>Smoking causes cancer;</li>
+<li>Current climate-change is mainly caused by human activities;</li>
+<li>Most people use smartphones nowadays.</li>
+</ul>
+</details>
 </details>
 <details>
 <summary>

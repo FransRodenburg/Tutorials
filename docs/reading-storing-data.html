@@ -246,8 +246,8 @@ Summary
 <div id="tidy" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Tidy Format<a href="reading-storing-data.html#tidy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Collect data in a simple, consistent format called <em>tidy data</em>,<span class="citation"><sup><a href="#ref-tidy" role="doc-biblioref">7</a></sup></span> such that minimal effort is required to clean the data once you get to the analysis: Rows represent observations, columns represent the variables measured for those observations:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-90"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-90-1.png" alt="The basic principle of tidy data. This data set has 5 observations of 4 variables." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-100"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-100-1.png" alt="The basic principle of tidy data. This data set has 5 observations of 4 variables." width="672" />
 <p class="caption">
 Figure 10.1: The basic principle of tidy data. This data set has 5 observations of 4 variables.
 </p>
@@ -259,7 +259,7 @@ Good example
 <p>The <code>iris</code> data set (preinstalled with R) is in tidy format:</p>
 <table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:unnamed-chunk-91">Table 10.1: </span>The first 5 rows of the <tt>iris</tt> data set. Each row is a flower and each column a property.
+<span id="tab:unnamed-chunk-101">Table 10.1: </span>The first 5 rows of the <tt>iris</tt> data set. Each row is a flower and each column a property.
 </caption>
 <thead>
 <tr>
@@ -394,7 +394,7 @@ Bad example
 <p>A common deviation from tidy format is to represent groups as columns:</p>
 <table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:unnamed-chunk-92">Table 10.2: </span>Systolic blood pressure (SBP) of 10 individuals. <font color="red">(untidy)</font>
+<span id="tab:unnamed-chunk-102">Table 10.2: </span>Systolic blood pressure (SBP) of 10 individuals. <font color="red">(untidy)</font>
 </caption>
 <thead>
 <tr>
@@ -452,7 +452,7 @@ men
 <p>Do you have different groups? Time points? Replicates of the experiment? Then try to adhere to the same principle: Columns are variables. Simply add a variable that indicates which group/time point/replicate this observation belongs to:</p>
 <table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:unnamed-chunk-93">Table 10.3: </span>Sex and systolic blood pressure (SBP) of 10 individuals. <font color="blue">(tidy)</font>
+<span id="tab:unnamed-chunk-103">Table 10.3: </span>Sex and systolic blood pressure (SBP) of 10 individuals. <font color="blue">(tidy)</font>
 </caption>
 <thead>
 <tr>
@@ -591,7 +591,7 @@ Converting to tidy format
 Beware ‘intelligent’ conversions
 </summary>
 <p>Programming requires exact precision in syntax, which can be very frustrating for beginners. To address this, many programs try to intelligently interpret your input:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-95"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-105"></span>
 <img src="figures/typo.png" alt="My hasty attempt to figure out which clothes to wear to work." width="100%" />
 <p class="caption">
 Figure 10.2: My hasty attempt to figure out which clothes to wear to work.
