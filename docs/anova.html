@@ -391,7 +391,7 @@ Change the names of the categories
 <li><font color = "green"><i class = "fa fa-check"></i></font> A violin plot is an alternative to a boxplot.</li>
 </ul>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="anova.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF)</span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <details>
 <summary>
 What to look for
@@ -428,8 +428,8 @@ Figure 3.2: A boxplot of symmetric (A), right-skewed (B), and left-skewed values
 <p>Skew is not necessarily a problem, unless it persists in the residuals of a model that assumes normally distributed errors. For an explanation of skew, see the video on <a href="https://youtu.be/jdfG7rKPVNk">probability distributions <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
 <p><font size = 5><b>Differences Between Groups</b></font></p>
 <p>A boxplot is not just a nice tool for <em>yourself</em> to inspect your data, but is also an effective tool to visually communicate the evidence for difference between groups:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-57"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-57-1.png" alt="A comparison of systolic blood pressure for different treatments and sex." width="384" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-58"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-58-1.png" alt="A comparison of systolic blood pressure for different treatments and sex." width="384" />
 <p class="caption">
 Figure 3.3: A comparison of systolic blood pressure for different treatments and sex.
 </p>
@@ -486,8 +486,8 @@ How to improve your plot
 <span id="cb60-37"><a href="anova.html#cb60-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-38"><a href="anova.html#cb60-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore the default margins for subsequent plots</span></span>
 <span id="cb60-39"><a href="anova.html#cb60-39" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-59"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-59-1.png" alt="A comparison of systolic blood pressure for three groups." width="384" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-60"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-60-1.png" alt="A comparison of systolic blood pressure for three groups." width="384" />
 <p class="caption">
 Figure 3.4: A comparison of systolic blood pressure for three groups.
 </p>
@@ -511,13 +511,13 @@ Alternative: Violin plot
 <p>A more modern take on the boxplot is a <strong>violin plot</strong>. It combines a boxplot and a density plot. This type of visualization is richer in information than just a boxplot, but it is only meaningful if you have enough observations per group (e.g., &gt;10):</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="anova.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vioplot&quot;</span>) <span class="co"># install if missing</span></span>
 <span id="cb61-2"><a href="anova.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vioplot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <details>
 <summary>
 How to interpret a violin plot
 </summary>
 <p>Here is a breakdown of the components shown in a violin plot:</p>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>The density plot, if you are unfamiliar with it, is like a continuous version of a histogram. It shows which values are more and less likely in the sample.</p>
 </details>
 </details>
@@ -557,8 +557,11 @@ Summary (code)
 <span id="cb62-26"><a href="anova.html#cb62-26" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> <span class="st">&quot;treatment&quot;</span>)</span>
 <span id="cb62-27"><a href="anova.html#cb62-27" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(EMM)</span>
 <span id="cb62-28"><a href="anova.html#cb62-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-29"><a href="anova.html#cb62-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the post hoc (see the emmeans vignette)</span></span>
-<span id="cb62-30"><a href="anova.html#cb62-30" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb62-29"><a href="anova.html#cb62-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Or treatment-vs-control style</span></span>
+<span id="cb62-30"><a href="anova.html#cb62-30" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> trt.vs.ctrl <span class="sc">~</span> treatment)</span>
+<span id="cb62-31"><a href="anova.html#cb62-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-32"><a href="anova.html#cb62-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the post hoc (see the emmeans vignette)</span></span>
+<span id="cb62-33"><a href="anova.html#cb62-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
 <p>
 <p><font size = 5><b>Fit the Model</b></font></p>
@@ -619,7 +622,7 @@ These variables are equal to <span class="math inline">\(1\)</span> if the obser
 Show output
 </summary>
 <p><small><em>(For general advice on diagnostic plots, see the <a href="https://youtu.be/upJJmfSbBuQ">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.)</em></small></p>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>The visual diagnostics confirm what was already visible in the boxplots, there is an outlier (#31) visible in each of the plots. Its Cook’s distance is well over <span class="math inline">\(0.5\)</span>.</p>
 <p>Let’s see what the diagnostics would look like without this observation:</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="anova.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model on the data, excluding obs. 31</span></span>
@@ -632,7 +635,7 @@ Show output
 <span id="cb65-8"><a href="anova.html#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
 <span id="cb65-9"><a href="anova.html#cb65-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
 <span id="cb65-10"><a href="anova.html#cb65-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))    <span class="co"># Restore the default</span></span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 Now the diagnostics look fine. If you are concerned about the staircase in the QQ-plot, that is an artifact of the way these data were collected: Systolic blood pressure was rounded to whole numbers, but the actual underlying values can reasonably be assumed to be approximately normally distributed within groups.
 </details>
 <details>
@@ -642,8 +645,8 @@ What to look for in general
 <p><font size = 5><b>Deviations from Normality</b></font></p>
 <p>In a QQ-plot, you can check whether the residuals deviate problematically from a normal distribution. The straight line represents a theoretical normal distribution and the black dots show where the actual residuals fall. Since the values a sample will <em>always</em> deviate somewhat, a confidence band is drawn around the line to provide an indication of the severity of the non-normality.</p>
 <p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random values drawn from an actual, exact normal distribution:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-68"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-68-1.png" alt="Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-69-1.png" alt="Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution." width="672" />
 <p class="caption">
 Figure 3.5: Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution.
 </p>
@@ -656,8 +659,8 @@ Figure 3.5: Normal QQ-plots of residuals from simulated data that follows a an e
 <li>S-shape; <small><em>(Implying light- or heavy-tailedness.)</em></small></li>
 </ul>
 <p><font color = "red"><i class="fa fa-times"></i></font> Here are three examples of problematic patterns: <font color = "grey">(confidence band hidden for clarity)</font></p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-69-1.png" alt="Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness ." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-70"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-70-1.png" alt="Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness ." width="672" />
 <p class="caption">
 Figure 3.6: Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness .
 </p>
@@ -665,8 +668,8 @@ Figure 3.6: Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S
 <p><font size = 5><b>Non-Constant Variance</b></font></p>
 <p>In the <strong>residuals vs fitted</strong> plot, you can see whether the observations are more or less equally dispersed around their group means. The <span class="math inline">\(x\)</span>-axis shows the value of the group means and the <span class="math inline">\(y\)</span>-axis the deviation from the group mean.</p>
 <p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random values with equal group variance:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-70"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-70-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-71-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance." width="672" />
 <p class="caption">
 Figure 3.7: Residuals vs fitted plots of values drawn from a normal distribution with equal variance.
 </p>
@@ -674,22 +677,22 @@ Figure 3.7: Residuals vs fitted plots of values drawn from a normal distribution
 <p>Important to note here is that small deviations will always be present, and a smoothing line will be drawn that is not useful for ANOVA (but will be used in linear regression).</p>
 <p><small><em>(The smoothing line can be suppressed with <code>add.smooth = FALSE</code>.)</em></small></p>
 <p><font color = "red"><i class="fa fa-times"></i></font> Examples of unequal variance in a residuals vs fitted plot:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-71-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with unequal variance." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-72-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with unequal variance." width="672" />
 <p class="caption">
 Figure 3.8: Residuals vs fitted plots of values drawn from a normal distribution with unequal variance.
 </p>
 </div>
 <p><font color = "orange"><i class="fa fa-warning"></i></font> Careful, unequal sample size can give the false appearance of unequal variance in a residuals vs fitted plot:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-72-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-73-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
 <p class="caption">
 Figure 3.9: Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes.
 </p>
 </div>
 <p><font color = "green"><i class="fa fa-check"></i></font> This is why you should also look at the <strong>scale-location</strong> plot:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-73-1.png" alt="Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-74"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-74-1.png" alt="Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
 <p class="caption">
 Figure 3.10: Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes.
 </p>
@@ -697,8 +700,8 @@ Figure 3.10: Scale location plots of values drawn from a normal distribution wit
 <p>The scale-location plot takes the residuals and performs a transformation that allows for a simple interpretation: Rather than looking at the <em>dispersion</em> in the black dots, you can look at the <em>average</em>. Higher variance means the red smoothing line is also higher.</p>
 <p>As a rule of thumb, you should conclude non-constant variance from a scale-location plot if the smoothing line is more than <span class="math inline">\(0.5\)</span> higher/lower than other groups, or there is a consistent trend up/down.</p>
 <p><font color = "red"><i class="fa fa-times"></i></font> Examples of non-constant variance in a scale-location plot:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-74"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-74-1.png" alt="Scale-location plots of values drawn from a normal distribution with unequal variance." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-75-1.png" alt="Scale-location plots of values drawn from a normal distribution with unequal variance." width="672" />
 <p class="caption">
 Figure 3.11: Scale-location plots of values drawn from a normal distribution with unequal variance.
 </p>
@@ -706,15 +709,15 @@ Figure 3.11: Scale-location plots of values drawn from a normal distribution wit
 <p><font size = 5><b>Potential Outliers</b></font></p>
 <p>The Cook’s distance can be used to assess outlyingness. This is a simple measure: Greater than <span class="math inline">\(0.5\)</span> warrants further inspection and greater than <span class="math inline">\(1.0\)</span> is statistically outlying.</p>
 <p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random normally distributed values without any apparent outliers:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-75-1.png" alt="Cook's distance of values drawn from a normal distribution." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-76"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-76-1.png" alt="Cook's distance of values drawn from a normal distribution." width="672" />
 <p class="caption">
 Figure 3.12: Cook’s distance of values drawn from a normal distribution.
 </p>
 </div>
 <p><font color = "red"><i class="fa fa-times"></i></font> Here are three examples of outliers:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-76"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-76-1.png" alt="Cook's distance of values drawn from a $t$-distribution. Due to the larger mass in the tails, the $t$-distribution is more likely to yield outlying values." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-77"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-77-1.png" alt="Cook's distance of values drawn from a $t$-distribution. Due to the larger mass in the tails, the $t$-distribution is more likely to yield outlying values." width="672" />
 <p class="caption">
 Figure 3.13: Cook’s distance of values drawn from a <span class="math inline">\(t\)</span>-distribution. Due to the larger mass in the tails, the <span class="math inline">\(t\)</span>-distribution is more likely to yield outlying values.
 </p>
@@ -812,7 +815,7 @@ Show output
 <summary>
 Show output
 </summary>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>These show, in order:</p>
 <ul>
 <li>The Cook’s distance; <small><em>(Greater than <span class="math inline">\(0.5\)</span> is noteworthy, greater than <span class="math inline">\(1.0\)</span> is outlying.)</em></small></li>
@@ -827,7 +830,12 @@ Show output
 <summary>
 What to do if an assumption is violated?
 </summary>
-<p>Unfortunately this is where statistics ends. Uninstall R and RStudio from your computer and find a different profession. (…) Just kidding, under construction.</p>
+<p>Below are some options, in the order I would consider them:</p>
+<ul>
+<li>Using a model that makes different distributional assumptions (e.g., GLM, GAM);</li>
+<li>Finding an appropriate transformation of the outcome that can also be justified from a biological point of view;</li>
+<li>Using a test that makes no distributional assumptions. <small><em>(For example, the Kruskal–Wallis test (<code>kruskal.test</code>), followed by pairwise Wilcoxon tests (<code>wilcox.test</code>) for individual differences, with an appropriate multiple testing correction applied (<code>p.adjust</code>).)</em></small></li>
+</ul>
 </details>
 <p>
 <p><font size = 5><b>Dealing with Potential Outliers</b></font></p>
@@ -954,7 +962,7 @@ Obtaining confidence intervals for group means
 </ul>
 <p>It is also possible to plot the confidence intervals:</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="anova.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">xlab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 </details>
 </div>
 <div id="results-ANOVA" class="section level2 hasAnchor" number="3.4">
@@ -969,7 +977,7 @@ If the <span class="math inline">\(p\)</span>-value of the omnibus test is <stro
 <ul>
 <li><font color = "green"><i class = "fa fa-check"></i></font> Systolic blood pressure differed significantly by type of treatment (<span class="math inline">\(p &lt; 2 \cdot 10^{-16}\)</span>), with CCB and thiazide resulting in 18.3 and 23.1 mmHg lower blood pressure on average, respectively (CCB: <span class="math inline">\(p = 2.59 \cdot 10^{-10}\)</span>, thiazide: <span class="math inline">\(p = 2.59 \cdot 10^{-10}\)</span>);</li>
 <li><font color = "green"><i class = "fa fa-check"></i></font> The thiazide group had significantly lower systolic blood pressure than CCB (<span class="math inline">\(\hat{\beta} = 4.8\)</span> mmHg, <span class="math inline">\(p = 3.48 \cdot 10^{-5}\)</span>);</li>
-<li><font color = "green"><i class = "fa fa-check"></i></font> Thiazide resulted in 4.8 mmHg lower systolic blood pressure on average (95% CI: 2.3–7.3);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Thiazide resulted in 4.8 mmHg lower systolic blood pressure on average (95% CI: 2.3–7.3).</li>
 </ul>
 <p>Examples of incorrect, incomplete, or imprecise language:</p>
 <ul>
@@ -1019,17 +1027,242 @@ Why can’t I say I <em>accepted</em> the null-hypothesis?
 </div>
 <div id="incorporating-this-in-a-paper-2" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Incorporating This in a Paper<a href="anova.html#incorporating-this-in-a-paper-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>…</p>
+<p>Here you can find examples of how to justify the methods used, explain the results found and write a discussion. This is meant to show you what belongs where, and what level of detail is common in scientific literature.</p>
+<p>Remember to use your own words—<strong>paraphrase to avoid plagiarism</strong>.</p>
+<details>
+<summary>
+Methods
+</summary>
+<p><small><em>(In this section, you should describe the data collection and analysis to an extent that a fellow expert could reproduce your study.)</em></small></p>
+<p>A total of <span class="math inline">\(n = 90\)</span> Dutch individuals with clinically diagnosed hypertension were selected for the study. Inclusion criteria included: Minimum blood pressure of 140/90 mmHg, or an average of 135/85 mmHg at home; Primary hypertension; No evidence of other disease within 1 month of starting treatment. Written informed consent was obtained from all individuals and this study was approved by the ethical committee of Example institute under approval number 123456789. Individuals were randomly assigned to either a calcium channel blocker (CCB), thiazide, or an appropriate placebo. A summary of patient characteristics is provided in table ….</p>
+<p>Statistical analyses were conducted in R, version 4.2.1, using the RStudio interface.<span class="citation"><sup><a href="#ref-R" role="doc-biblioref">1</a>,<a href="#ref-RStudio" role="doc-biblioref">2</a></sup></span> Differences in group means were assessed with a one-way ANOVA. A post hoc was conducted with the <code>emmeans</code> package, using the Tukey method to adjust for multiple testing.<span class="citation"><sup><a href="#ref-emmeans" role="doc-biblioref">7</a></sup></span> Approximate conditional normality was assessed through normal quantile-quantile plots, using the <code>car</code> package,<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">3</a></sup></span> and constant variance with a scale-location plot.</p>
+<p>Note:</p>
+<ul>
+<li>Check your R version number with <code>version</code>;</li>
+<li>Justify the model used; <small><em>(Are the assumptions of ANOVA reasonable; What did you do to assess this?)</em></small></li>
+<li>You should cite any packages used to perform analyses, generate tables or figures that made it into the paper, e.g.;
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Normal quantile-quantile plots were generated with the <code>car</code> package.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">3</a></sup></span></li>
+</ul></li>
+<li>You should <em>not</em> cite packages used only internally, e.g.:
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We used <code>readxl</code> to enter the data in R.<span class="citation"><sup><a href="#ref-readxl" role="doc-biblioref">4</a></sup></span></li>
+</ul></li>
+</ul>
+</details>
+<details>
+<summary>
+Results
+</summary>
+<p><small><em>(In this section you should mention the results without giving any interpretation yet.)</em></small></p>
+<p>For general advice on phrasing, see: <a href="anova.html#results-ANOVA">Correctly Phrase the Results</a>. In this section, you should include your boxplot and explain in brief what the outcome of the ANOVA and (if applicable) post hoc was. For example:</p>
+<blockquote>
+<p>Systolic blood pressure differed significantly between treatment groups (<span class="math inline">\(F = 283.6\)</span>, <span class="math inline">\(p &lt; 2 \cdot 10^{-16}\)</span>), with both treatments resulting in significantly lower systolic blood pressure (table <a href="anova.html#tab:tab-ANOVA">3.1</a>). Diagnostic plots revealed no problematic deviations from normality and constant variance (Supplementary Figure <strong>S…</strong>). A single outlying value for systolic blood pressure was omitted from the analysis due to the individual’s age far exceeding that of all other participants. Excluding this observation did not affect which null-hypotheses were rejected.</p>
+</blockquote>
+<p>It is very common to see boxplots with significance stars, but the interpretation of these stars is not consistent and you should mention the actual, non-discretized <span class="math inline">\(p\)</span>-value at least somewhere in the results.</p>
+<p>The post hoc can be presented as follows: <small><em>(In the example, treatment-vs-control style.)</em></small></p>
+<table>
+<caption>
+<span id="tab:tab-ANOVA">Table 3.1: </span>Post hoc comparison with Tukey correction for multiple testing.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Comparison
+</th>
+<th style="text-align:left;">
+Estimate
+</th>
+<th style="text-align:left;">
+SE
+</th>
+<th style="text-align:left;">
+df
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(t\)</span>-value
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(p\)</span>-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+CCB - placebo
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(-18.33\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(1.03\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(86\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(-17.75\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(1.30 \cdot 10^{-10}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+thiazide - placebo
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(-23.13\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(1.02\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(86\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(-22.59\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(1.30 \cdot 10^{-10}\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+How do you create a table like that in R?
+</summary>
+<p><font color = "darkgreen"><i class = "fa fa-thumbs-up"></i></font> By going through the pain of learning <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>.</p>
+<p>Here is the code I used:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="anova.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;knitr&quot;</span>)</span>
+<span id="cb90-2"><a href="anova.html#cb90-2" aria-hidden="true" tabindex="-1"></a>digits <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb90-3"><a href="anova.html#cb90-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-4"><a href="anova.html#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the output you want to create a table of</span></span>
+<span id="cb90-5"><a href="anova.html#cb90-5" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(EMM<span class="sc">$</span>contrasts) </span>
+<span id="cb90-6"><a href="anova.html#cb90-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-7"><a href="anova.html#cb90-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add some column names</span></span>
+<span id="cb90-8"><a href="anova.html#cb90-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(M) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Comparison&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;$t$-value&quot;</span>, <span class="st">&quot;$p$-value&quot;</span>)</span>
+<span id="cb90-9"><a href="anova.html#cb90-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-10"><a href="anova.html#cb90-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Take all numeric values</span></span>
+<span id="cb90-11"><a href="anova.html#cb90-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">unlist</span>(M[, <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb90-12"><a href="anova.html#cb90-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-13"><a href="anova.html#cb90-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert them to...</span></span>
+<span id="cb90-14"><a href="anova.html#cb90-14" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
+<span id="cb90-15"><a href="anova.html#cb90-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...scientific notation if less than 0.01</span></span>
+<span id="cb90-16"><a href="anova.html#cb90-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(x) <span class="sc">&lt;</span> <span class="fl">0.01</span>, </span>
+<span id="cb90-17"><a href="anova.html#cb90-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;e&quot;</span>, <span class="at">digits =</span> digits),</span>
+<span id="cb90-18"><a href="anova.html#cb90-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(</span>
+<span id="cb90-19"><a href="anova.html#cb90-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...integer if equal to its rounded value</span></span>
+<span id="cb90-20"><a href="anova.html#cb90-20" aria-hidden="true" tabindex="-1"></a>    x <span class="sc">==</span> <span class="fu">round</span>(x),</span>
+<span id="cb90-21"><a href="anova.html#cb90-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;d&quot;</span>),</span>
+<span id="cb90-22"><a href="anova.html#cb90-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...a &#39;regular&#39; number otherwise</span></span>
+<span id="cb90-23"><a href="anova.html#cb90-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;f&quot;</span>, <span class="at">digits =</span> digits)</span>
+<span id="cb90-24"><a href="anova.html#cb90-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb90-25"><a href="anova.html#cb90-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb90-26"><a href="anova.html#cb90-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-27"><a href="anova.html#cb90-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace e-notation by nicely formatted scientific notation (positive numbers)</span></span>
+<span id="cb90-28"><a href="anova.html#cb90-28" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, x)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb90-29"><a href="anova.html#cb90-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, <span class="st">&quot; </span><span class="sc">\\\\</span><span class="st">cdot 10^{&quot;</span>, x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, x)]), <span class="st">&quot;}&quot;</span></span>
+<span id="cb90-30"><a href="anova.html#cb90-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb90-31"><a href="anova.html#cb90-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-32"><a href="anova.html#cb90-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace e-notation by nicely formatted scientific notation (negative numbers)</span></span>
+<span id="cb90-33"><a href="anova.html#cb90-33" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, x)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb90-34"><a href="anova.html#cb90-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, <span class="st">&quot; </span><span class="sc">\\\\</span><span class="st">cdot 10^{-&quot;</span>, x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, x)]), <span class="st">&quot;}&quot;</span></span>
+<span id="cb90-35"><a href="anova.html#cb90-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb90-36"><a href="anova.html#cb90-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-37"><a href="anova.html#cb90-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove leading zeros (for example &quot;10^{03}&quot; --&gt; &quot;10^{3}&quot;)</span></span>
+<span id="cb90-38"><a href="anova.html#cb90-38" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">{0&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">{&quot;</span>, x)</span>
+<span id="cb90-39"><a href="anova.html#cb90-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-40"><a href="anova.html#cb90-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove leading zeros (for example &quot;10^{-03}&quot; --&gt; &quot;10^{-3}&quot;)</span></span>
+<span id="cb90-41"><a href="anova.html#cb90-41" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">{-0&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">{-&quot;</span>, x)</span>
+<span id="cb90-42"><a href="anova.html#cb90-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-43"><a href="anova.html#cb90-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Enclose the resulting strings in &quot;$&quot; so they will be rendered as math</span></span>
+<span id="cb90-44"><a href="anova.html#cb90-44" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;$&quot;</span>, x, <span class="st">&quot;$&quot;</span>)</span>
+<span id="cb90-45"><a href="anova.html#cb90-45" aria-hidden="true" tabindex="-1"></a>M[, <span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> x</span>
+<span id="cb90-46"><a href="anova.html#cb90-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-47"><a href="anova.html#cb90-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result as a table (use escape = FALSE to render math correctly)</span></span>
+<span id="cb90-48"><a href="anova.html#cb90-48" aria-hidden="true" tabindex="-1"></a>caption <span class="ot">&lt;-</span> <span class="st">&quot;Post hoc comparison with Tukey correction for multiple testing.&quot;</span></span>
+<span id="cb90-49"><a href="anova.html#cb90-49" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(M, <span class="at">escape =</span> <span class="cn">FALSE</span>, <span class="at">caption =</span> caption)</span></code></pre></div>
+<p>The number of decimal points can be controlled with <code>digits</code> at the top.</p>
+</details>
+</details>
+<details>
+<summary>
+Discussion
+</summary>
+<p><small><em>(In this section, you should not mention results, but the conclusions based on those results.)</em></small></p>
+<p>If the test was significant <strong>and</strong> the difference large enough to be biologically relevant:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Consistent with existing literature, both thiazide and CCB appear to be effective at reducing blood pressure in young to middle-aged chronic hypertension patients;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> A severe limitation of this comparison is the lack of a baseline measurement.<span class="math inline">\(^\dagger\)</span></li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overclaiming)</em> We have demonstrated that thiazide and CCB are effective at reducing systolic blood pressure in chronic hypertension patients.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overgeneralizing)</em> Thiazide and CCB appear to be effective at reducing blood pressure.</li>
+</ul>
+<p><small><span class="math inline">\(^\dagger\)</span>: For data with a baseline measurement, you should not use ANOVA, but a mixed model, because the observations are no longer independent.</small></p>
+<p>If the test was insignificant <strong>or</strong> the difference too small to be biologically relevant:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was sufficiently powerful)</em> Despite a fairly large sample size, we were unable to demonstrate a difference in systolic blood pressure. Hence, thiazide and CCB do not appear to be effective at reducing blood pressure in young to middle-aged chronic hypertension patients.</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was underpowered)</em> We were unable to demonstrate a difference in systolic blood pressure, though this could be due to the limited sample size.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Appeal to ignorance)</em> We have demonstrated the treatments to be ineffective.</li>
+</ul>
+<details>
+<summary>
+Why can’t I conclude there is no difference?
+</summary>
+<p>This is an inherent limitation of the <span class="math inline">\(p\)</span>-value. Under the null-hypothesis, any <span class="math inline">\(p\)</span>-value is as likely as any other (uniformity). Therefore, even if the <span class="math inline">\(p\)</span>-value is very large, this cannot be interpreted as evidence <em>for</em> the null-hypothesis.</p>
+<p>For example, a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(0.20\)</span> is just as common a result as <span class="math inline">\(0.80\)</span> when the null-hypothesis is correct. The <span class="math inline">\(p\)</span>-value can <em>only</em> be used as evidence <em>against</em> the null-hypothesis (when it is small).</p>
+<p>If you want to perform a test to find out whether the null-hypothesis is correct, what you are looking for is called an equivalence test. For <span class="math inline">\(t\)</span>-tests, this can be implemented easily through <a href="https://en.wikipedia.org/wiki/Equivalence_test#TOST_procedure">TOST</a>. An omnibus equivalence test can be constructed in a similar manner, by testing whether the <span class="math inline">\(F\)</span>-value is close enough to <span class="math inline">\(1\)</span>.</p>
+</details>
+</details>
+<details>
+<summary>
+Generating citations
+</summary>
+<p>Any packages used in analysis should be cited in the methods section. The citations used here can be easily obtained as follows (note that this requires the packages to be installed):</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="anova.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>()        <span class="co"># Use this to cite R</span></span>
+<span id="cb91-2"><a href="anova.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">RStudio.Version</span>() <span class="co"># Use this to cite RStudio</span></span>
+<span id="cb91-3"><a href="anova.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;car&quot;</span>)   <span class="co"># Use this to cite a package (here: car)</span></span></code></pre></div>
+<p>You can add these entries to a reference manager (e.g., Zotero), or keep a BibTeX file yourself, as shown <a href="https://youtu.be/zuuOYjE8m98">here</a>.</p>
+</details>
+<details>
+<summary>
+Supplementary
+</summary>
+<p><small><em>(The following is not usually found in the main text, but can be included as supplementary material.)</em></small></p>
+<p>Including diagnostic plots can be an effective way to convince the reader you considered the assumptions of the test or model used. It offers transparency and allows readers to judge for themselves whether they agree with your assessments and model choice.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-102"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-102-1.png" alt="(A) Normal quantile-quantile plot of the studentized residuals; (B) Scale-location plot." width="672" />
+<p class="caption">
+Figure 3.14: (A) Normal quantile-quantile plot of the studentized residuals; (B) Scale-location plot.
+</p>
+</div>
+<p><em>If</em> you include any supplementary material, you should refer to it in the main text.</p>
+</details>
+<hr />
 
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body" line-spacing="2">
+<div id="ref-R" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">R Core Team. <em><a href="https://www.R-project.org/">R: A language and environment for statistical computing</a></em>. (R Foundation for Statistical Computing, 2022).</div>
+</div>
+<div id="ref-RStudio" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">RStudio Team. <em><a href="http://www.rstudio.com/">RStudio: Integrated development environment for r</a></em>. (RStudio, PBC, 2022).</div>
+</div>
 <div id="ref-car" class="csl-entry">
 <div class="csl-left-margin">3. </div><div class="csl-right-inline">Fox, J. &amp; Weisberg, S. <em><a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An <span>R</span> companion to applied regression</a></em>. (Sage, 2019).</div>
 </div>
+<div id="ref-readxl" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Wickham, H. &amp; Bryan, J. <em><a href="https://CRAN.R-project.org/package=readxl">Readxl: Read excel files</a></em>. (2022).</div>
+</div>
 <div id="ref-ShapiroSensitivities" class="csl-entry">
 <div class="csl-left-margin">6. </div><div class="csl-right-inline">Royston, P. <a href="https://doi.org/10.1007/bf01891203">Approximating the shapiro-wilk w-test for non-normality</a>. <em>Statistics and Computing</em> <strong>2</strong>, 117–119 (1992).</div>
+</div>
+<div id="ref-emmeans" class="csl-entry">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Lenth, R. V. <em><a href="https://CRAN.R-project.org/package=emmeans">Emmeans: Estimated marginal means, aka least-squares means</a></em>. (2022).</div>
 </div>
 </div>
             </section>

@@ -262,7 +262,7 @@ I have a tidy data file
 </summary>
 <table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:unnamed-chunk-24">Table 2.1: </span>First 5 rows of a tidy data set with only categorical data.
+<span id="tab:unnamed-chunk-25">Table 2.1: </span>First 5 rows of a tidy data set with only categorical data.
 </caption>
 <thead>
 <tr>
@@ -366,7 +366,7 @@ Common mistakes
 <p>If your data can be summarized as a <span class="math inline">\(2 \times 2\)</span> contingency table, I recommend just including it as is:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-27">Table 2.2: </span>Contingency table of smoking and sex.
+<span id="tab:unnamed-chunk-28">Table 2.2: </span>Contingency table of smoking and sex.
 </caption>
 <thead>
 <tr>
@@ -422,8 +422,8 @@ Marginal bar chart
 <p>A marginal bar chart shows you the totals of one variable, summed over all other variables. They are what you would find at the <em>margins</em> of a contingency table if you were to include the totals:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chi-squared-test.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">rowSums</span>(ConTable))</span>
 <span id="cb26-2"><a href="chi-squared-test.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">colSums</span>(ConTable))</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-29-1.png" alt="Marginal bar chart of smoking (A) and sex (B)." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-30-1.png" alt="Marginal bar chart of smoking (A) and sex (B)." width="672" />
 <p class="caption">
 Figure 2.1: Marginal bar chart of smoking (A) and sex (B).
 </p>
@@ -431,7 +431,7 @@ Figure 2.1: Marginal bar chart of smoking (A) and sex (B).
 <p>While this provides easy insight into the marginal distribution of smoking (A) and sex (B), it cannot show you combinations of the two, and is therefore not always informative.</p>
 <p>Of course, if your data only contains counts of a single variable, then a marginal bar chart is appropriate:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chi-squared-test.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(Observed, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>))</span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 </details>
 <details>
 <summary>
@@ -440,8 +440,8 @@ Grouped bar chart
 <p>A grouped bar chart shows the frequencies of one variable, split by another:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="chi-squared-test.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">as.matrix</span>(ConTable), <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>), <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)</span>
 <span id="cb28-2"><a href="chi-squared-test.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">rownames</span>(ConTable), <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-31-1.png" alt="Grouped bar chart of smoking and sex." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-32-1.png" alt="Grouped bar chart of smoking and sex." width="672" />
 <p class="caption">
 Figure 2.2: Grouped bar chart of smoking and sex.
 </p>
@@ -492,8 +492,8 @@ Improving your plot
 <span id="cb29-31"><a href="chi-squared-test.html#cb29-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-32"><a href="chi-squared-test.html#cb29-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore the default margins for subsequent plots</span></span>
 <span id="cb29-33"><a href="chi-squared-test.html#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-33-1.png" alt="Grouped bar chart of smoking and sex." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-34-1.png" alt="Grouped bar chart of smoking and sex." width="672" />
 <p class="caption">
 Figure 2.3: Grouped bar chart of smoking and sex.
 </p>
@@ -507,8 +507,8 @@ Mosaic plot
 </summary>
 <p>A mosaic plot is <em>similar</em> to a stacked bar chart (groups pasted on top of each other). However, in a mosaic plot, both the height <em>and</em> the width of the bars is proportional to the frequency of that group:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="chi-squared-test.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(ConTable, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-35-1.png" alt="Mosaic plot of smoking and sex shows smoking is relatively, slightly more common in women." width="336" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-36-1.png" alt="Mosaic plot of smoking and sex shows smoking is relatively, slightly more common in women." width="336" />
 <p class="caption">
 Figure 2.4: Mosaic plot of smoking and sex shows smoking is relatively, slightly more common in women.
 </p>
