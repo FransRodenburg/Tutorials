@@ -1,0 +1,168 @@
+---
+title: "Template: ANOVA"
+author: "Dr. F.J. Rodenburg"
+format: docx
+editor: visual
+---
+
+## Dependencies
+
+Good coding practice is to include any dependencies all the way at the top of your analysis. To keep potential problems at a minimum, only load packages you actually need. It also helps to write down a short comment after every package, explaining what you use it for in this file.
+
+```{r}
+require("car")     # QQ-plot with confidence bands (qqPlot)
+require("knitr")   # Creating tables (kable)
+require("emmeans") # ANOVA-style comparisons (emmeans)
+```
+
+## Read the Data
+
+Setup your [working directory](https://fransrodenburg.github.io/Tutorials/reading-storing-data.html#csv) and read the data.
+
+```{r}
+DF <- read.csv("three-groups.csv")
+```
+
+Perform some basic checks and comment on the output.
+
+```{r}
+str(DF)
+summary(DF)
+head(DF)
+```
+
+In the output we see:
+
+-   ...
+-   ...
+-   ...
+
+*(See the [online tutorial](https://fransrodenburg.github.io/Tutorials/anova.html#read-ANOVA) for an explanation of the output.)*
+
+Convert categorical variables to `factor`.
+
+```{r}
+DF$treatment <- factor(DF$treatment)
+DF$sex       <- factor(DF$sex)
+```
+
+Check the order.
+
+```{r}
+levels(DF$treatment)
+levels(DF$sex)
+```
+
+Change the order of `treatment` so the reference group is the placebo.
+
+```{r}
+DF$treatment <- relevel(DF$treatment, ref = "placebo")
+```
+
+## Visualize the Data
+
+```{r visualize}
+boxplot(SBP ~ sex + treatment, DF)
+```
+
+Comment on what you see and try [improving the boxplot](https://fransrodenburg.github.io/Tutorials/anova.html#vis-ANOVA) to your liking.
+
+In the boxplot we see:
+
+-   ...
+-   ...
+-   ...
+
+## Analyze the Data
+
+### Fit the Model
+
+```{r}
+LM <- lm(SBP ~ treatment, DF)
+```
+
+Fitting the model creates an object. You can check that it worked by looking at the environment pane (upper right pane in RStudio by default), or by printing the object `LM`.
+
+### Visual Diagnostics
+
+```{r}
+par(mfrow = c(2, 2))   # Plot in a 2x2 grid
+plot(LM, which = 1)    # Residuals vs fitted
+qqPlot(LM, reps = 1e4) # QQ-plot
+plot(LM, which = 3)    # Scale-location
+plot(LM, which = 4)    # Cook's distance
+par(mfrow = c(1, 1))   # Restore the default
+```
+
+Comment on each of the plots; What do you see and what does it imply for the analysis?
+
+In the diagnostic plots we see:
+
+-   ...
+-   ...
+-   ...
+
+*(See the [online tutorial](https://fransrodenburg.github.io/Tutorials/anova.html#perform-diagnostics) or the [video on diagnostics](https://youtu.be/upJJmfSbBuQ) for an explanation.)*
+
+**In case of violated assumptions**, consider using a different model, transforming the outcome, or using a test that does not make distributional assumptions. Then perform visual diagnostics again and see if the new analysis better adheres to the assumptions made.
+
+### Dealing with Potential Outliers
+
+As a general rule, do **not** remove outliers, *unless* you have valid reason for exclusion.
+
+*(Examples can be found in the [online tutorial](https://fransrodenburg.github.io/Tutorials/anova.html#dealing-with-potential-outliers).)*
+
+In the example data set, there was a clear outlier:
+
+```{r}
+DF[31, ]
+```
+
+Write down why there is sufficient reason to warrant exclusion for this observation.
+
+-   ...
+
+Remove the observation as follows:
+
+```{r}
+DF2 <- DF[-31, ]
+LM <- lm(SBP ~ treatment, DF2)
+```
+
+Rerun the diagnostics on this new model and comment on what has changed.
+
+```{r}
+# Insert visual diagnostics here
+```
+
+In the visual diagnostics we see:
+
+-   ...
+-   ...
+-   ...
+
+### Perform an Omnibus Test
+
+```{r}
+summary.aov(LM)
+```
+
+From the omnibus test we can conclude:
+
+-   ...
+
+### Perform a Post Hoc Analysis
+
+*(If the omnibus test is not significant, skip this section.)*
+
+Choose from among the possible [types of comparisons](https://fransrodenburg.github.io/Tutorials/anova.html#perform-a-post-hoc-analysis) and perform them below:
+
+```{r}
+# Insert the chosen post hoc here
+```
+
+## Concluding Remarks
+
+-   ...
+-   ...
+-   ...
