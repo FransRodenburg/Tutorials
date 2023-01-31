@@ -1,0 +1,122 @@
+---
+title: "Template: T-Test"
+author: "Dr. F.J. Rodenburg"
+format: docx
+editor: visual
+---
+
+## Dependencies
+
+Good coding practice is to include any dependencies all the way at the top of your analysis. To keep potential problems at a minimum, only load packages you actually need. It also helps to write down a short comment after every package, explaining what you use it for in this file.
+
+```{r}
+require("car")     # QQ-plot with confidence bands (qqPlot)
+require("knitr")   # Creating tables (kable)
+```
+
+## Read the Data
+
+Setup your [working directory](https://fransrodenburg.github.io/Tutorials/reading-storing-data.html#csv) and read the data.
+
+```{r}
+DF <- read.csv("two-groups.csv")
+```
+
+Perform some basic checks and comment on the output.
+
+```{r}
+str(DF)
+summary(DF)
+head(DF)
+```
+
+In the output we see:
+
+-   ...
+-   ...
+-   ...
+
+*(See the [online tutorial](https://fransrodenburg.github.io/Tutorials/t-test.html#read-t) for an explanation of the output.)*
+
+Convert categorical variables to `factor`.
+
+```{r}
+DF$Pesticide <- factor(DF$Pesticide)
+DF$CropYield <- factor(DF$CropYield)
+```
+
+Check the order.
+
+```{r}
+levels(DF$Pesticide)
+levels(DF$CropYield)
+```
+
+## Visualize the Data
+
+```{r visualize}
+boxplot(CropYield ~ Pesticide, DF)
+```
+
+Comment on what you see and try [improving the boxplot](https://fransrodenburg.github.io/Tutorials/t-test.html#vis-t) to your liking.
+
+In the boxplot we see:
+
+-   ...
+-   ...
+-   ...
+
+## Analyze the Data
+
+### Determining the Appropriate Test
+
+You could check for deviations from conditional normality as follows:
+
+```{r}
+qqPlot(CropYield ~ Pesticide, data = DF)
+```
+
+From the QQ-plots, we conclude:
+
+-   ...
+-   ...
+
+If you find it difficult to decide from the plot alone, a formal test can be performed as follows:
+
+```{r}
+# Is there a significant deviation from normality for pesticide A?
+shapiro.test(DF$CropYield[DF$Pesticide == "A"])
+# Is there a significant deviation from normality for pesticide B?
+shapiro.test(DF$CropYield[DF$Pesticide == "B"])
+```
+
+There is also a formal test for deviations from equal variance, but beware: This test is only valid for normally distributed values:
+
+```{r}
+var.test(CropYield ~ Pesticide, DF)
+```
+
+### Perform the Chosen Test
+
+In the example, the appropriate choice would be an independent, two-sample, two-sided, equal variance\
+$t$-test:
+
+```{r}
+t.test(CropYield ~ Pesticide, data = DF, var.equal = TRUE)
+```
+
+### Dealing with Potential Outliers
+
+As a general rule, do **not** remove outliers, *unless* you have valid reason for exclusion.
+
+*(Examples can be found in the [online tutorial](https://fransrodenburg.github.io/Tutorials/anova.html#dealing-with-potential-outliers).)*
+
+In the example data set there were no apparent outliers.
+
+## Concluding Remarks
+
+*(See: [Correctly Phrase the Results](https://fransrodenburg.github.io/Tutorials/t-test.html#results-t).)*
+
+-   ...
+-   ...
+-   ...

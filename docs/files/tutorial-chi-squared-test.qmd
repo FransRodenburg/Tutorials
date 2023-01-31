@@ -1,0 +1,109 @@
+---
+title: "Template: Chi-Squared Test"
+author: "Dr. F.J. Rodenburg"
+format: docx
+editor: visual
+---
+
+## Dependencies
+
+Good coding practice is to include any dependencies all the way at the top of your analysis. To keep potential problems at a minimum, only load packages you actually need. It also helps to write down a short comment after every package, explaining what you use it for in this file.
+
+```{r}
+require("knitr") # Creating tables (kable)
+```
+
+## Read the Data
+
+$\chi^2$-tests usually involve limited amount of data, so in the tutorial we just enter it manually:
+
+### Example 1: A Vector of Observed Frequencies
+
+```{r}
+Observed <- c(rose = 33, tulip = 6, dandelion = 11)
+```
+
+### Example 2: A Contingency Table
+
+```{r}
+ConTable <- data.frame(
+  men   = c(41, 68),
+  women = c(33, 82) 
+)
+rownames(ConTable) <- c("non-smoking", "smoking")
+```
+
+If you do have a (tidy) data file, see the instructions on the [tutorial page](https://fransrodenburg.github.io/Tutorials/chi-squared-test.html#read-the-data-into-r) (under: "I have a tidy data file").
+
+## Visualize the Data
+
+### Example 1: A Vector of Observed Frequencies
+
+```{r visualize}
+barplot(Observed, col = c("red", "orange", "yellow"))
+```
+
+Comment on what you see and try [improving the boxplot](https://fransrodenburg.github.io/Tutorials/chi-squared-test.html#vis-chi) to your liking.
+
+In the barplot we see:
+
+-   ...
+-   ...
+-   ...
+
+### Example 2: A Contingency Table
+
+```{r visualize}
+barplot(as.matrix(ConTable), beside = TRUE, xlim = c(1, 8), col = 3:4)
+legend("topright", legend = rownames(ConTable), pch = 15, col = 3:4)
+```
+
+Comment on what you see and try [improving the boxplot](https://fransrodenburg.github.io/Tutorials/chi-squared-test.html#vis-chi) to your liking.
+
+In the barplot we see:
+
+-   ...
+-   ...
+-   ...
+
+## Conduct a Chi-Squared Test
+
+### Example 1: A Vector of Observed Frequencies
+
+Change the expected proportions below in accordance with your own research question:
+
+```{r}
+# Proportions in which the flowers were planted
+expected <- c(1/2, 1/4, 1/4)
+
+# Did the flowers sprout in a different ratio than I planted them?
+chisq.test(Observed, p = expected)
+```
+
+Should this yield a warning, then you likely have lower expected counts. In that case, you can use Monte Carlo simulation to approximate the $p$-value:\\
+
+```{r}
+chisq.test(Observed, simulate.p.value = TRUE)
+```
+
+### Example 2: A Contingency Table
+
+If all expected counts are larger than 5, you can use the same test for contingency tables:
+
+```{r}
+chisq.test(ConTable)
+```
+
+Should this yield a warning, then you likely have lower expected counts. In that case, you can perform an exact test instead:
+
+```{r}
+fisher.test(ConTable)
+```
+
+## Concluding Remarks
+
+*(See: [Correctly Phrase the Results](https://fransrodenburg.github.io/Tutorials/chi-squared-test.html#results-chi).)*
+
+-   ...
+-   ...
+-   ...
