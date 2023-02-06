@@ -51,10 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -189,14 +185,31 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#fit-the-model"><i class="fa fa-check"></i>Fit the Model</a></li>
 <li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#perform-diagnostics"><i class="fa fa-check"></i>Perform Diagnostics</a></li>
-<li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#dealing-with-potential-outliers"><i class="fa fa-check"></i>Dealing with Potential Outliers</a></li>
+<li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#outlierexample"><i class="fa fa-check"></i>Dealing with Potential Outliers</a></li>
 <li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#perform-an-omnibus-test"><i class="fa fa-check"></i>Perform an Omnibus Test</a></li>
 <li class="chapter" data-level="" data-path="anova.html"><a href="anova.html#perform-a-post-hoc-analysis"><i class="fa fa-check"></i>Perform a Post Hoc Analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="anova.html"><a href="anova.html#results-ANOVA"><i class="fa fa-check"></i><b>3.4</b> Correctly Phrase the Results</a></li>
 <li class="chapter" data-level="3.5" data-path="anova.html"><a href="anova.html#incorporating-this-in-a-paper-2"><i class="fa fa-check"></i><b>3.5</b> Incorporating This in a Paper</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="twowaymultiway.html"><a href="twowaymultiway.html"><i class="fa fa-check"></i><b>4</b> Two-Way &amp; Multi-Way ANOVA</a></li>
+<li class="chapter" data-level="4" data-path="twowaymultiway.html"><a href="twowaymultiway.html"><i class="fa fa-check"></i><b>4</b> Two-Way &amp; Multi-Way ANOVA</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="twowaymultiway.html"><a href="twowaymultiway.html#read-ANOVA2"><i class="fa fa-check"></i><b>4.1</b> Read the Data into R</a>
+<ul>
+<li class="chapter" data-level="" data-path="twowaymultiway.html"><a href="twowaymultiway.html#reordering-a-factor-1"><i class="fa fa-check"></i>Reordering a Factor</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="twowaymultiway.html"><a href="twowaymultiway.html#vis-ANOVA2"><i class="fa fa-check"></i><b>4.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="4.3" data-path="twowaymultiway.html"><a href="twowaymultiway.html#analyze-the-data-1"><i class="fa fa-check"></i><b>4.3</b> Analyze the Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="twowaymultiway.html"><a href="twowaymultiway.html#fit-the-model-1"><i class="fa fa-check"></i>Fit the Model</a></li>
+<li class="chapter" data-level="" data-path="twowaymultiway.html"><a href="twowaymultiway.html#perform-diagnostics-1"><i class="fa fa-check"></i>Perform Diagnostics</a></li>
+<li class="chapter" data-level="" data-path="twowaymultiway.html"><a href="twowaymultiway.html#dealing-with-potential-outliers"><i class="fa fa-check"></i>Dealing with Potential Outliers</a></li>
+<li class="chapter" data-level="" data-path="twowaymultiway.html"><a href="twowaymultiway.html#perform-an-omnibus-test-1"><i class="fa fa-check"></i>Perform an Omnibus Test</a></li>
+<li class="chapter" data-level="" data-path="twowaymultiway.html"><a href="twowaymultiway.html#perform-a-post-hoc-analysis-1"><i class="fa fa-check"></i>Perform a Post Hoc Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="twowaymultiway.html"><a href="twowaymultiway.html#results-ANOVA2"><i class="fa fa-check"></i><b>4.4</b> Correctly Phrase the Results</a></li>
+<li class="chapter" data-level="4.5" data-path="twowaymultiway.html"><a href="twowaymultiway.html#incorporating-this-in-a-paper-3"><i class="fa fa-check"></i><b>4.5</b> Incorporating This in a Paper</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="linear-model.html"><a href="linear-model.html"><i class="fa fa-check"></i><b>5</b> Linear Model</a></li>
 <li class="chapter" data-level="6" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i><b>6</b> Generalized Linear Model</a></li>
 <li class="chapter" data-level="7" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>7</b> Mixed Model</a></li>
@@ -236,11 +249,1159 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="twowaymultiway" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Tutorial 4</span> Two-Way &amp; Multi-Way ANOVA<a href="twowaymultiway.html#twowaymultiway" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><small><i>
-…</i></small></p>
+<p><small><i>A method test to <b>compare any number of means</b>, from <b>multiple categorical variables</b> to see if they differ significantly. Observations are assumed to be <strong>independent</strong>, deviations from the group means are assumed to follow a <strong>normal distribution</strong>, and groups are assumed to have <strong>equal variance</strong>.</i></small></p>
 <hr />
-<p>…</p>
+<details>
+<summary>
+Summary
+</summary>
+<ol style="list-style-type: decimal">
+<li><a href="https://youtu.be/BGUqZc-Pb8w">Read the data into R <font color = "red"><i class="fa fa-youtube-play"></i></font></a>;</li>
+<li>Visualize the data;</li>
+<li>Fit an ANOVA:
+<ul>
+<li>Perform visual diagnostics to look for deviations from the assumptions;</li>
+<li>Perform an omnibus test if the assumptions appear reasonable;</li>
+<li>Perform a post-hoc test if the omnibus test was significant;</li>
+</ul></li>
+<li>Report a conclusion;</li>
+<li>Incorporating this in scientific literature.</li>
+</ol>
+</details>
+<p>
+<p>Download the template <a href="files/template-ANOVA2.qmd">here <i class="fa fa-download"></i></a> and the required data set <a href="data/combinations-of-groups.csv">here <i class="fa fa-download"></i></a>.</p>
+<div id="read-ANOVA2" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Read the Data into R<a href="twowaymultiway.html#read-ANOVA2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I recommend saving data as <a href="https://youtu.be/BGUqZc-Pb8w">comma-separated values (CSV)</a>. If you prefer reading data directly from Excel, have a look <a href="reading-storing-data.html#Excel">here</a>.</p>
+<details>
+<summary>
+Details
+</summary>
+<ul>
+<li>Save the data in a folder;</li>
+<li>Open RStudio and create a new R markdown or Quarto file; <small>(<strong>File</strong> &gt; <strong>New File</strong> &gt; <strong>R Markdown</strong>)</small></li>
+<li>Save your R markdown file to the same location as the data;</li>
+<li>Set working directory to source file location. <small>(<strong>Session</strong> &gt; <strong>Set Working Directory</strong> &gt; <strong>To Source File Location</strong>)</small></li>
+</ul>
+</details>
+<p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="twowaymultiway.html#cb1-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;combination-of-groups.csv&quot;</span>)</span></code></pre></div>
+<p>Did that work? There are several ways to check:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="twowaymultiway.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span>
+<span id="cb2-2"><a href="twowaymultiway.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span>
+<span id="cb2-3"><a href="twowaymultiway.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code></pre></div>
+<details>
+<summary>
+Explanation of the output
+</summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="twowaymultiway.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    90 obs. of  5 variables:
+##  $ SBP      : num  122 121 119 118 122 ...
+##  $ treatment: chr  &quot;thiazide&quot; &quot;thiazide&quot; &quot;thiazide&quot; &quot;thiazide&quot; ...
+##  $ smoking  : chr  &quot;yes&quot; &quot;no&quot; &quot;no&quot; &quot;no&quot; ...
+##  $ age      : int  35 47 36 36 27 43 39 29 41 37 ...
+##  $ sex      : chr  &quot;female&quot; &quot;male&quot; &quot;male&quot; &quot;male&quot; ...</code></pre>
+<p>This command shows the structure of the data. It is a data frame with <span class="math inline">\(n = 90\)</span> observations of 5 variables. <code>SBP</code> and age are stored as integers (<code>int</code>), while <code>treatment</code> <code>smoking</code>, and <code>sex</code> are stored character vectors (<code>chr</code>).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="twowaymultiway.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span></code></pre></div>
+<pre><code>##       SBP         treatment           smoking               age       
+##  Min.   :100.8   Length:90          Length:90          Min.   :19.00  
+##  1st Qu.:122.0   Class :character   Class :character   1st Qu.:31.00  
+##  Median :128.9   Mode  :character   Mode  :character   Median :35.00  
+##  Mean   :131.2                                         Mean   :34.52  
+##  3rd Qu.:141.4                                         3rd Qu.:38.00  
+##  Max.   :147.3                                         Max.   :47.00  
+##      sex           
+##  Length:90         
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+## </code></pre>
+<p>This function tries to give you some basic insight into the data, separately per column:</p>
+<ul>
+<li><code>SBP</code>:
+<ul>
+<li>The average is 131.5;</li>
+<li>The median is close to the mean, and the 1st and 3rd quartile are at a similar distance from the mean. These are both indications that the values are distributed symmetrically around the mean;</li>
+<li>The minimum is <em>much</em> closer to the mean than the maximum. This is an indication that the maximum value might be outlying.</li>
+</ul></li>
+<li><code>treatment</code>:
+<ul>
+<li>There are 90 observations;</li>
+<li>This variable is treated as a <code>character</code> vector.</li>
+</ul></li>
+<li><code>smoking</code>:
+<ul>
+<li>There are 90 observations;</li>
+<li>This variable is treated as a <code>character</code> vector.</li>
+</ul></li>
+<li><code>age</code>:
+<ul>
+<li>The average is 35.7;</li>
+<li>The median is close to the mean, and the 1st and 3rd quartile are at a similar distance from the mean. These are both indications that the values are distributed symmetrically around the mean;</li>
+<li>The maximum is far away from the rest of the values, while the minimum is not. This could be an indication that the maximum value is outlying.</li>
+</ul></li>
+<li><code>sex</code>:
+<ul>
+<li>There are 90 observations;</li>
+<li>This variable is treated as a <code>character</code> vector.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="twowaymultiway.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code></pre></div>
+<pre><code>##     SBP treatment smoking age    sex
+## 1 121.9  thiazide     yes  35 female
+## 2 120.8  thiazide      no  47   male
+## 3 118.9  thiazide      no  36   male
+## 4 118.3  thiazide      no  36   male
+## 5 121.6  thiazide     yes  27 female
+## 6 145.0  thiazide     yes  43   male</code></pre>
+<p>This function simply shows the first 6 rows of the data. You can also print the last 6 with <code>tail</code> and change the number of rows printed by specifying <code>n</code>.</p>
+</details>
+<details>
+<summary>
+My output looks different
+</summary>
+<p>Then provided you did everything else correctly, the most likely reason is that your data was saved with a version of Excel where a comma is used as a decimal separator (e.g., the Dutch version). The solutions for this is simple, use <code>read.csv2</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="twowaymultiway.html#cb9-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;some-data-with-commas.csv&quot;</span>)</span></code></pre></div>
+If that doesn’t work either, go over the details shown above, or watch the instructions in the <a href="https://youtu.be/BGUqZc-Pb8w">video</a>.
+</details>
+<details>
+<summary>
+Common mistakes
+</summary>
+<ul>
+<li>Remember to include the file extension (e.g., “combination-of-groups<strong>.csv</strong>”) when typing the file name.</li>
+<li>You cannot read Excel files (.xls, .xlsx) with this function. Instead, follow the guide <a href="#read">here</a>, or save your data as CSV.</li>
+<li>Don’t open the CSV file with Excel. You don’t need Excel or Google Sheets or any other program besides R and RStudio. If you have saved your data as CSV, you can close Excel.</li>
+</ul>
+</details>
+<p>
+<p>The next step is to ensure categorical variables are read as factors. This will allow us to use generic functions like <code>plot</code> and <code>summary</code> in a more meaningful way.</p>
+<details>
+<summary>
+Why not just use <code>character</code>?
+</summary>
+<p>A character vector is just strings of text, numbers and/or symbols. If you were to produce a <code>summary</code>, this happens:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="twowaymultiway.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>##    Length     Class      Mode 
+##        90 character character</code></pre>
+<p>It tells us this object contains 60 values, and it is stored and treated as a string of text.</p>
+<p>The generic <code>plot</code> function doesn’t even work at all:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="twowaymultiway.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
+<p><font color = "#C5060B"></p>
+<pre><code>Error in plot.window(...) : need finite &#39;xlim&#39; values
+In addition: Warning messages:
+1: In xy.coords(x, y, xlabel, ylabel, log) : NAs introduced by coercion
+2: In min(x) : no non-missing arguments to min; returning Inf
+3: In max(x) : no non-missing arguments to max; returning -Inf</code></pre>
+<p></font></p>
+<p>Now convert the variables to factors and see how that changes the output. <br><small><em>(Run the code below, then run <code>summary(DF$treatment)</code>, or <code>plot(DF$treatment)</code> for example.)</em></small></p>
+</details>
+<p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="twowaymultiway.html#cb14-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment)</span>
+<span id="cb14-2"><a href="twowaymultiway.html#cb14-2" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>smoking   <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>smoking)</span>
+<span id="cb14-3"><a href="twowaymultiway.html#cb14-3" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>sex       <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>sex)</span></code></pre></div>
+<div id="reordering-a-factor-1" class="section level3 unnumbered hasAnchor">
+<h3>Reordering a Factor<a href="twowaymultiway.html#reordering-a-factor-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While it does not change any of the conclusions, it can help yourself and any readers if you put the groups in a logical order. For sex there is no logical order, but for treatment it would make sense to have the placebo first, as a reference to compare the other groups to.</p>
+<p>To check the order of levels in a factor, use <code>levels</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="twowaymultiway.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>## [1] &quot;CCB&quot;      &quot;placebo&quot;  &quot;thiazide&quot;</code></pre>
+<details>
+<summary>
+My output is <code>NULL</code>
+</summary>
+<p>That means you forgot to convert your variable to a factor first:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="twowaymultiway.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="twowaymultiway.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution</span></span>
+<span id="cb19-2"><a href="twowaymultiway.html#cb19-2" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment)</span>
+<span id="cb19-3"><a href="twowaymultiway.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<pre><code>## [1] &quot;CCB&quot;      &quot;placebo&quot;  &quot;thiazide&quot;</code></pre>
+</details>
+<p>
+<p>To change which treatment appears first, use <code>relevel</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="twowaymultiway.html#cb21-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(DF<span class="sc">$</span>treatment, <span class="st">&quot;placebo&quot;</span>)</span></code></pre></div>
+<p><small><em>(Run <code>levels(DF$treatment)</code> again to see if it worked.)</em></small></p>
+<details>
+<summary>
+Reordering multiple categories at once
+</summary>
+<p>If you want to change the order entirely, you can define the order manually as follows:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="twowaymultiway.html#cb22-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;placebo&quot;</span>, <span class="st">&quot;CCB&quot;</span>, <span class="st">&quot;thiazide&quot;</span>))</span></code></pre></div>
+</details>
+<details>
+<summary>
+Change the names of the categories
+</summary>
+<p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>Careful, only use this if you know what you are doing. Check the order of labels first, using <code>levels</code>. It is easy to accidentally flip the labels of a factor and end up with nonsense.</small></p>
+<p>If you want to rename the labels of a factor, for instance because you think the names are too long, you can do so as follows:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="twowaymultiway.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this first, you have been warned</span></span>
+<span id="cb23-2"><a href="twowaymultiway.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span>
+<span id="cb23-3"><a href="twowaymultiway.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="twowaymultiway.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the names, taking into account the order of the labels above</span></span>
+<span id="cb23-5"><a href="twowaymultiway.html#cb23-5" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Ctrl&quot;</span>, <span class="st">&quot;CCB&quot;</span>, <span class="st">&quot;Thzd&quot;</span>))</span></code></pre></div>
+<p><small><em>(Run <code>levels(DF$treatment)</code> again to see if it worked.)</em></small></p>
+</details>
+</div>
+</div>
+<div id="vis-ANOVA2" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Visualize the Data<a href="twowaymultiway.html#vis-ANOVA2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In summary:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Boxplots can be used as simple data exploration and to compare groups;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> If you have <a href="reading-storing-data.html#tidy">multiple variables</a>, grouped boxplots can show combinations of groups;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> A violin plot is an alternative to a boxplot.</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="twowaymultiway.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> smoking <span class="sc">+</span> treatment, DF)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<details>
+<summary>
+What to look for
+</summary>
+<p><font size = 5><b>Potential Outliers</b></font></p>
+<p>A boxplot shows either of the following:</p>
+<div class="figure"><span style="display:block;" id="fig:IQR3"></span>
+<img src="Tutorials_files/figure-html/IQR3-1.png" alt="What is displayed in a boxplot in case all observations are within a certain distance from the box (A), or otherwise (B)." width="672" />
+<p class="caption">
+Figure 4.1: What is displayed in a boxplot in case all observations are within a certain distance from the box (A), or otherwise (B).
+</p>
+</div>
+<p>The interquartile range (IQR) is simply the size of the box. If all observations lie within <span class="math inline">\(1.5\times\)</span> this range from the box, then the whiskers show the extremes of the data (fig. <a href="#fig:IQR"><strong>??</strong></a> A). Otherwise, the observations are drawn separately <a href="#fig:IQR"><strong>??</strong></a> B). The IQR is usually not shown in a boxplot, but is used internally to calculate the location of the whiskers and marked observations (if any).</p>
+<details>
+<summary>
+<font color = "orange"><i class = "fa fa-warning"></i></font> Marked observations are not outliers
+</summary>
+<p>This is a common misconception. Though it can be an <em>indication</em> of outlyingness, a boxplot alone <u>cannot</u> tell you whether these observations will strongly affect your analysis:</p>
+<ul>
+<li>If you have a large enough sample size, you <em>will</em> find more extreme observations, which are eventually drawn outside the IQR. Try running: <code>boxplot(rnorm(1000))</code></li>
+<li>Skewed values (next section) will almost always show ‘outliers’ in the direction of skew, but these are unlikely to be outliers in the context of an appropriate model for skewed data.</li>
+<li>The <span class="math inline">\(1.5\times\)</span> IQR rule is nothing special, it is merely convention. A boxplot is just a quick way to visualize numeric values.</li>
+</ul>
+</details>
+<p>
+<p><font size = 5><b>Skew</b></font></p>
+<p>Skew means the data-generating process follows a probability distribution that is not symmetric. In a boxplot, skew looks like this:</p>
+<div class="figure"><span style="display:block;" id="fig:skew3"></span>
+<img src="Tutorials_files/figure-html/skew3-1.png" alt="A boxplot of symmetric (A), right-skewed (B), and left-skewed values." width="672" />
+<p class="caption">
+Figure 4.2: A boxplot of symmetric (A), right-skewed (B), and left-skewed values.
+</p>
+</div>
+<p>Skew is not necessarily a problem, unless it persists in the residuals of a model that assumes normally distributed errors. For an explanation of skew, see the video on <a href="https://youtu.be/jdfG7rKPVNk">probability distributions <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
+<p><font size = 5><b>Differences Between Groups</b></font></p>
+<p>A boxplot is not just a nice tool for <em>yourself</em> to inspect your data, but is also an effective tool to visually communicate the evidence for difference between groups:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-19-1.png" alt="A comparison of systolic blood pressure for different treatments and sex." width="384" />
+<p class="caption">
+Figure 4.3: A comparison of systolic blood pressure for different treatments and sex.
+</p>
+</div>
+</details>
+<details>
+<summary>
+How to improve your plot
+</summary>
+<p>Some basic adjustments that improve any plot:</p>
+<ul>
+<li>Use informative axis labels, with unit of measurement if appropriate;</li>
+<li>Add an informative caption;</li>
+<li>Keep the numbers on the axes horizontal where possible;</li>
+<li>Remove unnecessary plot elements, like the box around the figure.</li>
+</ul>
+<p>The changes to the code I made below can all be found in the help pages <code>?boxplot</code> and <code>?par</code>. I am also a big fan of the <code>eaxis</code> function from the package <code>sfsmisc</code>. The caption is added as a chunk option (i.e., <code>```{r, fig.cap = "..."}</code>).</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="twowaymultiway.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a package for nice axes</span></span>
+<span id="cb25-2"><a href="twowaymultiway.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sfsmisc&quot;</span>)</span>
+<span id="cb25-3"><a href="twowaymultiway.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the margins (bottom, left, top, right)</span></span>
+<span id="cb25-4"><a href="twowaymultiway.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb25-5"><a href="twowaymultiway.html#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="twowaymultiway.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the locations (helps discern between combinations of groups)</span></span>
+<span id="cb25-7"><a href="twowaymultiway.html#cb25-7" aria-hidden="true" tabindex="-1"></a>where <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb25-8"><a href="twowaymultiway.html#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="twowaymultiway.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the coordinate system</span></span>
+<span id="cb25-10"><a href="twowaymultiway.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> smoking <span class="sc">+</span> treatment, DF, <span class="at">at =</span> where, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb25-11"><a href="twowaymultiway.html#cb25-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>, </span>
+<span id="cb25-12"><a href="twowaymultiway.html#cb25-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">150</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">12</span>),</span>
+<span id="cb25-13"><a href="twowaymultiway.html#cb25-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Treatment&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span>
+<span id="cb25-14"><a href="twowaymultiway.html#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="twowaymultiway.html#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axes</span></span>
+<span id="cb25-16"><a href="twowaymultiway.html#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="fl">7.5</span>), <span class="fu">levels</span>(DF<span class="sc">$</span>treatment))</span>
+<span id="cb25-17"><a href="twowaymultiway.html#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="fu">eaxis</span>(<span class="dv">2</span>)</span>
+<span id="cb25-18"><a href="twowaymultiway.html#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="twowaymultiway.html#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a lightgrey background</span></span>
+<span id="cb25-20"><a href="twowaymultiway.html#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">50</span>), <span class="at">col =</span> <span class="st">&quot;grey95&quot;</span>,</span>
+<span id="cb25-21"><a href="twowaymultiway.html#cb25-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb25-22"><a href="twowaymultiway.html#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="twowaymultiway.html#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a simple grid</span></span>
+<span id="cb25-24"><a href="twowaymultiway.html#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">50</span>, <span class="dv">200</span>, <span class="dv">10</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>)</span>
+<span id="cb25-25"><a href="twowaymultiway.html#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">50</span>, <span class="dv">200</span>, <span class="dv">20</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb25-26"><a href="twowaymultiway.html#cb25-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-27"><a href="twowaymultiway.html#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Define two colors (picked from colorbrewer2.org)</span></span>
+<span id="cb25-28"><a href="twowaymultiway.html#cb25-28" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#fb9a99&quot;</span>, <span class="st">&quot;#a6cee3&quot;</span>)</span>
+<span id="cb25-29"><a href="twowaymultiway.html#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-30"><a href="twowaymultiway.html#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Redraw the boxplots on top</span></span>
+<span id="cb25-31"><a href="twowaymultiway.html#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> smoking <span class="sc">+</span> treatment, DF, <span class="at">at =</span> where, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb25-32"><a href="twowaymultiway.html#cb25-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>, <span class="at">col =</span> cols, <span class="at">add =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb25-33"><a href="twowaymultiway.html#cb25-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb25-34"><a href="twowaymultiway.html#cb25-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-35"><a href="twowaymultiway.html#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend</span></span>
+<span id="cb25-36"><a href="twowaymultiway.html#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
+<span id="cb25-37"><a href="twowaymultiway.html#cb25-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">ifelse</span>(<span class="fu">levels</span>(DF<span class="sc">$</span>smoking) <span class="sc">==</span> <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;smoking&quot;</span>, <span class="st">&quot;non-smoking&quot;</span>),</span>
+<span id="cb25-38"><a href="twowaymultiway.html#cb25-38" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">col =</span> cols, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb25-39"><a href="twowaymultiway.html#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-40"><a href="twowaymultiway.html#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore the default margins for subsequent plots</span></span>
+<span id="cb25-41"><a href="twowaymultiway.html#cb25-41" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-21-1.png" alt="A comparison of systolic blood pressure for three groups." width="384" />
+<p class="caption">
+Figure 4.4: A comparison of systolic blood pressure for three groups.
+</p>
+</div>
+</details>
+<p>
+<p>From the plot you can conclude:</p>
+<ul>
+<li>Several observations are marked as potentially outlying;</li>
+<li>None of the groups appear skewed;</li>
+<li>Both the CCB and thiazide group have substantially lower blood pressure than the control, with thiazide appearing the lowest;</li>
+<li>There is no overall difference between smokers and non-smokers, but treatment appears to be most effective in non-smokers;</li>
+<li>The variance of all groups is similar, because the boxes are similarly sized. The only smaller box belongs to the smoking thiazide group.</li>
+</ul>
+<p>This is just a sample, so whether the observed differences are <em>significant</em>, should be determined with a test.</p>
+<details>
+<summary>
+Alternative: Violin plot
+</summary>
+<p>A more modern take on the boxplot is a <strong>violin plot</strong>. It combines a boxplot and a density plot. This type of visualization is richer in information than just a boxplot, but it is only meaningful if you have enough observations per group (e.g., &gt;10):</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="twowaymultiway.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vioplot&quot;</span>) <span class="co"># install if missing</span></span>
+<span id="cb26-2"><a href="twowaymultiway.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vioplot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<details>
+<summary>
+How to interpret a violin plot
+</summary>
+<p>Here is a breakdown of the components shown in a violin plot:</p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>The density plot, if you are unfamiliar with it, is like a continuous version of a histogram. It shows which values are more and less likely in the sample.</p>
+</details>
+</details>
+<p>
+</div>
+<div id="analyze-the-data-1" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Analyze the Data<a href="twowaymultiway.html#analyze-the-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details>
+<summary>
+Summary (code)
+</summary>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="twowaymultiway.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages used (install if missing)</span></span>
+<span id="cb27-2"><a href="twowaymultiway.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)</span>
+<span id="cb27-3"><a href="twowaymultiway.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
+<span id="cb27-4"><a href="twowaymultiway.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;MASS&quot;</span>)</span>
+<span id="cb27-5"><a href="twowaymultiway.html#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="twowaymultiway.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb27-7"><a href="twowaymultiway.html#cb27-7" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> smoking <span class="sc">*</span> treatment, DF)</span>
+<span id="cb27-8"><a href="twowaymultiway.html#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="twowaymultiway.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform visual diagnostics</span></span>
+<span id="cb27-10"><a href="twowaymultiway.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))   <span class="co"># Plot in a 2x2 grid</span></span>
+<span id="cb27-11"><a href="twowaymultiway.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
+<span id="cb27-12"><a href="twowaymultiway.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
+<span id="cb27-13"><a href="twowaymultiway.html#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
+<span id="cb27-14"><a href="twowaymultiway.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
+<span id="cb27-15"><a href="twowaymultiway.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># Restore the default</span></span>
+<span id="cb27-16"><a href="twowaymultiway.html#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="twowaymultiway.html#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Refit using robust linear regression (to account for heavy tails)</span></span>
+<span id="cb27-18"><a href="twowaymultiway.html#cb27-18" aria-hidden="true" tabindex="-1"></a>LMrobust <span class="ot">&lt;-</span> <span class="fu">rlm</span>(SBP <span class="sc">~</span> smoking <span class="sc">*</span> treatment, DF)</span>
+<span id="cb27-19"><a href="twowaymultiway.html#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="twowaymultiway.html#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform an omnibus test</span></span>
+<span id="cb27-21"><a href="twowaymultiway.html#cb27-21" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">summary</span>(LMrobust)</span>
+<span id="cb27-22"><a href="twowaymultiway.html#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="twowaymultiway.html#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co"># If the omnibus test is significant, perform a post-hoc</span></span>
+<span id="cb27-24"><a href="twowaymultiway.html#cb27-24" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> <span class="fu">c</span>(<span class="st">&quot;treatment&quot;</span>, <span class="st">&quot;smoking&quot;</span>))</span>
+<span id="cb27-25"><a href="twowaymultiway.html#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(EMM)</span>
+<span id="cb27-26"><a href="twowaymultiway.html#cb27-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="twowaymultiway.html#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Or treatment-vs-control style</span></span>
+<span id="cb27-28"><a href="twowaymultiway.html#cb27-28" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> trt.vs.ctrl <span class="sc">~</span> smoking <span class="sc">*</span> treatment)</span>
+<span id="cb27-29"><a href="twowaymultiway.html#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-30"><a href="twowaymultiway.html#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the post hoc (see the emmeans vignette)</span></span>
+<span id="cb27-31"><a href="twowaymultiway.html#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</details>
+<p>
+<div id="fit-the-model-1" class="section level3 unnumbered hasAnchor">
+<h3>Fit the Model<a href="twowaymultiway.html#fit-the-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the example, we are interested in the effect of <code>smoking</code> and <code>treatment</code>. In addition, we are interested whether the treatment effect differs for smokers and non-smokers. To fit a model with two variables and an interaction, use the following syntax:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="twowaymultiway.html#cb28-1" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> smoking <span class="sc">*</span> treatment, DF)</span></code></pre></div>
+<p>The general notation is:</p>
+<ul>
+<li><code>Outcome ~ GroupingVariable1 * GroupingVariable2, Data</code> (with interaction);</li>
+<li><code>Outcome ~ GroupingVariable1 + GroupingVariable2, Data</code> (without interaction).</li>
+</ul>
+<details>
+<summary>
+How do I know if I should include an interaction?
+</summary>
+<p>XXXXXX — Insert figure of interaction vs no interaction —</p>
+<p>If you are interested in overall differences between smokers and non-smokers, or between the treatment groups, and you are confident the effect of treatment does not differ by smoking status, then you should fit a model without interaction instead, using the <code>+</code> notation.</p>
+</details>
+<details>
+<summary>
+Why use a linear model (<code>lm</code>)?
+</summary>
+<p><small><em>(The short answer is that ANOVA is linear and I decided to use <code>emmeans</code> throughout the tutorials for consistency.)</em></small></p>
+<p>Linear means that we can express the model as intercept and slope(s):</p>
+<p><span class="math display">\[\text{intercept} + \text{slope} \times \text{explanatory variable}\]</span></p>
+<p>Categorical explanatory variables, like <code>treatment</code>, can be represented by <a href="https://youtu.be/3ZY9OSXmOrU?t=657">dummy variables <font color = "red"><i class="fa fa-youtube-play"></i></font></a>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  x_1 &amp;=
+    \begin{cases}
+      1 \; \text{if CCB} \\
+      0 \; \text{otherwise}
+    \end{cases} \\ \\
+  x_2 &amp;=
+    \begin{cases}
+      1 \; \text{if thiazide} \\
+      0 \; \text{otherwise}
+    \end{cases}
+\end{aligned}
+\]</span>
+These variables are equal to <span class="math inline">\(1\)</span> if the observation belongs to that group and <span class="math inline">\(0\)</span> otherwise. Our example model then becomes:</p>
+<p><span class="math display">\[\text{SBP} = \text{intercept} + \text{slope} \cdot x_1 + \text{slope} \cdot x_2 + \text{error}\]</span></p>
+<p>That might look confusing at first, because this isn’t a slope in the everyday meaning of the word. But all that ‘slope’ means in statistics is the extent to which the outcome changes, if the explanatory variable increases by <span class="math inline">\(1\)</span>.</p>
+<p>For example, if you belong to the thiazide group, then the equation becomes:</p>
+<p><span class="math display">\[\text{SBP} = \text{intercept} + \text{slope} \cdot 0 + \text{slope} \cdot 1\]</span></p>
+<p>If you belong to the control group, the equation becomes:</p>
+<p><span class="math display">\[\text{SBP} = \text{intercept} + \text{slope} \cdot 0 + \text{slope} \cdot 0\]</span></p>
+<p>Which is simply the value of the intercept.</p>
+<p>Hence, comparing group means is the same as fitting a linear model with only dummy variables. This is useful for a number of reasons, but primarily:</p>
+<ul>
+<li>We can use the same notation for everything from <span class="math inline">\(t\)</span>-test to ANCOVA;</li>
+<li>We can use <code>lm</code>, which is supported by far more functions than <code>aov</code>;</li>
+<li>We can easily correct for <a href="https://youtu.be/RUX94txw4Qo">multiple testing <font color = "red"><i class="fa fa-youtube-play"></i></font></a>. <br><small><em>(The traditional <code>aov</code> + <code>TukeyHSD</code> approach does not correct for two-way or multi-way ANOVA.)</em></small></li>
+</ul>
+</details>
+<p>
+</div>
+<div id="perform-diagnostics-1" class="section level3 unnumbered hasAnchor">
+<h3>Perform Diagnostics<a href="twowaymultiway.html#perform-diagnostics-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The calculation of confidence intervals and <span class="math inline">\(p\)</span>-values is based on several assumptions. If these are not reasonable, conclusions drawn from the analysis are invalid.</p>
+<p>Additionally, outliers can have a strong influence on the estimates and <span class="math inline">\(p\)</span>-values, so you should always check and decide whether outlying observations are genuine, or outlying for reasons that warrant exclusion.</p>
+<p>Checking assumptions and outlyingness can be done trough <a href="https://youtu.be/upJJmfSbBuQ">visual diagnostics <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="twowaymultiway.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)         <span class="co"># Install if missing</span></span>
+<span id="cb29-2"><a href="twowaymultiway.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))   <span class="co"># Plot in a 2x2 grid</span></span>
+<span id="cb29-3"><a href="twowaymultiway.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
+<span id="cb29-4"><a href="twowaymultiway.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
+<span id="cb29-5"><a href="twowaymultiway.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
+<span id="cb29-6"><a href="twowaymultiway.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
+<span id="cb29-7"><a href="twowaymultiway.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># Restore the default</span></span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<p><small><em>(For general advice on diagnostic plots, see the <a href="https://youtu.be/upJJmfSbBuQ">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.)</em></small></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+The visual diagnostics show that the residuals are heavy-tailed. How to deal with that is explained at the end of this section.
+</details>
+<details>
+<summary>
+What to look for in general
+</summary>
+<p><font size = 5><b>Deviations from Normality</b></font></p>
+<p>In a QQ-plot, you can check whether the residuals deviate problematically from a normal distribution. The straight line represents a theoretical normal distribution and the black dots show where the actual residuals fall. Since the values a sample will <em>always</em> deviate somewhat, a confidence band is drawn around the line to provide an indication of the severity of the non-normality.</p>
+<p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random values drawn from an actual, exact normal distribution:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-28-1.png" alt="Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution." width="672" />
+<p class="caption">
+Figure 4.5: Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution.
+</p>
+</div>
+<p>Note how even in data drawn from an <em>exact</em> normal distribution, occasional observations outside the confidence bands are quite common. This is important to keep in mind when judging the severity of a violation.</p>
+<p>A great write-up (with examples) on what patterns to look for can be found in this <a href="https://stats.stackexchange.com/a/101290/176202">answer on CrossValidated <i class="fa fa-external-link"></i></a>. A quick summary of problematic patterns include:</p>
+<ul>
+<li>Gaps; <small><em>(Lack of values within a certain range.)</em></small></li>
+<li>Bulging (concave or convex); <small><em>(Usually an indication of skew.)</em></small></li>
+<li>S-shape; <small><em>(Implying light- or heavy-tailedness.)</em></small></li>
+</ul>
+<p><font color = "red"><i class="fa fa-times"></i></font> Here are three examples of problematic patterns: <font color = "grey">(confidence band hidden for clarity)</font></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-29-1.png" alt="Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness ." width="672" />
+<p class="caption">
+Figure 4.6: Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness .
+</p>
+</div>
+<p><font size = 5><b>Non-Constant Variance</b></font></p>
+<p>In the <strong>residuals vs fitted</strong> plot, you can see whether the observations are more or less equally dispersed around their group means. The <span class="math inline">\(x\)</span>-axis shows the value of the group means and the <span class="math inline">\(y\)</span>-axis the deviation from the group mean.</p>
+<p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random values with equal group variance:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-30-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance." width="672" />
+<p class="caption">
+Figure 4.7: Residuals vs fitted plots of values drawn from a normal distribution with equal variance.
+</p>
+</div>
+<p>Important to note here is that small deviations will always be present, and a smoothing line will be drawn that is not useful for ANOVA (but will be used in linear regression).</p>
+<p><small><em>(The smoothing line can be suppressed with <code>add.smooth = FALSE</code>.)</em></small></p>
+<p><font color = "red"><i class="fa fa-times"></i></font> Examples of unequal variance in a residuals vs fitted plot:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-31-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with unequal variance." width="672" />
+<p class="caption">
+Figure 4.8: Residuals vs fitted plots of values drawn from a normal distribution with unequal variance.
+</p>
+</div>
+<p><font color = "orange"><i class="fa fa-warning"></i></font> Careful, unequal sample size can give the false appearance of unequal variance in a residuals vs fitted plot:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-32-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
+<p class="caption">
+Figure 4.9: Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes.
+</p>
+</div>
+<p><font color = "green"><i class="fa fa-check"></i></font> This is why you should also look at the <strong>scale-location</strong> plot:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-33-1.png" alt="Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
+<p class="caption">
+Figure 4.10: Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes.
+</p>
+</div>
+<p>The scale-location plot takes the residuals and performs a transformation that allows for a simple interpretation: Rather than looking at the <em>dispersion</em> in the black dots, you can look at the <em>average</em>. Higher variance means the red smoothing line is also higher.</p>
+<p>As a rule of thumb, you should conclude non-constant variance from a scale-location plot if the smoothing line is more than <span class="math inline">\(0.5\)</span> higher/lower than other groups, or there is a consistent trend up/down.</p>
+<p><font color = "red"><i class="fa fa-times"></i></font> Examples of non-constant variance in a scale-location plot:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-34-1.png" alt="Scale-location plots of values drawn from a normal distribution with unequal variance." width="672" />
+<p class="caption">
+Figure 4.11: Scale-location plots of values drawn from a normal distribution with unequal variance.
+</p>
+</div>
+<p><font size = 5><b>Potential Outliers</b></font></p>
+<p>The Cook’s distance can be used to assess outlyingness. This is a simple measure: Greater than <span class="math inline">\(0.5\)</span> warrants further inspection and greater than <span class="math inline">\(1.0\)</span> is statistically outlying.</p>
+<p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random normally distributed values without any apparent outliers:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-35-1.png" alt="Cook's distance of values drawn from a normal distribution." width="672" />
+<p class="caption">
+Figure 4.12: Cook’s distance of values drawn from a normal distribution.
+</p>
+</div>
+<p><font color = "red"><i class="fa fa-times"></i></font> Here are three examples of outliers:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-36-1.png" alt="Cook's distance of values drawn from a $t$-distribution. Due to the larger mass in the tails, the $t$-distribution is more likely to yield outlying values." width="672" />
+<p class="caption">
+Figure 4.13: Cook’s distance of values drawn from a <span class="math inline">\(t\)</span>-distribution. Due to the larger mass in the tails, the <span class="math inline">\(t\)</span>-distribution is more likely to yield outlying values.
+</p>
+</div>
+</details>
+<details>
+<summary>
+Why <span class="math inline">\(t\)</span>-quantiles instead of normal?
+</summary>
+<p><small><em>(This is a bit technical and only important if, for example, a reviewer asks about it.)</em></small></p>
+<p>In short, I recommend using this over a normal QQ-plot, because it reflects the general notion that minor deviations in the tails should be ignored.</p>
+<p>You may have noticed that the example code here does not actually produce a normal QQ-plot, but instead a QQ-plot for a theoretical <span class="math inline">\(t\)</span>-distribution. <small><em>(Try: <code>qqPlot(lm(rnorm(10) ~ 1))</code> and look at the <span class="math inline">\(x\)</span>-axis label.)</em></small></p>
+<p>A little digging in the <code>qqPlot</code>’s <a href="https://github.com/cran/car/blob/master/R/qqPlot.R#L233">github repository <i class = "fa fa-external-link"></i></a> shows what happens:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="twowaymultiway.html#cb30-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="cf">if</span> (distribution <span class="sc">==</span> <span class="st">&#39;t&#39;</span>) <span class="fu">qt</span>(P, <span class="at">df=</span>res.df<span class="dv">-1</span>) <span class="cf">else</span> <span class="fu">qnorm</span>(P)</span></code></pre></div>
+<p><small><em>(Here, <code>z</code> is the theoretical quantile on the <span class="math inline">\(x\)</span>-axis of a QQ-plot.)</em></small></p>
+<p>These quantiles are used to compute where the confidence band should be drawn. If you use <code>qqPlot(LM)</code>, these are based on a <span class="math inline">\(t\)</span>-distribution with degrees of freedom equal to the residual degrees of freedom of the model minus one. This is done to reflect the additional uncertainty from the limited sample size. As the sample size grows (and the model complexity remains constant), the two approaches grow closer. In practical terms, this allows for slightly wider bands near the tails, the smaller the sample size is, which is a desirable property, because the smaller the sample size, the harder it is to decide whether an observation is outlying.</p>
+<p>Another important difference you may have noticed is that <code>qqPlot(LM)</code> yields a narrower confidence band than <code>qqPlot(residuals(LM))</code>. This actually has nothing to do with the <span class="math inline">\(t\)</span>-distribution, but with the type of confidence band drawn when using <code>qqPlot(LM)</code>: The default argument for <code>qqPlot(residuals(LM))</code> is <code>line = "quartiles"</code>, whereas <code>qqPlot(LM)</code> defaults to <code>line = "robust"</code>. The latter provides simulation-based robust regression confidence bands, which are more sensitive to non-normality, while simultaneously being less prone to false positives.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">1</a></sup></span></p>
+<p>On a general note, these bands are (both) point-based 95% confidence, meaning that there is a large chance of at least one observation outside the bands, even if the values come from a theoretical normal distribution.</p>
+</details>
+<details>
+<summary>
+Significance tests for assumptions
+</summary>
+<p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>All significance tests can produce false positives. Always judge the severity of any supposed problems with <em>visual</em> diagnostics.</small></p>
+<p>In cases where you are not sure an assumption is violated, it is possible to conduct a test.</p>
+<p><font size = 5><b>Normality</b></font></p>
+<p>Deviations from conditional normality can be formally tested using a variety of tests, all of which have different sensitivities to different aspects of the normal probability distribution. Commonly used is the Shapiro–Wilks test, which is particularly sensitive to skew and light-tailedness.<span class="citation"><sup><a href="#ref-ShapiroSensitivities" role="doc-biblioref">2</a></sup></span></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="twowaymultiway.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(LM))</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuals(LM)
+## W = 0.81801, p-value = 3.662e-09</code></pre>
+<p>The residuals differ significantly from a theoretical normal distribution (<span class="math inline">\(p = 3.66 \cdot 10^{-9}\)</span>), which is to be expected given the heavy-tailedness seen in the visual diagnostics. <small><em>(We will deal with at the end of this section.)</em></small></p>
+<details>
+<summary>
+<font color = "orange"><i class = "fa fa-warning"></i></font> This test <b>cannot</b> demonstrate the values are normally distributed
+</summary>
+<p>This is a common misconception. If <span class="math inline">\(p &gt; 0.05\)</span>, all we found is a lack of evidence against normality. But for these values to be normally distributed, they would need to range all the way from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(\infty\)</span>, which is obviously not realistic for blood pressure.</p>
+<small><em>Also see: <a href="https://stats.stackexchange.com/a/85914/176202">Why do statisticians say a non-significant result means “you can’t reject the null” as opposed to accepting the null hypothesis?</a></em></small>
+</details>
+</details>
+<p>
+<p><font size = 5><b>Constant Variance</b></font></p>
+<p>A robust test for non-constant variance that is not sensitive to other common issues like outliers and non-normality is the Breusch–Pagan test:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="twowaymultiway.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;lmtest&quot;</span>) <span class="co"># Install if missing</span></span>
+<span id="cb33-2"><a href="twowaymultiway.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(LM)</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  LM
+## BP = 4.1471, df = 5, p-value = 0.5284</code></pre>
+<p>As expected from the visual diagnostics, group variances are not significantly different (<span class="math inline">\(p = 0.528\)</span>).</p>
+<details>
+<summary>
+<font color = "orange"><i class = "fa fa-warning"></i></font> This does not demonstrate the groups have equal variance
+</summary>
+<p>This is a common misconception. All we found is a lack of evidence <em>against</em> equal variance.</p>
+<small><em>Also see: <a href="https://stats.stackexchange.com/a/85914/176202">Why do statisticians say a non-significant result means “you can’t reject the null” as opposed to accepting the null hypothesis?</a></em></small>
+</details>
+</details>
+<p>
+<p><font size = 5><b>Outliers</b></font></p>
+<p>A test for outlyingness is included in the <code>car</code> package:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="twowaymultiway.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)</span>
+<span id="cb35-2"><a href="twowaymultiway.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(LM)</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>##     rstudent unadjusted p-value Bonferroni p
+## 6   6.134227         2.7859e-08   2.5073e-06
+## 13 -4.899182         4.6931e-06   4.2238e-04</code></pre>
+<p>The test looks at every individual residual and whether it might be outlying. That of course, poses a major multiple testing issue, so the resulting <span class="math inline">\(p\)</span>-values are adjusted for this. When looking for outliyngness, always check the <em>adjusted</em> <span class="math inline">\(p\)</span>-value.</p>
+<p>In this case, the test is significant for observations 6 and 13. These are unlikely to be outliers, but rather the result of the heavy-tailedness (supported by their low Cook’s distance in the diagnostic plots).</p>
+</details>
+<p>The <code>car</code> package contains another set of residual plots specifically to assess outlyingness:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="twowaymultiway.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influenceIndexPlot</span>(LM)</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>These show, in order:</p>
+<ul>
+<li>The Cook’s distance; <small><em>(Greater than <span class="math inline">\(0.5\)</span> is noteworthy, greater than <span class="math inline">\(1.0\)</span> is outlying.)</em></small></li>
+<li>The studentized residuals; <small><em>(Divided by their standard deviation for standardized interpretation.)</em></small></li>
+<li><span class="math inline">\(P\)</span>-values for outlyingess; <small><em>(Corrected for <a href="https://youtu.be/RUX94txw4Qo">multiple testing</a>.)</em></small></li>
+<li>The hat-values. <small><em>(A measure of relative influence.)</em></small></li>
+</ul>
+<p>Observations 6 and 13 are again pointed out, but do not have substantial influence when looking at the Cook’s distance or hat-values.</p>
+</details>
+</details>
+<details>
+<summary>
+What to do if an assumption is violated?
+</summary>
+<p>Below are some options, in the order I would consider them:</p>
+<ul>
+<li>Using a model that makes different distributional assumptions (e.g., GLM, GAM);</li>
+<li>Finding an appropriate transformation of the outcome that can also be justified from a biological point of view;</li>
+<li>Using robust linear regression to account for non-constant variance, or give less weight to outliyng observations (e.g., with <code>rlm</code> from the <code>MASS</code> package);</li>
+<li>Using a test that makes no distributional assumptions. <small><em>(For example, the Kruskal–Wallis test (<code>kruskal.test</code>), followed by pairwise Wilcoxon tests (<code>wilcox.test</code>) for individual differences, with an appropriate multiple testing correction applied (<code>p.adjust</code>).)</em></small></li>
+</ul>
+</details>
+<p>
+<p>In the example here, the residuals are heavy-tailed. One way to deal with this is by giving less weight to observations further away from the model. This is called robust regression and can be performed as follows:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="twowaymultiway.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;MASS&quot;</span>)</span>
+<span id="cb38-2"><a href="twowaymultiway.html#cb38-2" aria-hidden="true" tabindex="-1"></a>LMrobust <span class="ot">&lt;-</span> <span class="fu">rlm</span>(SBP <span class="sc">~</span> smoking <span class="sc">*</span> treatment, DF)</span></code></pre></div>
+<p>To see how each observation was weighted, you can run the following:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="twowaymultiway.html#cb39-1" aria-hidden="true" tabindex="-1"></a>LMrobust<span class="sc">$</span>w</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>##  [1] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 0.1286223 1.0000000
+##  [8] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 0.1546261 1.0000000
+## [15] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+## [22] 1.0000000 0.8293050 1.0000000 0.3857447 1.0000000 1.0000000 0.9733381
+## [29] 1.0000000 0.9391029 0.8798398 1.0000000 1.0000000 1.0000000 1.0000000
+## [36] 0.6430793 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+## [43] 0.5704144 1.0000000 1.0000000 1.0000000 0.7664155 1.0000000 1.0000000
+## [50] 0.9548645 0.2224012 1.0000000 1.0000000 1.0000000 0.4802480 1.0000000
+## [57] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 0.9823628
+## [64] 0.5903509 0.7303982 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+## [71] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 0.2913689
+## [78] 1.0000000 1.0000000 1.0000000 1.0000000 0.7001059 1.0000000 1.0000000
+## [85] 1.0000000 1.0000000 1.0000000 0.7001059 1.0000000 1.0000000</code></pre>
+<p>Perhaps more insightful would be to show the weights used with a color scheme:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="twowaymultiway.html#cb41-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> LMrobust<span class="sc">$</span>w</span>
+<span id="cb41-2"><a href="twowaymultiway.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="twowaymultiway.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(<span class="fu">resid</span>(LMrobust), <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span> <span class="sc">-</span> w, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-50"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-50-1.png" alt="QQ-plot of the residuals of a robust linear model. The more red an observation is, the lower its weight." width="384" />
+<p class="caption">
+Figure 4.14: QQ-plot of the residuals of a robust linear model. The more red an observation is, the lower its weight.
+</p>
+</div>
+<p>Clearly, the observations outside the confidence band now have less influence on the estimates.</p>
+</details>
+</div>
+<div id="dealing-with-potential-outliers" class="section level3 unnumbered hasAnchor">
+<h3>Dealing with Potential Outliers<a href="twowaymultiway.html#dealing-with-potential-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In general, outliers should <strong>not</strong> be removed from the data, barring some exceptions.</p>
+<p><font color = "green"><i class = "fa fa-check"></i></font> The following are valid reasons for exclusion:</p>
+<ol style="list-style-type: decimal">
+<li>The observation is clearly an unrealistic value; <br><small><em>(For example, a blood pressure of “2000 mmHg” due to a misplaced decimal separator.)</em></small></li>
+<li>The cause of outlyingness can be traced back, invalidating the observation; <br><small><em>(For example, because the blood pressure monitor was placed incorrectly.)</em></small></li>
+<li>The observation differs in another way from the rest, invalidating comparisons. <br><small><em>(For example, this person tested positive for COVID-19 and all others did not.)</em></small></li>
+</ol>
+<p><font color = "red"><i class = "fa fa-times"></i></font> The following are insufficient reasons for exclusion:</p>
+<ul>
+<li>The observation stands out in the diagnostic plots;</li>
+<li>The observation has a high Cook’s distance;</li>
+<li>An outlier test showed the value was significantly outlying.</li>
+</ul>
+<p>These are all measures that assume your model is right, but the opposite could very well be the case: The fact that there <em>are</em> ‘outliers’ is often an indication the proposed model is wrong.</p>
+<p>In our example, there are no evident outliers. For an example of dealing with outliers, see the <a href="anova.html#outlierexample">previous chapter</a>.</p>
+<details>
+<summary>
+My data set has many outliers
+</summary>
+<p>This is more often than not an indication that the assumptions of the model are not reasonable in the first place: Perhaps the data-generating process produced skewed values, or has far heavier tails than the normal distribution does. Perhaps there is an error in how the data are collected, or maybe your data were not read correctly by the software.</p>
+<p>Simple removal is at best a questionable research practice and at worst plain falsification. Unless you can trace back the origin of the outliers, consider consulting a statistician.</p>
+</details>
+<p>
+</div>
+<div id="perform-an-omnibus-test-1" class="section level3 unnumbered hasAnchor">
+<h3>Perform an Omnibus Test<a href="twowaymultiway.html#perform-an-omnibus-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To print a classic ANOVA table, you would usually run the following:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="twowaymultiway.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(LM)</span></code></pre></div>
+<p>For the robust linear model, you will notice that this function is not available (it will return an error). We can still perform an omnibus test using the <code>Anova</code> function in the <code>car</code> package:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="twowaymultiway.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)</span>
+<span id="cb43-2"><a href="twowaymultiway.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(LMrobust)</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>## Analysis of Deviance Table (Type II tests)
+## 
+## Response: SBP
+##                   Df       F    Pr(&gt;F)    
+## smoking            1  34.070 9.694e-08 ***
+## treatment          2 516.252 &lt; 2.2e-16 ***
+## smoking:treatment  2  33.614 1.885e-11 ***
+## Residuals         84                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We conclude that all included variables in the model—including the interaction term—explain a significant amount of deviance (a generalized form of variance used because this is not an ordinary linear model). Due to the <a href="https://en.wikipedia.org/wiki/Principle_of_marginality">principle of marginality</a>, you cannot conclude a difference in group means between smokers/non-smokers, nor between the different treatments. We can only conclude there is a difference among group combinations.</p>
+<p>To find out how the group combinations differ, a post hoc can be performed.</p>
+</details>
+</div>
+<div id="perform-a-post-hoc-analysis-1" class="section level3 unnumbered hasAnchor">
+<h3>Perform a Post Hoc Analysis<a href="twowaymultiway.html#perform-a-post-hoc-analysis-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>If the omnibus test is not significant, skip this section.</small></p>
+<p>After concluding that there is a difference among means, a post hoc can be used to compare individual groups and determine <em>which</em> groups differ. If you simply want to compare all groups with all other groups, you can do so like this:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="twowaymultiway.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
+<span id="cb45-2"><a href="twowaymultiway.html#cb45-2" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LMrobust, <span class="at">specs =</span> <span class="fu">c</span>(<span class="st">&quot;smoking&quot;</span>, <span class="st">&quot;treatment&quot;</span>))</span>
+<span id="cb45-3"><a href="twowaymultiway.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(EMM)</span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>##  contrast                   estimate    SE df z.ratio p.value
+##  no placebo - yes placebo    -0.0904 0.976 NA  -0.093  1.0000
+##  no placebo - no CCB         17.3163 0.943 NA  18.364  &lt;.0001
+##  no placebo - yes CCB         7.4931 0.976 NA   7.677  &lt;.0001
+##  no placebo - no thiazide    21.9711 0.943 NA  23.300  &lt;.0001
+##  no placebo - yes thiazide   22.0168 0.976 NA  22.557  &lt;.0001
+##  yes placebo - no CCB        17.4067 0.976 NA  17.834  &lt;.0001
+##  yes placebo - yes CCB        7.5835 1.008 NA   7.523  &lt;.0001
+##  yes placebo - no thiazide   22.0615 0.976 NA  22.603  &lt;.0001
+##  yes placebo - yes thiazide  22.1073 1.008 NA  21.930  &lt;.0001
+##  no CCB - yes CCB            -9.8232 0.976 NA -10.064  &lt;.0001
+##  no CCB - no thiazide         4.6548 0.943 NA   4.936  &lt;.0001
+##  no CCB - yes thiazide        4.7006 0.976 NA   4.816  &lt;.0001
+##  yes CCB - no thiazide       14.4780 0.976 NA  14.833  &lt;.0001
+##  yes CCB - yes thiazide      14.5237 1.008 NA  14.407  &lt;.0001
+##  no thiazide - yes thiazide   0.0457 0.976 NA   0.047  1.0000
+## 
+## P value adjustment: tukey method for comparing a family of 6 estimates</code></pre>
+<p>All groups differ significantly from each other (<span class="math inline">\(p &lt; 0.0001\)</span>), with thiazide appearing most effective. These <span class="math inline">\(p\)</span>-values are already corrected for multiple testing.</p>
+<p>If you want to obtain the actual, non-discretized <span class="math inline">\(p\)</span>-values, you can use <code>as.data.frame</code>:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="twowaymultiway.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">pairs</span>(EMM))</span></code></pre></div>
+<pre><code>##                      contrast    estimate        SE df      z.ratio
+## 1    no placebo - yes placebo -0.09043139 0.9760581 NA  -0.09264959
+## 2         no placebo - no CCB 17.31627045 0.9429617 NA  18.36370486
+## 3        no placebo - yes CCB  7.49308818 0.9760581 NA   7.67688749
+## 4    no placebo - no thiazide 21.97111000 0.9429617 NA  23.30010846
+## 5   no placebo - yes thiazide 22.01682750 0.9760581 NA  22.55688223
+## 6        yes placebo - no CCB 17.40670184 0.9760581 NA  17.83367397
+## 7       yes placebo - yes CCB  7.58351957 1.0080685 NA   7.52282194
+## 8   yes placebo - no thiazide 22.06154139 0.9760581 NA  22.60269292
+## 9  yes placebo - yes thiazide 22.10725888 1.0080685 NA  21.93031489
+## 10           no CCB - yes CCB -9.82318227 0.9760581 NA -10.06413688
+## 11       no CCB - no thiazide  4.65483955 0.9429617 NA   4.93640359
+## 12      no CCB - yes thiazide  4.70055705 0.9760581 NA   4.81585786
+## 13      yes CCB - no thiazide 14.47802182 0.9760581 NA  14.83315583
+## 14     yes CCB - yes thiazide 14.52373931 1.0080685 NA  14.40749295
+## 15 no thiazide - yes thiazide  0.04571749 0.9760581 NA   0.04683891
+##         p.value
+## 1  9.999990e-01
+## 2  0.000000e+00
+## 3  2.805534e-13
+## 4  0.000000e+00
+## 5  0.000000e+00
+## 6  0.000000e+00
+## 7  8.416601e-13
+## 8  0.000000e+00
+## 9  0.000000e+00
+## 10 6.639134e-14
+## 11 1.178773e-05
+## 12 2.164683e-05
+## 13 0.000000e+00
+## 14 0.000000e+00
+## 15 1.000000e+00</code></pre>
+</details>
+<p>
+<p>Since this incurs a substantial <a href="https://youtu.be/RUX94txw4Qo">multiple testing <font color = "red"><i class = "fa fa-youtube-play"></i></font></a> problem, it is good practice to limit the comparisons to only those strictly necessary to answer the research question.</p>
+<details>
+<summary>
+Treatment-vs-control style comparison
+</summary>
+<p>In the example used so far, we could have chosen to only compare the treatments to the control group (and not to each other). The package <code>emmeans</code> has a built-in argument to support this option:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="twowaymultiway.html#cb49-1" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> trt.vs.ctrl <span class="sc">~</span> smoking <span class="sc">*</span> treatment)</span>
+<span id="cb49-2"><a href="twowaymultiway.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(EMM<span class="sc">$</span>contrasts) <span class="co"># as.data.frame prevents rounding</span></span></code></pre></div>
+<details>
+<summary>
+Show output
+</summary>
+<pre><code>##                    contrast    estimate       SE df     t.ratio      p.value
+## 1  yes placebo - no placebo   0.4526786 1.657653 84   0.2730841 9.902765e-01
+## 2       no CCB - no placebo -16.9500000 1.601445 84 -10.5841922 1.265816e-10
+## 3      yes CCB - no placebo  -7.9116071 1.657653 84  -4.7727767 3.731038e-05
+## 4  no thiazide - no placebo -22.5812500 1.601445 84 -14.1005481 1.265612e-10
+## 5 yes thiazide - no placebo -19.7616071 1.657653 84 -11.9214385 1.265668e-10</code></pre>
+Note how the <span class="math inline">\(p\)</span>-values are now lower than when we compared all-vs-all. This is because the multiple testing correction only corrects for two tests.
+</details>
+</details>
+<details>
+<summary>
+Custom comparisons
+</summary>
+<p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>Only use this if you have <em>a priori</em> reasons to exclude certain comparisons. You cannot first perform all comparisons and then decide which comparisons to keep. This is a form of <a href="https://en.wikipedia.org/wiki/Data_dredging"><span class="math inline">\(p\)</span>-hacking</a>.</small></p>
+<p>If your research question can be answered satisfactorily with a specific set of comparisons, you can do so by creating custom contrasts. This is beyond the scope of this tutorial, but well documented in the <a href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#linfcns"><code>emmeans</code> vignette <i class = "fa fa-external-link"></i></a>.</p>
+</details>
+<details>
+<summary>
+Obtaining confidence intervals for group means
+</summary>
+<p>Comparisons show you the estimated <em>differences</em>. But what if you wanted to include confidence intervals for the estimated <em>group means</em> (a common request by reviewers)? You can obtain those by printing the object we just created:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="twowaymultiway.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(EMM) <span class="co"># as.data.frame prevents rounding</span></span></code></pre></div>
+<pre><code>##   smoking treatment   emmean       SE df lower.CL upper.CL
+## 1      no   placebo 142.4187 1.132393 84 140.1669 144.6706
+## 2     yes   placebo 142.8714 1.210579 84 140.4641 145.2788
+## 3      no       CCB 125.4687 1.132393 84 123.2169 127.7206
+## 4     yes       CCB 134.5071 1.210579 84 132.0998 136.9145
+## 5      no  thiazide 119.8375 1.132393 84 117.5856 122.0894
+## 6     yes  thiazide 122.6571 1.210579 84 120.2498 125.0645</code></pre>
+<p>The confidence intervals are:</p>
+<ul>
+<li>Placebo: 143.1–145.9</li>
+<li>CCB: 124.7–127.6</li>
+<li>Thiazide: 119.9–122.8</li>
+</ul>
+<p>It is also possible to plot the confidence intervals:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="twowaymultiway.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">xlab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+</details>
+</div>
+</div>
+<div id="results-ANOVA2" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Correctly Phrase the Results<a href="twowaymultiway.html#results-ANOVA2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><font color = "red"><i class = "fa fa-warning"></i></font><b> This chapter is a work in progress. This part has not been written yet, it is a copy of chapter 3.</b></p>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-value of the omnibus test is <strong>less</strong> than the chosen level of significance
+</summary>
+<p><Small><em>(This is the case in the example.)</em></small></p>
+<p>While you can technically still summarize three comparisons in writing, it is right at the border of what should be put in a table instead, and referred to in brief. Generally, for post hoc analyses I recommend showing the average differences, confidence intervals and <span class="math inline">\(p\)</span>-values in a table and/or figure. However, this section is meant to help you <em>phrase</em> results, so examples are provided regardless.</p>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Systolic blood pressure differed significantly by type of treatment (<span class="math inline">\(p &lt; 2 \cdot 10^{-16}\)</span>), with CCB and thiazide resulting in 18.3 and 23.1 mmHg lower blood pressure on average, respectively (CCB: <span class="math inline">\(p = 2.59 \cdot 10^{-10}\)</span>, thiazide: <span class="math inline">\(p = 2.59 \cdot 10^{-10}\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> The thiazide group had significantly lower systolic blood pressure than CCB (<span class="math inline">\(\hat{\beta} = 4.8\)</span> mmHg, <span class="math inline">\(p = 3.48 \cdot 10^{-5}\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Thiazide resulted in 4.8 mmHg lower systolic blood pressure on average (95% CI: 2.3–7.3).</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The alternative hypothesis was true // The null-hypothesis was false;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The difference was significant (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The treatments outperform the control.</li>
+</ul>
+<details>
+<summary>
+Why paste tense?
+</summary>
+<p>The results of a single experiment, no matter how convincing, can never prove something to be true. The results <em>were</em> observed, and in this one experiment, the treatments outperformed the control.</p>
+<p>Use present tense only for statements that have been demonstrated repeatedly, are generally agreed upon, or are easily observable, e.g.:</p>
+<ul>
+<li>Smoking causes cancer;</li>
+<li>Current climate-change is mainly caused by human activities;</li>
+<li>Most people use smartphones nowadays.</li>
+</ul>
+</details>
+</details>
+<details>
+<summary>
+If the <span class="math inline">\(p\)</span>-values of the omnibus test is <strong>greater</strong> than the chosen level of significance
+</summary>
+<p>Examples of precise language:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Systolic blood pressure did not differ significantly by type of treatment (<span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There is insufficient evidence to conclude either treatment worked (<span class="math inline">\(p = \dots\)</span>);</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> There was a trend towards lower blood pressure on either treatment, but the differences were not significant (<span class="math inline">\(p = \dots\)</span>).</li>
+</ul>
+<p>Examples of incorrect, incomplete, or imprecise language:</p>
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> The treatments did not work;</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> There was no difference (<span class="math inline">\(p &lt; 0.05\)</span>);</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We accept the null-hypothesis.</li>
+</ul>
+<details>
+<summary>
+Why can’t I say I <em>accepted</em> the null-hypothesis?
+</summary>
+<p>This is imprecise language because it distorts the order of null-hypothesis significance testing. Every tests <em>starts</em> with pretending the null-hypothesis is true, and then considering how rare a result this would be. You did not accept the null-hypothesis <em>because</em> of the <span class="math inline">\(p\)</span>-value, but rather, you started by taking on the null-hypothesis to even compute that <span class="math inline">\(p\)</span>-value.</p>
+<p><small>Also see: <a href="https://stats.stackexchange.com/a/85914/176202">Why do statisticians say a non-significant result means “you can’t reject the null” as opposed to accepting the null hypothesis?</a></small></p>
+</details>
+<p>
+<p>If the omnibus test was insignificant, this is where the analysis ends. Do not include a post hoc, as that could be considered a form of <a href="https://en.wikipedia.org/wiki/Data_dredging">fishing</a>.</p>
+</details>
+</div>
+<div id="incorporating-this-in-a-paper-3" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Incorporating This in a Paper<a href="twowaymultiway.html#incorporating-this-in-a-paper-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><font color = "red"><i class = "fa fa-warning"></i></font><b> This chapter is a work in progress. This part has not been written yet, it is a copy of chapter 3.</b></p>
+<p>Here you can find examples of how to justify the methods used, explain the results found and write a discussion. This is meant to show you what belongs where, and what level of detail is common in scientific literature.</p>
+<p>Remember to use your own words—<strong>paraphrase to avoid plagiarism</strong>.</p>
+<details>
+<summary>
+Methods
+</summary>
+<p><small><em>(In this section, you should describe the data collection and analysis to an extent that a fellow expert could reproduce your study.)</em></small></p>
+<p>A total of <span class="math inline">\(n = 90\)</span> Dutch individuals with clinically diagnosed hypertension were selected for the study. Inclusion criteria included: Minimum blood pressure of 140/90 mmHg, or an average of 135/85 mmHg at home; Primary hypertension; No evidence of other disease within 1 month of starting treatment. Written informed consent was obtained from all individuals and this study was approved by the ethical committee of Example institute under approval number 123456789. Individuals were randomly assigned to either a calcium channel blocker (CCB), thiazide, or an appropriate placebo. A summary of patient characteristics is provided in table ….</p>
+<p>Statistical analyses were conducted in R, version 4.2.1, using the RStudio interface.<span class="citation"><sup><a href="#ref-R" role="doc-biblioref">3</a>,<a href="#ref-RStudio" role="doc-biblioref">4</a></sup></span> Differences in group means were assessed with a one-way ANOVA. A post hoc was conducted with the <code>emmeans</code> package, using the Tukey method to adjust for multiple testing.<span class="citation"><sup><a href="#ref-emmeans" role="doc-biblioref">5</a></sup></span> Approximate conditional normality was assessed through normal quantile-quantile plots, using the <code>car</code> package,<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">1</a></sup></span> and constant variance with a scale-location plot.</p>
+<p>Note:</p>
+<ul>
+<li>Check your R version number with <code>version</code>;</li>
+<li>Justify the model used; <small><em>(Are the assumptions of ANOVA reasonable; What did you do to assess this?)</em></small></li>
+<li>You should cite any packages used to perform analyses, generate tables or figures that made it into the paper, e.g.;
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Normal quantile-quantile plots were generated with the <code>car</code> package.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">1</a></sup></span></li>
+</ul></li>
+<li>You should <em>not</em> cite packages used only internally, e.g.:
+<ul>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We used <code>readxl</code> to enter the data in R.<span class="citation"><sup><a href="#ref-readxl" role="doc-biblioref">6</a></sup></span></li>
+</ul></li>
+</ul>
+</details>
+<details>
+<summary>
+Results
+</summary>
+<p><small><em>(In this section you should mention the results without giving any interpretation yet.)</em></small></p>
+<p>For general advice on phrasing, see: <a href="anova.html#results-ANOVA">Correctly Phrase the Results</a>. In this section, you should include your boxplot and explain in brief what the outcome of the ANOVA and (if applicable) post hoc was. For example:</p>
+<blockquote>
+<p>Systolic blood pressure differed significantly between treatment groups (<span class="math inline">\(F = 283.6\)</span>, <span class="math inline">\(p &lt; 2 \cdot 10^{-16}\)</span>), with both treatments resulting in significantly lower systolic blood pressure (table <a href="twowaymultiway.html#tab:tab-ANOVA">4.1</a>). Diagnostic plots revealed no problematic deviations from normality and constant variance (Supplementary Figure <strong>S…</strong>). A single outlying value for systolic blood pressure was omitted from the analysis due to the individual’s age far exceeding that of all other participants. Excluding this observation did not affect which null-hypotheses were rejected.</p>
+</blockquote>
+<p>It is very common to see boxplots with significance stars, but the interpretation of these stars is not consistent and you should mention the actual, non-discretized <span class="math inline">\(p\)</span>-value at least somewhere in the results.</p>
+<p>The post hoc can be presented as follows: <small><em>(In the example, treatment-vs-control style.)</em></small></p>
+<pre><code>## NOTE: Results may be misleading due to involvement in interactions</code></pre>
+<table>
+<caption>
+<span id="tab:tab-ANOVA">Table 4.1: </span>Post hoc comparison with Tukey correction for multiple testing.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Comparison
+</th>
+<th style="text-align:left;">
+Estimate
+</th>
+<th style="text-align:left;">
+SE
+</th>
+<th style="text-align:left;">
+df
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(t\)</span>-value
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(p\)</span>-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+CCB - placebo
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(-12.66\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(1.17\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(84\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(-10.80\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(7.91 \cdot 10^{-11}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+thiazide - placebo
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(-21.40\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(1.17\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(84\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(-18.26\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(7.91 \cdot 10^{-11}\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+How do you create a table like that in R?
+</summary>
+<p><font color = "darkgreen"><i class = "fa fa-thumbs-up"></i></font> By going through the pain of learning <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>.</p>
+<p>Here is the code I used:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="twowaymultiway.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;knitr&quot;</span>)</span>
+<span id="cb55-2"><a href="twowaymultiway.html#cb55-2" aria-hidden="true" tabindex="-1"></a>digits <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb55-3"><a href="twowaymultiway.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="twowaymultiway.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the output you want to create a table of</span></span>
+<span id="cb55-5"><a href="twowaymultiway.html#cb55-5" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(EMM<span class="sc">$</span>contrasts) </span>
+<span id="cb55-6"><a href="twowaymultiway.html#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="twowaymultiway.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add some column names</span></span>
+<span id="cb55-8"><a href="twowaymultiway.html#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(M) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Comparison&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;$t$-value&quot;</span>, <span class="st">&quot;$p$-value&quot;</span>)</span>
+<span id="cb55-9"><a href="twowaymultiway.html#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-10"><a href="twowaymultiway.html#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Take all numeric values</span></span>
+<span id="cb55-11"><a href="twowaymultiway.html#cb55-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">unlist</span>(M[, <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb55-12"><a href="twowaymultiway.html#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-13"><a href="twowaymultiway.html#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert them to...</span></span>
+<span id="cb55-14"><a href="twowaymultiway.html#cb55-14" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
+<span id="cb55-15"><a href="twowaymultiway.html#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...scientific notation if less than 0.01</span></span>
+<span id="cb55-16"><a href="twowaymultiway.html#cb55-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(x) <span class="sc">&lt;</span> <span class="fl">0.01</span>, </span>
+<span id="cb55-17"><a href="twowaymultiway.html#cb55-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;e&quot;</span>, <span class="at">digits =</span> digits),</span>
+<span id="cb55-18"><a href="twowaymultiway.html#cb55-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(</span>
+<span id="cb55-19"><a href="twowaymultiway.html#cb55-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...integer if equal to its rounded value</span></span>
+<span id="cb55-20"><a href="twowaymultiway.html#cb55-20" aria-hidden="true" tabindex="-1"></a>    x <span class="sc">==</span> <span class="fu">round</span>(x),</span>
+<span id="cb55-21"><a href="twowaymultiway.html#cb55-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;d&quot;</span>),</span>
+<span id="cb55-22"><a href="twowaymultiway.html#cb55-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...a &#39;regular&#39; number otherwise</span></span>
+<span id="cb55-23"><a href="twowaymultiway.html#cb55-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;f&quot;</span>, <span class="at">digits =</span> digits)</span>
+<span id="cb55-24"><a href="twowaymultiway.html#cb55-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb55-25"><a href="twowaymultiway.html#cb55-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-26"><a href="twowaymultiway.html#cb55-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-27"><a href="twowaymultiway.html#cb55-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace e-notation by nicely formatted scientific notation (positive numbers)</span></span>
+<span id="cb55-28"><a href="twowaymultiway.html#cb55-28" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, x)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb55-29"><a href="twowaymultiway.html#cb55-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, <span class="st">&quot; </span><span class="sc">\\\\</span><span class="st">cdot 10^{&quot;</span>, x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, x)]), <span class="st">&quot;}&quot;</span></span>
+<span id="cb55-30"><a href="twowaymultiway.html#cb55-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-31"><a href="twowaymultiway.html#cb55-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-32"><a href="twowaymultiway.html#cb55-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace e-notation by nicely formatted scientific notation (negative numbers)</span></span>
+<span id="cb55-33"><a href="twowaymultiway.html#cb55-33" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, x)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb55-34"><a href="twowaymultiway.html#cb55-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, <span class="st">&quot; </span><span class="sc">\\\\</span><span class="st">cdot 10^{-&quot;</span>, x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, x)]), <span class="st">&quot;}&quot;</span></span>
+<span id="cb55-35"><a href="twowaymultiway.html#cb55-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-36"><a href="twowaymultiway.html#cb55-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-37"><a href="twowaymultiway.html#cb55-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove leading zeros (for example &quot;10^{03}&quot; --&gt; &quot;10^{3}&quot;)</span></span>
+<span id="cb55-38"><a href="twowaymultiway.html#cb55-38" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">{0&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">{&quot;</span>, x)</span>
+<span id="cb55-39"><a href="twowaymultiway.html#cb55-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-40"><a href="twowaymultiway.html#cb55-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove leading zeros (for example &quot;10^{-03}&quot; --&gt; &quot;10^{-3}&quot;)</span></span>
+<span id="cb55-41"><a href="twowaymultiway.html#cb55-41" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">{-0&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">{-&quot;</span>, x)</span>
+<span id="cb55-42"><a href="twowaymultiway.html#cb55-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-43"><a href="twowaymultiway.html#cb55-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Enclose the resulting strings in &quot;$&quot; so they will be rendered as math</span></span>
+<span id="cb55-44"><a href="twowaymultiway.html#cb55-44" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;$&quot;</span>, x, <span class="st">&quot;$&quot;</span>)</span>
+<span id="cb55-45"><a href="twowaymultiway.html#cb55-45" aria-hidden="true" tabindex="-1"></a>M[, <span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> x</span>
+<span id="cb55-46"><a href="twowaymultiway.html#cb55-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-47"><a href="twowaymultiway.html#cb55-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result as a table (use escape = FALSE to render math correctly)</span></span>
+<span id="cb55-48"><a href="twowaymultiway.html#cb55-48" aria-hidden="true" tabindex="-1"></a>caption <span class="ot">&lt;-</span> <span class="st">&quot;Post hoc comparison with Tukey correction for multiple testing.&quot;</span></span>
+<span id="cb55-49"><a href="twowaymultiway.html#cb55-49" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(M, <span class="at">escape =</span> <span class="cn">FALSE</span>, <span class="at">caption =</span> caption)</span></code></pre></div>
+<p>The number of decimal points can be controlled with <code>digits</code> at the top.</p>
+</details>
+</details>
+<details>
+<summary>
+Discussion
+</summary>
+<p><small><em>(In this section, you should not mention results, but the conclusions based on those results.)</em></small></p>
+<p>If the test was significant <strong>and</strong> the difference large enough to be biologically relevant:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Consistent with existing literature, both thiazide and CCB appear to be effective at reducing blood pressure in young to middle-aged chronic hypertension patients;</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> A severe limitation of this comparison is the lack of a baseline measurement.<span class="math inline">\(^\dagger\)</span></li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overclaiming)</em> We have demonstrated that thiazide and CCB are effective at reducing systolic blood pressure in chronic hypertension patients.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Overgeneralizing)</em> Thiazide and CCB appear to be effective at reducing blood pressure.</li>
+</ul>
+<p><small><span class="math inline">\(^\dagger\)</span>: For data with a baseline measurement, you should not use ANOVA, but a mixed model, because the observations are no longer independent.</small></p>
+<p>If the test was insignificant <strong>or</strong> the difference too small to be biologically relevant:</p>
+<ul>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was sufficiently powerful)</em> Despite a fairly large sample size, we were unable to demonstrate a difference in systolic blood pressure. Hence, thiazide and CCB do not appear to be effective at reducing blood pressure in young to middle-aged chronic hypertension patients.</li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> <em>(If the study was underpowered)</em> We were unable to demonstrate a difference in systolic blood pressure, though this could be due to the limited sample size.</li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> <em>(Appeal to ignorance)</em> We have demonstrated the treatments to be ineffective.</li>
+</ul>
+<details>
+<summary>
+Why can’t I conclude there is no difference?
+</summary>
+<p>This is an inherent limitation of the <span class="math inline">\(p\)</span>-value. Under the null-hypothesis, any <span class="math inline">\(p\)</span>-value is as likely as any other (uniformity). Therefore, even if the <span class="math inline">\(p\)</span>-value is very large, this cannot be interpreted as evidence <em>for</em> the null-hypothesis.</p>
+<p>For example, a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(0.20\)</span> is just as common a result as <span class="math inline">\(0.80\)</span> when the null-hypothesis is correct. The <span class="math inline">\(p\)</span>-value can <em>only</em> be used as evidence <em>against</em> the null-hypothesis (when it is small).</p>
+<p>If you want to perform a test to find out whether the null-hypothesis is correct, what you are looking for is called an equivalence test. For <span class="math inline">\(t\)</span>-tests, this can be implemented easily through <a href="https://en.wikipedia.org/wiki/Equivalence_test#TOST_procedure">TOST</a>. An omnibus equivalence test can be constructed in a similar manner, by testing whether the <span class="math inline">\(F\)</span>-value is close enough to <span class="math inline">\(1\)</span>.</p>
+</details>
+</details>
+<details>
+<summary>
+Generating citations
+</summary>
+<p>Any packages used in analysis should be cited in the methods section. The citations used here can be easily obtained as follows (note that this requires the packages to be installed):</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="twowaymultiway.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>()        <span class="co"># Use this to cite R</span></span>
+<span id="cb56-2"><a href="twowaymultiway.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">RStudio.Version</span>() <span class="co"># Use this to cite RStudio</span></span>
+<span id="cb56-3"><a href="twowaymultiway.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;car&quot;</span>)   <span class="co"># Use this to cite a package (here: car)</span></span></code></pre></div>
+<p>You can add these entries to a reference manager (e.g., Zotero), or keep a BibTeX file yourself, as shown <a href="https://youtu.be/zuuOYjE8m98">here</a>.</p>
+</details>
+<details>
+<summary>
+Supplementary
+</summary>
+<p><small><em>(The following is not usually found in the main text, but can be included as supplementary material.)</em></small></p>
+<p>Including diagnostic plots can be an effective way to convince the reader you considered the assumptions of the test or model used. It offers transparency and allows readers to judge for themselves whether they agree with your assessments and model choice.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-64"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-64-1.png" alt="(A) Normal quantile-quantile plot of the studentized residuals; (B) Scale-location plot." width="672" />
+<p class="caption">
+Figure 4.15: (A) Normal quantile-quantile plot of the studentized residuals; (B) Scale-location plot.
+</p>
+</div>
+<p><em>If</em> you include any supplementary material, you should refer to it in the main text.</p>
+</details>
+<hr />
 
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body" line-spacing="2">
+<div id="ref-car" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Fox, J. &amp; Weisberg, S. <em><a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An <span>R</span> companion to applied regression</a></em>. (Sage, 2019).</div>
+</div>
+<div id="ref-ShapiroSensitivities" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Royston, P. <a href="https://doi.org/10.1007/bf01891203">Approximating the shapiro-wilk w-test for non-normality</a>. <em>Statistics and Computing</em> <strong>2</strong>, 117–119 (1992).</div>
+</div>
+<div id="ref-R" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">R Core Team. <em><a href="https://www.R-project.org/">R: A language and environment for statistical computing</a></em>. (R Foundation for Statistical Computing, 2022).</div>
+</div>
+<div id="ref-RStudio" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">RStudio Team. <em><a href="http://www.rstudio.com/">RStudio: Integrated development environment for r</a></em>. (RStudio, PBC, 2022).</div>
+</div>
+<div id="ref-emmeans" class="csl-entry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Lenth, R. V. <em><a href="https://CRAN.R-project.org/package=emmeans">Emmeans: Estimated marginal means, aka least-squares means</a></em>. (2022).</div>
+</div>
+<div id="ref-readxl" class="csl-entry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Wickham, H. &amp; Bryan, J. <em><a href="https://CRAN.R-project.org/package=readxl">Readxl: Read excel files</a></em>. (2022).</div>
+</div>
 </div>
             </section>
 
