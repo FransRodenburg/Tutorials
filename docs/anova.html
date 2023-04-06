@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Tutorial 3 ANOVA | Untitled</title>
-  <meta name="description" content="Tutorial 3 ANOVA | Untitled" />
+  <title>Tutorial 3 ANOVA | Statistics Tutorials &amp; Templates</title>
+  <meta name="description" content="Tutorial 3 ANOVA | Statistics Tutorials &amp; Templates" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Tutorial 3 ANOVA | Untitled" />
+  <meta property="og:title" content="Tutorial 3 ANOVA | Statistics Tutorials &amp; Templates" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Tutorial 3 ANOVA | Untitled" />
+  <meta name="twitter:title" content="Tutorial 3 ANOVA | Statistics Tutorials &amp; Templates" />
   
   
   
@@ -51,10 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -247,7 +243,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Untitled</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics Tutorials &amp; Templates</a>
           </h1>
         </div>
 
@@ -293,23 +289,23 @@ Details
 </ul>
 </details>
 <p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="anova.html#cb38-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;three-groups.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="anova.html#cb1-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;three-groups.csv&quot;</span>)</span></code></pre></div>
 <p>Did that work? There are several ways to check:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="anova.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span>
-<span id="cb39-2"><a href="anova.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span>
-<span id="cb39-3"><a href="anova.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="anova.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span>
+<span id="cb2-2"><a href="anova.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span>
+<span id="cb2-3"><a href="anova.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code></pre></div>
 <details>
 <summary>
 Explanation of the output
 </summary>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="anova.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="anova.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DF)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    90 obs. of  4 variables:
 ##  $ SBP      : int  122 119 120 129 127 118 120 124 126 117 ...
 ##  $ treatment: chr  &quot;thiazide&quot; &quot;thiazide&quot; &quot;thiazide&quot; &quot;thiazide&quot; ...
 ##  $ age      : int  32 34 36 41 35 38 36 33 39 32 ...
 ##  $ sex      : chr  &quot;female&quot; &quot;female&quot; &quot;female&quot; &quot;male&quot; ...</code></pre>
 <p>This command shows the structure of the data. It is a data frame with <span class="math inline">\(n = 90\)</span> observations of 4 variables. <code>SBP</code> and age are stored as integers (<code>int</code>), while <code>treatment</code> and <code>sex</code> are stored character vectors (<code>chr</code>).</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="anova.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="anova.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF)</span></code></pre></div>
 <pre><code>##       SBP         treatment              age            sex           
 ##  Min.   :114.0   Length:90          Min.   :23.00   Length:90         
 ##  1st Qu.:122.0   Class :character   1st Qu.:32.00   Class :character  
@@ -342,7 +338,7 @@ Explanation of the output
 <li>This variable is treated as a <code>character</code> vector.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="anova.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="anova.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code></pre></div>
 <pre><code>##   SBP treatment age    sex
 ## 1 122  thiazide  32 female
 ## 2 119  thiazide  34 female
@@ -357,7 +353,7 @@ Explanation of the output
 My output looks different
 </summary>
 <p>Then provided you did everything else correctly, the most likely reason is that your data was saved with a version of Excel where a comma is used as a decimal separator (e.g., the Dutch version). The solutions for this is simple, use <code>read.csv2</code>:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="anova.html#cb46-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;some-data-with-commas.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="anova.html#cb9-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;some-data-with-commas.csv&quot;</span>)</span></code></pre></div>
 If that doesn’t work either, go over the details shown above, or watch the instructions in the <a href="https://youtu.be/BGUqZc-Pb8w">video</a>.
 </details>
 <details>
@@ -377,12 +373,12 @@ Common mistakes
 Why not just use <code>character</code>?
 </summary>
 <p>A character vector is just strings of text, numbers and/or symbols. If you were to produce a <code>summary</code>, this happens:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="anova.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="anova.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
 <pre><code>##    Length     Class      Mode 
 ##        90 character character</code></pre>
 <p>It tells us this object contains 60 values, and it is stored and treated as a string of text.</p>
 <p>The generic <code>plot</code> function doesn’t even work at all:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="anova.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="anova.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
 <p><font color = "#C5060B"></p>
 <pre><code>Error in plot.window(...) : need finite &#39;xlim&#39; values
 In addition: Warning messages:
@@ -393,36 +389,36 @@ In addition: Warning messages:
 <p>Now convert the variables to factors and see how that changes the output. <br><small><em>(Run the code below, then run <code>summary(DF$treatment)</code>, or <code>plot(DF$treatment)</code> for example.)</em></small></p>
 </details>
 <p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="anova.html#cb51-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment)</span>
-<span id="cb51-2"><a href="anova.html#cb51-2" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>sex       <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="anova.html#cb14-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment)</span>
+<span id="cb14-2"><a href="anova.html#cb14-2" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>sex       <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>sex)</span></code></pre></div>
 <div id="reordering-a-factor" class="section level3 unnumbered hasAnchor">
 <h3>Reordering a Factor<a href="anova.html#reordering-a-factor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While it does not change any of the conclusions, it can help yourself and any readers if you put the groups in a logical order. For sex there is no logical order, but for treatment it would make sense to have the placebo first, as a reference to compare the other groups to.</p>
 <p>To check the order of levels in a factor, use <code>levels</code>:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="anova.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="anova.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
 <pre><code>## [1] &quot;CCB&quot;      &quot;placebo&quot;  &quot;thiazide&quot;</code></pre>
 <details>
 <summary>
 My output is <code>NULL</code>
 </summary>
 <p>That means you forgot to convert your variable to a factor first:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="anova.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="anova.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="anova.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution</span></span>
-<span id="cb56-2"><a href="anova.html#cb56-2" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment)</span>
-<span id="cb56-3"><a href="anova.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="anova.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution</span></span>
+<span id="cb19-2"><a href="anova.html#cb19-2" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment)</span>
+<span id="cb19-3"><a href="anova.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span></code></pre></div>
 <pre><code>## [1] &quot;CCB&quot;      &quot;placebo&quot;  &quot;thiazide&quot;</code></pre>
 </details>
 <p>
 <p>To change which treatment appears first, use <code>relevel</code>:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="anova.html#cb58-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(DF<span class="sc">$</span>treatment, <span class="st">&quot;placebo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="anova.html#cb21-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">relevel</span>(DF<span class="sc">$</span>treatment, <span class="st">&quot;placebo&quot;</span>)</span></code></pre></div>
 <p><small><em>(Run <code>levels(DF$treatment)</code> again to see if it worked.)</em></small></p>
 <details>
 <summary>
 Reordering multiple categories at once
 </summary>
 <p>If you want to change the order entirely, you can define the order manually as follows:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="anova.html#cb59-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;placebo&quot;</span>, <span class="st">&quot;CCB&quot;</span>, <span class="st">&quot;thiazide&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="anova.html#cb22-1" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;placebo&quot;</span>, <span class="st">&quot;CCB&quot;</span>, <span class="st">&quot;thiazide&quot;</span>))</span></code></pre></div>
 </details>
 <details>
 <summary>
@@ -430,11 +426,11 @@ Change the names of the categories
 </summary>
 <p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>Careful, only use this if you know what you are doing. Check the order of labels first, using <code>levels</code>. It is easy to accidentally flip the labels of a factor and end up with nonsense.</small></p>
 <p>If you want to rename the labels of a factor, for instance because you think the names are too long, you can do so as follows:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="anova.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this first, you have been warned</span></span>
-<span id="cb60-2"><a href="anova.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span>
-<span id="cb60-3"><a href="anova.html#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="anova.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the names, taking into account the order of the labels above</span></span>
-<span id="cb60-5"><a href="anova.html#cb60-5" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Ctrl&quot;</span>, <span class="st">&quot;CCB&quot;</span>, <span class="st">&quot;Thzd&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="anova.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this first, you have been warned</span></span>
+<span id="cb23-2"><a href="anova.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(DF<span class="sc">$</span>treatment)</span>
+<span id="cb23-3"><a href="anova.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="anova.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the names, taking into account the order of the labels above</span></span>
+<span id="cb23-5"><a href="anova.html#cb23-5" aria-hidden="true" tabindex="-1"></a>DF<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(DF<span class="sc">$</span>treatment, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Ctrl&quot;</span>, <span class="st">&quot;CCB&quot;</span>, <span class="st">&quot;Thzd&quot;</span>))</span></code></pre></div>
 <p><small><em>(Run <code>levels(DF$treatment)</code> again to see if it worked.)</em></small></p>
 </details>
 </div>
@@ -447,8 +443,8 @@ Change the names of the categories
 <li><font color = "green"><i class = "fa fa-check"></i></font> If you have <a href="reading-storing-data.html#tidy">multiple variables</a>, grouped boxplots can show combinations of groups;</li>
 <li><font color = "green"><i class = "fa fa-check"></i></font> A violin plot is an alternative to a boxplot.</li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="anova.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF)</span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="anova.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/boxplot-ANOVA-1.png" width="672" /></p>
 <details>
 <summary>
 What to look for
@@ -461,7 +457,7 @@ What to look for
 Figure 3.1: What is displayed in a boxplot in case all observations are within a certain distance from the box (A), or otherwise (B).
 </p>
 </div>
-<p>The interquartile range (IQR) is simply the size of the box. If all observations lie within <span class="math inline">\(1.5\times\)</span> this range from the box, then the whiskers show the extremes of the data (fig. <a href="t-test.html#fig:IQR">1.1</a> A). Otherwise, the observations are drawn separately <a href="t-test.html#fig:IQR">1.1</a> B). The IQR is usually not shown in a boxplot, but is used internally to calculate the location of the whiskers and marked observations (if any).</p>
+<p>The interquartile range (IQR) is simply the size of the box. If all observations lie within <span class="math inline">\(1.5\times\)</span> this range from the box, then the whiskers show the extremes of the data (fig. <a href="#fig:IQR"><strong>??</strong></a> A). Otherwise, the observations are drawn separately <a href="#fig:IQR"><strong>??</strong></a> B). The IQR is usually not shown in a boxplot, but is used internally to calculate the location of the whiskers and marked observations (if any).</p>
 <details>
 <summary>
 <font color = "orange"><i class = "fa fa-warning"></i></font> Marked observations are not outliers
@@ -485,8 +481,8 @@ Figure 3.2: A boxplot of symmetric (A), right-skewed (B), and left-skewed values
 <p>Skew is not necessarily a problem, unless it persists in the residuals of a model that assumes normally distributed errors. For an explanation of skew, see the video on <a href="https://youtu.be/jdfG7rKPVNk">probability distributions <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
 <p><font size = 5><b>Differences Between Groups</b></font></p>
 <p>A boxplot is not just a nice tool for <em>yourself</em> to inspect your data, but is also an effective tool to visually communicate the evidence for difference between groups:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-59"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-59-1.png" alt="A comparison of systolic blood pressure for different treatments and sex." width="384" />
+<div class="figure"><span style="display:block;" id="fig:boxplot-upgrade-ANOVA"></span>
+<img src="Tutorials_files/figure-html/boxplot-upgrade-ANOVA-1.png" alt="A comparison of systolic blood pressure for different treatments and sex." width="384" />
 <p class="caption">
 Figure 3.3: A comparison of systolic blood pressure for different treatments and sex.
 </p>
@@ -504,47 +500,47 @@ How to improve your plot
 <li>Remove unnecessary plot elements, like the box around the figure.</li>
 </ul>
 <p>The changes to the code I made below can all be found in the help pages <code>?boxplot</code> and <code>?par</code>. I am also a big fan of the <code>eaxis</code> function from the package <code>sfsmisc</code>. The caption is added as a chunk option (i.e., <code>```{r, fig.cap = "..."}</code>).</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="anova.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a package for nice axes</span></span>
-<span id="cb62-2"><a href="anova.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sfsmisc&quot;</span>)</span>
-<span id="cb62-3"><a href="anova.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the margins (bottom, left, top, right)</span></span>
-<span id="cb62-4"><a href="anova.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
-<span id="cb62-5"><a href="anova.html#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-6"><a href="anova.html#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the locations (helps discern between combinations of groups)</span></span>
-<span id="cb62-7"><a href="anova.html#cb62-7" aria-hidden="true" tabindex="-1"></a>where <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>)</span>
-<span id="cb62-8"><a href="anova.html#cb62-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-9"><a href="anova.html#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the coordinate system</span></span>
-<span id="cb62-10"><a href="anova.html#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF, <span class="at">at =</span> where, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb62-11"><a href="anova.html#cb62-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>, </span>
-<span id="cb62-12"><a href="anova.html#cb62-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">200</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">12</span>),</span>
-<span id="cb62-13"><a href="anova.html#cb62-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Treatment&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span>
-<span id="cb62-14"><a href="anova.html#cb62-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-15"><a href="anova.html#cb62-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axes</span></span>
-<span id="cb62-16"><a href="anova.html#cb62-16" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="fl">7.5</span>), <span class="fu">levels</span>(DF<span class="sc">$</span>treatment))</span>
-<span id="cb62-17"><a href="anova.html#cb62-17" aria-hidden="true" tabindex="-1"></a><span class="fu">eaxis</span>(<span class="dv">2</span>)</span>
-<span id="cb62-18"><a href="anova.html#cb62-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-19"><a href="anova.html#cb62-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a lightgrey background</span></span>
-<span id="cb62-20"><a href="anova.html#cb62-20" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">210</span>, <span class="dv">210</span>, <span class="dv">100</span>), <span class="at">col =</span> <span class="st">&quot;grey95&quot;</span>,</span>
-<span id="cb62-21"><a href="anova.html#cb62-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
-<span id="cb62-22"><a href="anova.html#cb62-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-23"><a href="anova.html#cb62-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a simple grid</span></span>
-<span id="cb62-24"><a href="anova.html#cb62-24" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">10</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>)</span>
-<span id="cb62-25"><a href="anova.html#cb62-25" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">20</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
-<span id="cb62-26"><a href="anova.html#cb62-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-27"><a href="anova.html#cb62-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Define two colors (picked from colorbrewer2.org):</span></span>
-<span id="cb62-28"><a href="anova.html#cb62-28" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#fb9a99&quot;</span>, <span class="st">&quot;#a6cee3&quot;</span>)</span>
-<span id="cb62-29"><a href="anova.html#cb62-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-30"><a href="anova.html#cb62-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Redraw the boxplots on top</span></span>
-<span id="cb62-31"><a href="anova.html#cb62-31" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF, <span class="at">at =</span> where, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb62-32"><a href="anova.html#cb62-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>, <span class="at">col =</span> cols, <span class="at">add =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb62-33"><a href="anova.html#cb62-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">lty =</span> <span class="dv">1</span>)</span>
-<span id="cb62-34"><a href="anova.html#cb62-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-35"><a href="anova.html#cb62-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend</span></span>
-<span id="cb62-36"><a href="anova.html#cb62-36" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(DF<span class="sc">$</span>sex), <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">col =</span> cols, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
-<span id="cb62-37"><a href="anova.html#cb62-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-38"><a href="anova.html#cb62-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore the default margins for subsequent plots</span></span>
-<span id="cb62-39"><a href="anova.html#cb62-39" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-61"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-61-1.png" alt="A comparison of systolic blood pressure for three groups." width="384" />
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="anova.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a package for nice axes</span></span>
+<span id="cb25-2"><a href="anova.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sfsmisc&quot;</span>)</span>
+<span id="cb25-3"><a href="anova.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the margins (bottom, left, top, right)</span></span>
+<span id="cb25-4"><a href="anova.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb25-5"><a href="anova.html#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="anova.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the locations (helps discern between combinations of groups)</span></span>
+<span id="cb25-7"><a href="anova.html#cb25-7" aria-hidden="true" tabindex="-1"></a>where <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb25-8"><a href="anova.html#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="anova.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the coordinate system</span></span>
+<span id="cb25-10"><a href="anova.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF, <span class="at">at =</span> where, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb25-11"><a href="anova.html#cb25-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>, </span>
+<span id="cb25-12"><a href="anova.html#cb25-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">200</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">12</span>),</span>
+<span id="cb25-13"><a href="anova.html#cb25-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Treatment&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span>
+<span id="cb25-14"><a href="anova.html#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="anova.html#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axes</span></span>
+<span id="cb25-16"><a href="anova.html#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">4.5</span>, <span class="fl">7.5</span>), <span class="fu">levels</span>(DF<span class="sc">$</span>treatment))</span>
+<span id="cb25-17"><a href="anova.html#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="fu">eaxis</span>(<span class="dv">2</span>)</span>
+<span id="cb25-18"><a href="anova.html#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="anova.html#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a lightgrey background</span></span>
+<span id="cb25-20"><a href="anova.html#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">210</span>, <span class="dv">210</span>, <span class="dv">100</span>), <span class="at">col =</span> <span class="st">&quot;grey95&quot;</span>,</span>
+<span id="cb25-21"><a href="anova.html#cb25-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb25-22"><a href="anova.html#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="anova.html#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a simple grid</span></span>
+<span id="cb25-24"><a href="anova.html#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">10</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>)</span>
+<span id="cb25-25"><a href="anova.html#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">20</span>), <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb25-26"><a href="anova.html#cb25-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-27"><a href="anova.html#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Define two colors (picked from colorbrewer2.org):</span></span>
+<span id="cb25-28"><a href="anova.html#cb25-28" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#fb9a99&quot;</span>, <span class="st">&quot;#a6cee3&quot;</span>)</span>
+<span id="cb25-29"><a href="anova.html#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-30"><a href="anova.html#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Redraw the boxplots on top</span></span>
+<span id="cb25-31"><a href="anova.html#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SBP <span class="sc">~</span> sex <span class="sc">+</span> treatment, DF, <span class="at">at =</span> where, <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb25-32"><a href="anova.html#cb25-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">boxwex =</span> <span class="fl">0.25</span>, <span class="at">staplewex =</span> <span class="dv">0</span>, <span class="at">col =</span> cols, <span class="at">add =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb25-33"><a href="anova.html#cb25-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb25-34"><a href="anova.html#cb25-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-35"><a href="anova.html#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend</span></span>
+<span id="cb25-36"><a href="anova.html#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">levels</span>(DF<span class="sc">$</span>sex), <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">col =</span> cols, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb25-37"><a href="anova.html#cb25-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-38"><a href="anova.html#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore the default margins for subsequent plots</span></span>
+<span id="cb25-39"><a href="anova.html#cb25-39" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-19-1.png" alt="A comparison of systolic blood pressure for three groups." width="384" />
 <p class="caption">
 Figure 3.4: A comparison of systolic blood pressure for three groups.
 </p>
@@ -566,15 +562,15 @@ Figure 3.4: A comparison of systolic blood pressure for three groups.
 Alternative: Violin plot
 </summary>
 <p>A more modern take on the boxplot is a <strong>violin plot</strong>. It combines a boxplot and a density plot. This type of visualization is richer in information than just a boxplot, but it is only meaningful if you have enough observations per group (e.g., &gt;10):</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="anova.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vioplot&quot;</span>) <span class="co"># install if missing</span></span>
-<span id="cb63-2"><a href="anova.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vioplot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="anova.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vioplot&quot;</span>) <span class="co"># install if missing</span></span>
+<span id="cb26-2"><a href="anova.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vioplot</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <details>
 <summary>
 How to interpret a violin plot
 </summary>
 <p>Here is a breakdown of the components shown in a violin plot:</p>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>The density plot, if you are unfamiliar with it, is like a continuous version of a histogram. It shows which values are more and less likely in the sample.</p>
 </details>
 </details>
@@ -586,45 +582,45 @@ How to interpret a violin plot
 <summary>
 Summary (code)
 </summary>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="anova.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages used (install if missing)</span></span>
-<span id="cb64-2"><a href="anova.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)</span>
-<span id="cb64-3"><a href="anova.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
-<span id="cb64-4"><a href="anova.html#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-5"><a href="anova.html#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb64-6"><a href="anova.html#cb64-6" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF)</span>
-<span id="cb64-7"><a href="anova.html#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-8"><a href="anova.html#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform visual diagnostics</span></span>
-<span id="cb64-9"><a href="anova.html#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))   <span class="co"># Plot in a 2x2 grid</span></span>
-<span id="cb64-10"><a href="anova.html#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
-<span id="cb64-11"><a href="anova.html#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
-<span id="cb64-12"><a href="anova.html#cb64-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
-<span id="cb64-13"><a href="anova.html#cb64-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
-<span id="cb64-14"><a href="anova.html#cb64-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># Restore the default</span></span>
-<span id="cb64-15"><a href="anova.html#cb64-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-16"><a href="anova.html#cb64-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Obs. 31 appears to be outlying:</span></span>
-<span id="cb64-17"><a href="anova.html#cb64-17" aria-hidden="true" tabindex="-1"></a>DF[<span class="dv">31</span>, ]</span>
-<span id="cb64-18"><a href="anova.html#cb64-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-19"><a href="anova.html#cb64-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Omitting this observation can be justified based on age</span></span>
-<span id="cb64-20"><a href="anova.html#cb64-20" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF[<span class="sc">-</span><span class="dv">31</span>, ])</span>
-<span id="cb64-21"><a href="anova.html#cb64-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-22"><a href="anova.html#cb64-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform an omnibus test</span></span>
-<span id="cb64-23"><a href="anova.html#cb64-23" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(LM)</span>
-<span id="cb64-24"><a href="anova.html#cb64-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-25"><a href="anova.html#cb64-25" aria-hidden="true" tabindex="-1"></a><span class="co"># If the omnibus test is significant, perform a post-hoc</span></span>
-<span id="cb64-26"><a href="anova.html#cb64-26" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> <span class="st">&quot;treatment&quot;</span>)</span>
-<span id="cb64-27"><a href="anova.html#cb64-27" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(EMM)</span>
-<span id="cb64-28"><a href="anova.html#cb64-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-29"><a href="anova.html#cb64-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Or treatment-vs-control style</span></span>
-<span id="cb64-30"><a href="anova.html#cb64-30" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> trt.vs.ctrl <span class="sc">~</span> treatment)</span>
-<span id="cb64-31"><a href="anova.html#cb64-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-32"><a href="anova.html#cb64-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the post hoc (see the emmeans vignette)</span></span>
-<span id="cb64-33"><a href="anova.html#cb64-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="anova.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages used (install if missing)</span></span>
+<span id="cb27-2"><a href="anova.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)</span>
+<span id="cb27-3"><a href="anova.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
+<span id="cb27-4"><a href="anova.html#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="anova.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb27-6"><a href="anova.html#cb27-6" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF)</span>
+<span id="cb27-7"><a href="anova.html#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="anova.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform visual diagnostics</span></span>
+<span id="cb27-9"><a href="anova.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))   <span class="co"># Plot in a 2x2 grid</span></span>
+<span id="cb27-10"><a href="anova.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
+<span id="cb27-11"><a href="anova.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
+<span id="cb27-12"><a href="anova.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
+<span id="cb27-13"><a href="anova.html#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
+<span id="cb27-14"><a href="anova.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># Restore the default</span></span>
+<span id="cb27-15"><a href="anova.html#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="anova.html#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Obs. 31 appears to be outlying:</span></span>
+<span id="cb27-17"><a href="anova.html#cb27-17" aria-hidden="true" tabindex="-1"></a>DF[<span class="dv">31</span>, ]</span>
+<span id="cb27-18"><a href="anova.html#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-19"><a href="anova.html#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Omitting this observation can be justified based on age</span></span>
+<span id="cb27-20"><a href="anova.html#cb27-20" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF[<span class="sc">-</span><span class="dv">31</span>, ])</span>
+<span id="cb27-21"><a href="anova.html#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="anova.html#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform an omnibus test</span></span>
+<span id="cb27-23"><a href="anova.html#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(LM)</span>
+<span id="cb27-24"><a href="anova.html#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="anova.html#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co"># If the omnibus test is significant, perform a post-hoc</span></span>
+<span id="cb27-26"><a href="anova.html#cb27-26" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> <span class="st">&quot;treatment&quot;</span>)</span>
+<span id="cb27-27"><a href="anova.html#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(EMM)</span>
+<span id="cb27-28"><a href="anova.html#cb27-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-29"><a href="anova.html#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Or treatment-vs-control style</span></span>
+<span id="cb27-30"><a href="anova.html#cb27-30" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> trt.vs.ctrl <span class="sc">~</span> treatment)</span>
+<span id="cb27-31"><a href="anova.html#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-32"><a href="anova.html#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the post hoc (see the emmeans vignette)</span></span>
+<span id="cb27-33"><a href="anova.html#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
 <p>
 <div id="fit-the-model" class="section level3 unnumbered hasAnchor">
 <h3>Fit the Model<a href="anova.html#fit-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the example, we are only interested in the effect of <code>treatment</code>. For a single grouping variable, use:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="anova.html#cb65-1" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="anova.html#cb28-1" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF)</span></code></pre></div>
 <p>The general notation is <code>Outcome ~ GroupingVariable, Data</code>. Adding more grouping variables is simple, but model selection is not, so two-way and multi-way ANOVA are explained separately in the <a href="twowaymultiway.html#twowaymultiway">next chapter</a>.</p>
 <details>
 <summary>
@@ -670,32 +666,32 @@ These variables are equal to <span class="math inline">\(1\)</span> if the obser
 <p>The calculation of confidence intervals and <span class="math inline">\(p\)</span>-values is based on several assumptions. If these are not reasonable, conclusions drawn from the analysis are invalid.</p>
 <p>Additionally, outliers can have a strong influence on the estimates and <span class="math inline">\(p\)</span>-values, so you should always check and decide whether outlying observations are genuine, or outlying for reasons that warrant exclusion.</p>
 <p>Checking assumptions and outlyingness can be done trough <a href="https://youtu.be/upJJmfSbBuQ">visual diagnostics <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="anova.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)         <span class="co"># Install if missing</span></span>
-<span id="cb66-2"><a href="anova.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))   <span class="co"># Plot in a 2x2 grid</span></span>
-<span id="cb66-3"><a href="anova.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
-<span id="cb66-4"><a href="anova.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
-<span id="cb66-5"><a href="anova.html#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
-<span id="cb66-6"><a href="anova.html#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
-<span id="cb66-7"><a href="anova.html#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># Restore the default</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="anova.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)         <span class="co"># Install if missing</span></span>
+<span id="cb29-2"><a href="anova.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))   <span class="co"># Plot in a 2x2 grid</span></span>
+<span id="cb29-3"><a href="anova.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
+<span id="cb29-4"><a href="anova.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
+<span id="cb29-5"><a href="anova.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
+<span id="cb29-6"><a href="anova.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
+<span id="cb29-7"><a href="anova.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># Restore the default</span></span></code></pre></div>
 <details>
 <summary>
 Show output
 </summary>
 <p><small><em>(For general advice on diagnostic plots, see the <a href="https://youtu.be/upJJmfSbBuQ">video <font color = "red"><i class="fa fa-youtube-play"></i></font></a>.)</em></small></p>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>The visual diagnostics confirm what was already visible in the boxplots, there is an outlier (#31) visible in each of the plots. Its Cook’s distance is well over <span class="math inline">\(0.5\)</span>.</p>
 <p>Let’s see what the diagnostics would look like without this observation:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="anova.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model on the data, excluding obs. 31</span></span>
-<span id="cb67-2"><a href="anova.html#cb67-2" aria-hidden="true" tabindex="-1"></a>LM2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF[<span class="sc">-</span><span class="dv">31</span>, ])</span>
-<span id="cb67-3"><a href="anova.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-4"><a href="anova.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the diagnostics</span></span>
-<span id="cb67-5"><a href="anova.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))    <span class="co"># Plot in a 2x2 grid</span></span>
-<span id="cb67-6"><a href="anova.html#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
-<span id="cb67-7"><a href="anova.html#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM2, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
-<span id="cb67-8"><a href="anova.html#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
-<span id="cb67-9"><a href="anova.html#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
-<span id="cb67-10"><a href="anova.html#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))    <span class="co"># Restore the default</span></span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="anova.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model on the data, excluding obs. 31</span></span>
+<span id="cb30-2"><a href="anova.html#cb30-2" aria-hidden="true" tabindex="-1"></a>LM2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF[<span class="sc">-</span><span class="dv">31</span>, ])</span>
+<span id="cb30-3"><a href="anova.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="anova.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the diagnostics</span></span>
+<span id="cb30-5"><a href="anova.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))    <span class="co"># Plot in a 2x2 grid</span></span>
+<span id="cb30-6"><a href="anova.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">1</span>)    <span class="co"># Residuals vs fitted</span></span>
+<span id="cb30-7"><a href="anova.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(LM2, <span class="at">reps =</span> <span class="fl">1e4</span>) <span class="co"># QQ-plot</span></span>
+<span id="cb30-8"><a href="anova.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">3</span>)    <span class="co"># Scale-location</span></span>
+<span id="cb30-9"><a href="anova.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LM2, <span class="at">which =</span> <span class="dv">4</span>)    <span class="co"># Cook&#39;s distance</span></span>
+<span id="cb30-10"><a href="anova.html#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))    <span class="co"># Restore the default</span></span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 Now the diagnostics look fine. If you are concerned about the staircase in the QQ-plot, that is an artifact of the way these data were collected: Systolic blood pressure was rounded to whole numbers, but the actual underlying values can reasonably be assumed to be approximately normally distributed within groups.
 </details>
 <details>
@@ -705,8 +701,8 @@ What to look for in general
 <p><font size = 5><b>Deviations from Normality</b></font></p>
 <p>In a QQ-plot, you can check whether the residuals deviate problematically from a normal distribution. The straight line represents a theoretical normal distribution and the black dots show where the actual residuals fall. Since the values a sample will <em>always</em> deviate somewhat, a confidence band is drawn around the line to provide an indication of the severity of the non-normality.</p>
 <p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random values drawn from an actual, exact normal distribution:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-70"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-70-1.png" alt="Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-28-1.png" alt="Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution." width="672" />
 <p class="caption">
 Figure 3.5: Normal QQ-plots of residuals from simulated data that follows a an exact normal distribution.
 </p>
@@ -719,8 +715,8 @@ Figure 3.5: Normal QQ-plots of residuals from simulated data that follows a an e
 <li>S-shape; <small><em>(Implying light- or heavy-tailedness.)</em></small></li>
 </ul>
 <p><font color = "red"><i class="fa fa-times"></i></font> Here are three examples of problematic patterns: <font color = "grey">(confidence band hidden for clarity)</font></p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-71-1.png" alt="Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness ." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-29-1.png" alt="Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness ." width="672" />
 <p class="caption">
 Figure 3.6: Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S-shapedness .
 </p>
@@ -728,8 +724,8 @@ Figure 3.6: Normal QQ-plots of residuals displaying (A) gaps; (B) bulging; (C) S
 <p><font size = 5><b>Non-Constant Variance</b></font></p>
 <p>In the <strong>residuals vs fitted</strong> plot, you can see whether the observations are more or less equally dispersed around their group means. The <span class="math inline">\(x\)</span>-axis shows the value of the group means and the <span class="math inline">\(y\)</span>-axis the deviation from the group mean.</p>
 <p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random values with equal group variance:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-72-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-30-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance." width="672" />
 <p class="caption">
 Figure 3.7: Residuals vs fitted plots of values drawn from a normal distribution with equal variance.
 </p>
@@ -737,22 +733,22 @@ Figure 3.7: Residuals vs fitted plots of values drawn from a normal distribution
 <p>Important to note here is that small deviations will always be present, and a smoothing line will be drawn that is not useful for ANOVA (but will be used in linear regression).</p>
 <p><small><em>(The smoothing line can be suppressed with <code>add.smooth = FALSE</code>.)</em></small></p>
 <p><font color = "red"><i class="fa fa-times"></i></font> Examples of unequal variance in a residuals vs fitted plot:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-73-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with unequal variance." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-31-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with unequal variance." width="672" />
 <p class="caption">
 Figure 3.8: Residuals vs fitted plots of values drawn from a normal distribution with unequal variance.
 </p>
 </div>
 <p><font color = "orange"><i class="fa fa-warning"></i></font> Careful, unequal sample size can give the false appearance of unequal variance in a residuals vs fitted plot:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-74"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-74-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-32-1.png" alt="Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
 <p class="caption">
 Figure 3.9: Residuals vs fitted plots of values drawn from a normal distribution with equal variance, but different sample sizes.
 </p>
 </div>
 <p><font color = "green"><i class="fa fa-check"></i></font> This is why you should also look at the <strong>scale-location</strong> plot:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-75-1.png" alt="Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-33-1.png" alt="Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes." width="672" />
 <p class="caption">
 Figure 3.10: Scale location plots of values drawn from a normal distribution with equal variance, but different sample sizes.
 </p>
@@ -760,8 +756,8 @@ Figure 3.10: Scale location plots of values drawn from a normal distribution wit
 <p>The scale-location plot takes the residuals and performs a transformation that allows for a simple interpretation: Rather than looking at the <em>dispersion</em> in the black dots, you can look at the <em>average</em>. Higher variance means the red smoothing line is also higher.</p>
 <p>As a rule of thumb, you should conclude non-constant variance from a scale-location plot if the smoothing line is more than <span class="math inline">\(0.5\)</span> higher/lower than other groups, or there is a consistent trend up/down.</p>
 <p><font color = "red"><i class="fa fa-times"></i></font> Examples of non-constant variance in a scale-location plot:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-76"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-76-1.png" alt="Scale-location plots of values drawn from a normal distribution with unequal variance." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-34-1.png" alt="Scale-location plots of values drawn from a normal distribution with unequal variance." width="672" />
 <p class="caption">
 Figure 3.11: Scale-location plots of values drawn from a normal distribution with unequal variance.
 </p>
@@ -769,15 +765,15 @@ Figure 3.11: Scale-location plots of values drawn from a normal distribution wit
 <p><font size = 5><b>Potential Outliers</b></font></p>
 <p>The Cook’s distance can be used to assess outlyingness. This is a simple measure: Greater than <span class="math inline">\(0.5\)</span> warrants further inspection and greater than <span class="math inline">\(1.0\)</span> is statistically outlying.</p>
 <p><font color = "green"><i class="fa fa-check"></i></font> Here are three examples of random normally distributed values without any apparent outliers:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-77"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-77-1.png" alt="Cook's distance of values drawn from a normal distribution." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-35-1.png" alt="Cook's distance of values drawn from a normal distribution." width="672" />
 <p class="caption">
 Figure 3.12: Cook’s distance of values drawn from a normal distribution.
 </p>
 </div>
 <p><font color = "red"><i class="fa fa-times"></i></font> Here are three examples of outliers:</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-78"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-78-1.png" alt="Cook's distance of values drawn from a $t$-distribution. Due to the larger mass in the tails, the $t$-distribution is more likely to yield outlying values." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-36-1.png" alt="Cook's distance of values drawn from a $t$-distribution. Due to the larger mass in the tails, the $t$-distribution is more likely to yield outlying values." width="672" />
 <p class="caption">
 Figure 3.13: Cook’s distance of values drawn from a <span class="math inline">\(t\)</span>-distribution. Due to the larger mass in the tails, the <span class="math inline">\(t\)</span>-distribution is more likely to yield outlying values.
 </p>
@@ -791,10 +787,10 @@ Why <span class="math inline">\(t\)</span>-quantiles instead of normal?
 <p>In short, I recommend using this over a normal QQ-plot, because it reflects the general notion that minor deviations in the tails should be ignored.</p>
 <p>You may have noticed that the example code here does not actually produce a normal QQ-plot, but instead a QQ-plot for a theoretical <span class="math inline">\(t\)</span>-distribution. <small><em>(Try: <code>qqPlot(lm(rnorm(10) ~ 1))</code> and look at the <span class="math inline">\(x\)</span>-axis label.)</em></small></p>
 <p>A little digging in the <code>qqPlot</code>’s <a href="https://github.com/cran/car/blob/master/R/qqPlot.R#L233">github repository <i class = "fa fa-external-link"></i></a> shows what happens:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="anova.html#cb68-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="cf">if</span> (distribution <span class="sc">==</span> <span class="st">&#39;t&#39;</span>) <span class="fu">qt</span>(P, <span class="at">df=</span>res.df<span class="dv">-1</span>) <span class="cf">else</span> <span class="fu">qnorm</span>(P)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="anova.html#cb31-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="cf">if</span> (distribution <span class="sc">==</span> <span class="st">&#39;t&#39;</span>) <span class="fu">qt</span>(P, <span class="at">df=</span>res.df<span class="dv">-1</span>) <span class="cf">else</span> <span class="fu">qnorm</span>(P)</span></code></pre></div>
 <p><small><em>(Here, <code>z</code> is the theoretical quantile on the <span class="math inline">\(x\)</span>-axis of a QQ-plot.)</em></small></p>
 <p>These quantiles are used to compute where the confidence band should be drawn. If you use <code>qqPlot(LM)</code>, these are based on a <span class="math inline">\(t\)</span>-distribution with degrees of freedom equal to the residual degrees of freedom of the model minus one. This is done to reflect the additional uncertainty from the limited sample size. As the sample size grows (and the model complexity remains constant), the two approaches grow closer. In practical terms, this allows for slightly wider bands near the tails, the smaller the sample size is, which is a desirable property, because the smaller the sample size, the harder it is to decide whether an observation is outlying.</p>
-<p>Another important difference you may have noticed is that <code>qqPlot(LM)</code> yields a narrower confidence band than <code>qqPlot(residuals(LM))</code>. This actually has nothing to do with the <span class="math inline">\(t\)</span>-distribution, but with the type of confidence band drawn when using <code>qqPlot(LM)</code>: The default argument for <code>qqPlot(residuals(LM))</code> is <code>line = "quartiles"</code>, whereas <code>qqPlot(LM)</code> defaults to <code>line = "robust"</code>. The latter provides simulation-based robust regression confidence bands, which are more sensitive to non-normality, while simultaneously being less prone to false positives.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">3</a></sup></span></p>
+<p>Another important difference you may have noticed is that <code>qqPlot(LM)</code> yields a narrower confidence band than <code>qqPlot(residuals(LM))</code>. This actually has nothing to do with the <span class="math inline">\(t\)</span>-distribution, but with the type of confidence band drawn when using <code>qqPlot(LM)</code>: The default argument for <code>qqPlot(residuals(LM))</code> is <code>line = "quartiles"</code>, whereas <code>qqPlot(LM)</code> defaults to <code>line = "robust"</code>. The latter provides simulation-based robust regression confidence bands, which are more sensitive to non-normality, while simultaneously being less prone to false positives.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">1</a></sup></span></p>
 <p>On a general note, these bands are (both) point-based 95% confidence, meaning that there is a large chance of at least one observation outside the bands, even if the values come from a theoretical normal distribution.</p>
 </details>
 <details>
@@ -804,8 +800,8 @@ Significance tests for assumptions
 <p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>All significance tests can produce false positives. Always judge the severity of any supposed problems with <em>visual</em> diagnostics.</small></p>
 <p>In cases where you are not sure an assumption is violated, it is possible to conduct a test.</p>
 <p><font size = 5><b>Normality</b></font></p>
-<p>Deviations from conditional normality can be formally tested using a variety of tests, all of which have different sensitivities to different aspects of the normal probability distribution. Commonly used is the Shapiro–Wilks test, which is particularly sensitive to skew and light-tailedness.<span class="citation"><sup><a href="#ref-ShapiroSensitivities" role="doc-biblioref">6</a></sup></span></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="anova.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(LM))</span></code></pre></div>
+<p>Deviations from conditional normality can be formally tested using a variety of tests, all of which have different sensitivities to different aspects of the normal probability distribution. Commonly used is the Shapiro–Wilks test, which is particularly sensitive to skew and light-tailedness.<span class="citation"><sup><a href="#ref-ShapiroSensitivities" role="doc-biblioref">2</a></sup></span></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="anova.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(LM))</span></code></pre></div>
 <details>
 <summary>
 Show output
@@ -816,8 +812,8 @@ Show output
 ## data:  residuals(LM)
 ## W = 0.48457, p-value = 3.255e-16</code></pre>
 <p>The residuals differ significantly from a theoretical normal distribution (<span class="math inline">\(p = 3.23 \cdot 10^{-16}\)</span>), though this is likely due to the outlier seen in the visual diagnostics, which is something you can try out:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="anova.html#cb71-1" aria-hidden="true" tabindex="-1"></a>LM2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF[<span class="sc">-</span><span class="dv">31</span>, ])</span>
-<span id="cb71-2"><a href="anova.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(LM2))</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="anova.html#cb34-1" aria-hidden="true" tabindex="-1"></a>LM2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF[<span class="sc">-</span><span class="dv">31</span>, ])</span>
+<span id="cb34-2"><a href="anova.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(LM2))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -835,8 +831,8 @@ Show output
 <p>
 <p><font size = 5><b>Constant Variance</b></font></p>
 <p>A robust test for non-constant variance that is not sensitive to other common issues like outliers and non-normality is the Breusch–Pagan test:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="anova.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;lmtest&quot;</span>) <span class="co"># Install if missing</span></span>
-<span id="cb73-2"><a href="anova.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(LM)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="anova.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;lmtest&quot;</span>) <span class="co"># Install if missing</span></span>
+<span id="cb36-2"><a href="anova.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(LM)</span></code></pre></div>
 <details>
 <summary>
 Show output
@@ -858,8 +854,8 @@ Show output
 <p>
 <p><font size = 5><b>Outliers</b></font></p>
 <p>A test for outlyingness is included in the <code>car</code> package:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="anova.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)</span>
-<span id="cb75-2"><a href="anova.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(LM)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="anova.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;car&quot;</span>)</span>
+<span id="cb38-2"><a href="anova.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(LM)</span></code></pre></div>
 <details>
 <summary>
 Show output
@@ -870,12 +866,12 @@ Show output
 <p>In this case, the test is significant (<span class="math inline">\(p_{\text{adj}} = 7.47 \cdot 10^{-30}\)</span>) and observation 31 is again pointed out to be the offending observation.</p>
 </details>
 <p>The <code>car</code> package contains another set of residual plots specifically to assess outlyingness:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="anova.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influenceIndexPlot</span>(LM)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="anova.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influenceIndexPlot</span>(LM)</span></code></pre></div>
 <details>
 <summary>
 Show output
 </summary>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <p>These show, in order:</p>
 <ul>
 <li>The Cook’s distance; <small><em>(Greater than <span class="math inline">\(0.5\)</span> is noteworthy, greater than <span class="math inline">\(1.0\)</span> is outlying.)</em></small></li>
@@ -917,12 +913,12 @@ What to do if an assumption is violated?
 </ul>
 <p>These are all measures that assume your model is right, but the opposite could very well be the case: The fact that there <em>are</em> ‘outliers’ is often an indication the proposed model is wrong.</p>
 <p>Which is the case in our example? Let’s inspect observation 31 once again:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="anova.html#cb78-1" aria-hidden="true" tabindex="-1"></a>DF[<span class="dv">31</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="anova.html#cb41-1" aria-hidden="true" tabindex="-1"></a>DF[<span class="dv">31</span>, ]</span></code></pre></div>
 <pre><code>##    SBP treatment age    sex
 ## 31 201       CCB  83 female</code></pre>
 <p>The observation belongs to an 83-year old individual, which is considerably older than any of the other participants. If there had been more elderly individuals, we could opt to include <code>age</code> in the model. In this case though, there is only one observation this much older than the rest <em>and</em> it happens to have an outlying value for blood pressure, making this fall into category 3, warranting exclusion.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="anova.html#cb80-1" aria-hidden="true" tabindex="-1"></a>DF2 <span class="ot">&lt;-</span> DF[<span class="sc">-</span><span class="dv">31</span>, ]</span>
-<span id="cb80-2"><a href="anova.html#cb80-2" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF2)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="anova.html#cb43-1" aria-hidden="true" tabindex="-1"></a>DF2 <span class="ot">&lt;-</span> DF[<span class="sc">-</span><span class="dv">31</span>, ]</span>
+<span id="cb43-2"><a href="anova.html#cb43-2" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm</span>(SBP <span class="sc">~</span> treatment, DF2)</span></code></pre></div>
 <p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>This is a new model, fitted to different data, so you should rerun the diagnostics.</small></p>
 <details>
 <summary>
@@ -946,7 +942,7 @@ My data set has many outliers
 <div id="perform-an-omnibus-test" class="section level3 unnumbered hasAnchor">
 <h3>Perform an Omnibus Test<a href="anova.html#perform-an-omnibus-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To print a classic ANOVA table, run the following:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="anova.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(LM)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="anova.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(LM)</span></code></pre></div>
 <details>
 <summary>
 Show output
@@ -964,9 +960,9 @@ Show output
 <h3>Perform a Post Hoc Analysis<a href="anova.html#perform-a-post-hoc-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><font color = "orange"><i class = "fa fa-warning"></i></font> <small>If the omnibus test is not significant, skip this section.</small></p>
 <p>After concluding that there is a difference among means, a post hoc can be used to compare individual groups and determine <em>which</em> groups differ. If you simply want to compare all groups with all other groups, you can do so like this:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="anova.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
-<span id="cb83-2"><a href="anova.html#cb83-2" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> <span class="st">&quot;treatment&quot;</span>)</span>
-<span id="cb83-3"><a href="anova.html#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(EMM)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="anova.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
+<span id="cb46-2"><a href="anova.html#cb46-2" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> <span class="st">&quot;treatment&quot;</span>)</span>
+<span id="cb46-3"><a href="anova.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(EMM)</span></code></pre></div>
 <details>
 <summary>
 Show output
@@ -979,7 +975,7 @@ Show output
 ## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
 <p>All groups differ significantly from each other (<span class="math inline">\(p &lt; 0.0001\)</span>), with thiazide appearing most effective. These <span class="math inline">\(p\)</span>-values are already corrected for multiple testing.</p>
 <p>If you want to obtain the actual, non-discretized <span class="math inline">\(p\)</span>-values, you can use <code>as.data.frame</code>:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="anova.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">pairs</span>(EMM))</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="anova.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">pairs</span>(EMM))</span></code></pre></div>
 <pre><code>##             contrast  estimate       SE df   t.ratio      p.value
 ## 1      placebo - CCB 18.327586 1.032768 86 17.746090 2.591527e-10
 ## 2 placebo - thiazide 23.133333 1.023978 86 22.591634 2.591527e-10
@@ -992,8 +988,8 @@ Show output
 Treatment-vs-control style comparison
 </summary>
 <p>In the example used so far, we could have chosen to only compare the treatments to the control group (and not to each other). The package <code>emmeans</code> has a built-in argument to support this option:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="anova.html#cb87-1" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> trt.vs.ctrl <span class="sc">~</span> treatment)</span>
-<span id="cb87-2"><a href="anova.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(EMM<span class="sc">$</span>contrasts) <span class="co"># as.data.frame prevents rounding</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="anova.html#cb50-1" aria-hidden="true" tabindex="-1"></a>EMM <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(LM, <span class="at">specs =</span> trt.vs.ctrl <span class="sc">~</span> treatment)</span>
+<span id="cb50-2"><a href="anova.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(EMM<span class="sc">$</span>contrasts) <span class="co"># as.data.frame prevents rounding</span></span></code></pre></div>
 <details>
 <summary>
 Show output
@@ -1016,7 +1012,7 @@ Custom comparisons
 Obtaining confidence intervals for group means
 </summary>
 <p>Comparisons show you the estimated <em>differences</em>. But what if you wanted to include confidence intervals for the estimated <em>group means</em> (a common request by reviewers)? You can obtain those by printing the object we just created:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="anova.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(EMM) <span class="co"># as.data.frame prevents rounding</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="anova.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(EMM) <span class="co"># as.data.frame prevents rounding</span></span></code></pre></div>
 <pre><code>##   treatment   emmean        SE df lower.CL upper.CL
 ## 1   placebo 144.5000 0.7240617 86 143.0606 145.9394
 ## 2       CCB 126.1724 0.7364397 86 124.7084 127.6364
@@ -1028,8 +1024,8 @@ Obtaining confidence intervals for group means
 <li>Thiazide: 119.9–122.8</li>
 </ul>
 <p>It is also possible to plot the confidence intervals:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="anova.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">xlab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span></code></pre></div>
-<p><img src="Tutorials_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="anova.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(EMM, <span class="at">xlab =</span> <span class="st">&quot;Systolic blood pressure (mmHg)&quot;</span>)</span></code></pre></div>
+<p><img src="Tutorials_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 </details>
 </div>
 </div>
@@ -1103,18 +1099,18 @@ Methods
 </summary>
 <p><small><em>(In this section, you should describe the data collection and analysis to an extent that a fellow expert could reproduce your study.)</em></small></p>
 <p>A total of <span class="math inline">\(n = 90\)</span> Dutch individuals with clinically diagnosed hypertension were selected for the study. Inclusion criteria included: Minimum blood pressure of 140/90 mmHg, or an average of 135/85 mmHg at home; Primary hypertension; No evidence of other disease within 1 month of starting treatment. Written informed consent was obtained from all individuals and this study was approved by the ethical committee of Example institute under approval number 123456789. Individuals were randomly assigned to either a calcium channel blocker (CCB), thiazide, or an appropriate placebo. A summary of patient characteristics is provided in table ….</p>
-<p>Statistical analyses were conducted in R, version 4.2.1, using the RStudio interface.<span class="citation"><sup><a href="#ref-R" role="doc-biblioref">1</a>,<a href="#ref-RStudio" role="doc-biblioref">2</a></sup></span> Differences in group means were assessed with a one-way ANOVA. A post hoc was conducted with the <code>emmeans</code> package, using the Tukey method to adjust for multiple testing.<span class="citation"><sup><a href="#ref-emmeans" role="doc-biblioref">7</a></sup></span> Approximate conditional normality was assessed through normal quantile-quantile plots, using the <code>car</code> package,<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">3</a></sup></span> and constant variance with a scale-location plot.</p>
+<p>Statistical analyses were conducted in R, version 4.2.1, using the RStudio interface.<span class="citation"><sup><a href="#ref-R" role="doc-biblioref">3</a>,<a href="#ref-RStudio" role="doc-biblioref">4</a></sup></span> Differences in group means were assessed with a one-way ANOVA. A post hoc was conducted with the <code>emmeans</code> package, using the Tukey method to adjust for multiple testing.<span class="citation"><sup><a href="#ref-emmeans" role="doc-biblioref">5</a></sup></span> Approximate conditional normality was assessed through normal quantile-quantile plots, using the <code>car</code> package,<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">1</a></sup></span> and constant variance with a scale-location plot.</p>
 <p>Note:</p>
 <ul>
 <li>Check your R version number with <code>version</code>;</li>
 <li>Justify the model used; <small><em>(Are the assumptions of ANOVA reasonable; What did you do to assess this?)</em></small></li>
 <li>You should cite any packages used to perform analyses, generate tables or figures that made it into the paper, e.g.;
 <ul>
-<li><font color = "green"><i class = "fa fa-check"></i></font> Normal quantile-quantile plots were generated with the <code>car</code> package.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">3</a></sup></span></li>
+<li><font color = "green"><i class = "fa fa-check"></i></font> Normal quantile-quantile plots were generated with the <code>car</code> package.<span class="citation"><sup><a href="#ref-car" role="doc-biblioref">1</a></sup></span></li>
 </ul></li>
 <li>You should <em>not</em> cite packages used only internally, e.g.:
 <ul>
-<li><font color = "red"><i class = "fa fa-times"></i></font> We used <code>readxl</code> to enter the data in R.<span class="citation"><sup><a href="#ref-readxl" role="doc-biblioref">4</a></sup></span></li>
+<li><font color = "red"><i class = "fa fa-times"></i></font> We used <code>readxl</code> to enter the data in R.<span class="citation"><sup><a href="#ref-readxl" role="doc-biblioref">6</a></sup></span></li>
 </ul></li>
 </ul>
 </details>
@@ -1204,55 +1200,55 @@ How do you create a table like that in R?
 </summary>
 <p><font color = "darkgreen"><i class = "fa fa-thumbs-up"></i></font> By going through the pain of learning <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>.</p>
 <p>Here is the code I used:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="anova.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;knitr&quot;</span>)</span>
-<span id="cb92-2"><a href="anova.html#cb92-2" aria-hidden="true" tabindex="-1"></a>digits <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb92-3"><a href="anova.html#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-4"><a href="anova.html#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the output you want to create a table of</span></span>
-<span id="cb92-5"><a href="anova.html#cb92-5" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(EMM<span class="sc">$</span>contrasts) </span>
-<span id="cb92-6"><a href="anova.html#cb92-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-7"><a href="anova.html#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add some column names</span></span>
-<span id="cb92-8"><a href="anova.html#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(M) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Comparison&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;$t$-value&quot;</span>, <span class="st">&quot;$p$-value&quot;</span>)</span>
-<span id="cb92-9"><a href="anova.html#cb92-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-10"><a href="anova.html#cb92-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Take all numeric values</span></span>
-<span id="cb92-11"><a href="anova.html#cb92-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">unlist</span>(M[, <span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb92-12"><a href="anova.html#cb92-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-13"><a href="anova.html#cb92-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert them to...</span></span>
-<span id="cb92-14"><a href="anova.html#cb92-14" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
-<span id="cb92-15"><a href="anova.html#cb92-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...scientific notation if less than 0.01</span></span>
-<span id="cb92-16"><a href="anova.html#cb92-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(x) <span class="sc">&lt;</span> <span class="fl">0.01</span>, </span>
-<span id="cb92-17"><a href="anova.html#cb92-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;e&quot;</span>, <span class="at">digits =</span> digits),</span>
-<span id="cb92-18"><a href="anova.html#cb92-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(</span>
-<span id="cb92-19"><a href="anova.html#cb92-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...integer if equal to its rounded value</span></span>
-<span id="cb92-20"><a href="anova.html#cb92-20" aria-hidden="true" tabindex="-1"></a>    x <span class="sc">==</span> <span class="fu">round</span>(x),</span>
-<span id="cb92-21"><a href="anova.html#cb92-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;d&quot;</span>),</span>
-<span id="cb92-22"><a href="anova.html#cb92-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...a &#39;regular&#39; number otherwise</span></span>
-<span id="cb92-23"><a href="anova.html#cb92-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;f&quot;</span>, <span class="at">digits =</span> digits)</span>
-<span id="cb92-24"><a href="anova.html#cb92-24" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb92-25"><a href="anova.html#cb92-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb92-26"><a href="anova.html#cb92-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-27"><a href="anova.html#cb92-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace e-notation by nicely formatted scientific notation (positive numbers)</span></span>
-<span id="cb92-28"><a href="anova.html#cb92-28" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, x)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb92-29"><a href="anova.html#cb92-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, <span class="st">&quot; </span><span class="sc">\\\\</span><span class="st">cdot 10^{&quot;</span>, x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, x)]), <span class="st">&quot;}&quot;</span></span>
-<span id="cb92-30"><a href="anova.html#cb92-30" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb92-31"><a href="anova.html#cb92-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-32"><a href="anova.html#cb92-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace e-notation by nicely formatted scientific notation (negative numbers)</span></span>
-<span id="cb92-33"><a href="anova.html#cb92-33" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, x)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb92-34"><a href="anova.html#cb92-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, <span class="st">&quot; </span><span class="sc">\\\\</span><span class="st">cdot 10^{-&quot;</span>, x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, x)]), <span class="st">&quot;}&quot;</span></span>
-<span id="cb92-35"><a href="anova.html#cb92-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb92-36"><a href="anova.html#cb92-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-37"><a href="anova.html#cb92-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove leading zeros (for example &quot;10^{03}&quot; --&gt; &quot;10^{3}&quot;)</span></span>
-<span id="cb92-38"><a href="anova.html#cb92-38" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">{0&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">{&quot;</span>, x)</span>
-<span id="cb92-39"><a href="anova.html#cb92-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-40"><a href="anova.html#cb92-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove leading zeros (for example &quot;10^{-03}&quot; --&gt; &quot;10^{-3}&quot;)</span></span>
-<span id="cb92-41"><a href="anova.html#cb92-41" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">{-0&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">{-&quot;</span>, x)</span>
-<span id="cb92-42"><a href="anova.html#cb92-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-43"><a href="anova.html#cb92-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Enclose the resulting strings in &quot;$&quot; so they will be rendered as math</span></span>
-<span id="cb92-44"><a href="anova.html#cb92-44" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;$&quot;</span>, x, <span class="st">&quot;$&quot;</span>)</span>
-<span id="cb92-45"><a href="anova.html#cb92-45" aria-hidden="true" tabindex="-1"></a>M[, <span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> x</span>
-<span id="cb92-46"><a href="anova.html#cb92-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-47"><a href="anova.html#cb92-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result as a table (use escape = FALSE to render math correctly)</span></span>
-<span id="cb92-48"><a href="anova.html#cb92-48" aria-hidden="true" tabindex="-1"></a>caption <span class="ot">&lt;-</span> <span class="st">&quot;Post hoc comparison with Tukey correction for multiple testing.&quot;</span></span>
-<span id="cb92-49"><a href="anova.html#cb92-49" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(M, <span class="at">escape =</span> <span class="cn">FALSE</span>, <span class="at">caption =</span> caption)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="anova.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;knitr&quot;</span>)</span>
+<span id="cb55-2"><a href="anova.html#cb55-2" aria-hidden="true" tabindex="-1"></a>digits <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb55-3"><a href="anova.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="anova.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the output you want to create a table of</span></span>
+<span id="cb55-5"><a href="anova.html#cb55-5" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(EMM<span class="sc">$</span>contrasts) </span>
+<span id="cb55-6"><a href="anova.html#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="anova.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add some column names</span></span>
+<span id="cb55-8"><a href="anova.html#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(M) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Comparison&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;$t$-value&quot;</span>, <span class="st">&quot;$p$-value&quot;</span>)</span>
+<span id="cb55-9"><a href="anova.html#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-10"><a href="anova.html#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Take all numeric values</span></span>
+<span id="cb55-11"><a href="anova.html#cb55-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">unlist</span>(M[, <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb55-12"><a href="anova.html#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-13"><a href="anova.html#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert them to...</span></span>
+<span id="cb55-14"><a href="anova.html#cb55-14" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
+<span id="cb55-15"><a href="anova.html#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...scientific notation if less than 0.01</span></span>
+<span id="cb55-16"><a href="anova.html#cb55-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(x) <span class="sc">&lt;</span> <span class="fl">0.01</span>, </span>
+<span id="cb55-17"><a href="anova.html#cb55-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;e&quot;</span>, <span class="at">digits =</span> digits),</span>
+<span id="cb55-18"><a href="anova.html#cb55-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(</span>
+<span id="cb55-19"><a href="anova.html#cb55-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...integer if equal to its rounded value</span></span>
+<span id="cb55-20"><a href="anova.html#cb55-20" aria-hidden="true" tabindex="-1"></a>    x <span class="sc">==</span> <span class="fu">round</span>(x),</span>
+<span id="cb55-21"><a href="anova.html#cb55-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;d&quot;</span>),</span>
+<span id="cb55-22"><a href="anova.html#cb55-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...a &#39;regular&#39; number otherwise</span></span>
+<span id="cb55-23"><a href="anova.html#cb55-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">&quot;f&quot;</span>, <span class="at">digits =</span> digits)</span>
+<span id="cb55-24"><a href="anova.html#cb55-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb55-25"><a href="anova.html#cb55-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-26"><a href="anova.html#cb55-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-27"><a href="anova.html#cb55-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace e-notation by nicely formatted scientific notation (positive numbers)</span></span>
+<span id="cb55-28"><a href="anova.html#cb55-28" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, x)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb55-29"><a href="anova.html#cb55-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, <span class="st">&quot; </span><span class="sc">\\\\</span><span class="st">cdot 10^{&quot;</span>, x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">+&quot;</span>, x)]), <span class="st">&quot;}&quot;</span></span>
+<span id="cb55-30"><a href="anova.html#cb55-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-31"><a href="anova.html#cb55-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-32"><a href="anova.html#cb55-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace e-notation by nicely formatted scientific notation (negative numbers)</span></span>
+<span id="cb55-33"><a href="anova.html#cb55-33" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, x)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb55-34"><a href="anova.html#cb55-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, <span class="st">&quot; </span><span class="sc">\\\\</span><span class="st">cdot 10^{-&quot;</span>, x[<span class="fu">grepl</span>(<span class="st">&quot;e</span><span class="sc">\\</span><span class="st">-&quot;</span>, x)]), <span class="st">&quot;}&quot;</span></span>
+<span id="cb55-35"><a href="anova.html#cb55-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-36"><a href="anova.html#cb55-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-37"><a href="anova.html#cb55-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove leading zeros (for example &quot;10^{03}&quot; --&gt; &quot;10^{3}&quot;)</span></span>
+<span id="cb55-38"><a href="anova.html#cb55-38" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">{0&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">{&quot;</span>, x)</span>
+<span id="cb55-39"><a href="anova.html#cb55-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-40"><a href="anova.html#cb55-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove leading zeros (for example &quot;10^{-03}&quot; --&gt; &quot;10^{-3}&quot;)</span></span>
+<span id="cb55-41"><a href="anova.html#cb55-41" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">{-0&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">{-&quot;</span>, x)</span>
+<span id="cb55-42"><a href="anova.html#cb55-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-43"><a href="anova.html#cb55-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Enclose the resulting strings in &quot;$&quot; so they will be rendered as math</span></span>
+<span id="cb55-44"><a href="anova.html#cb55-44" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;$&quot;</span>, x, <span class="st">&quot;$&quot;</span>)</span>
+<span id="cb55-45"><a href="anova.html#cb55-45" aria-hidden="true" tabindex="-1"></a>M[, <span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> x</span>
+<span id="cb55-46"><a href="anova.html#cb55-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-47"><a href="anova.html#cb55-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result as a table (use escape = FALSE to render math correctly)</span></span>
+<span id="cb55-48"><a href="anova.html#cb55-48" aria-hidden="true" tabindex="-1"></a>caption <span class="ot">&lt;-</span> <span class="st">&quot;Post hoc comparison with Tukey correction for multiple testing.&quot;</span></span>
+<span id="cb55-49"><a href="anova.html#cb55-49" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(M, <span class="at">escape =</span> <span class="cn">FALSE</span>, <span class="at">caption =</span> caption)</span></code></pre></div>
 <p>The number of decimal points can be controlled with <code>digits</code> at the top.</p>
 </details>
 </details>
@@ -1289,9 +1285,9 @@ Why can’t I conclude there is no difference?
 Generating citations
 </summary>
 <p>Any packages used in analysis should be cited in the methods section. The citations used here can be easily obtained as follows (note that this requires the packages to be installed):</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="anova.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>()        <span class="co"># Use this to cite R</span></span>
-<span id="cb93-2"><a href="anova.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">RStudio.Version</span>() <span class="co"># Use this to cite RStudio</span></span>
-<span id="cb93-3"><a href="anova.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;car&quot;</span>)   <span class="co"># Use this to cite a package (here: car)</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="anova.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>()        <span class="co"># Use this to cite R</span></span>
+<span id="cb56-2"><a href="anova.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">RStudio.Version</span>() <span class="co"># Use this to cite RStudio</span></span>
+<span id="cb56-3"><a href="anova.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;car&quot;</span>)   <span class="co"># Use this to cite a package (here: car)</span></span></code></pre></div>
 <p>You can add these entries to a reference manager (e.g., Zotero), or keep a BibTeX file yourself, as shown <a href="https://youtu.be/zuuOYjE8m98">here</a>.</p>
 </details>
 <details>
@@ -1300,8 +1296,8 @@ Supplementary
 </summary>
 <p><small><em>(The following is not usually found in the main text, but can be included as supplementary material.)</em></small></p>
 <p>Including diagnostic plots can be an effective way to convince the reader you considered the assumptions of the test or model used. It offers transparency and allows readers to judge for themselves whether they agree with your assessments and model choice.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-103"></span>
-<img src="Tutorials_files/figure-html/unnamed-chunk-103-1.png" alt="(A) Normal quantile-quantile plot of the studentized residuals; (B) Scale-location plot." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-61"></span>
+<img src="Tutorials_files/figure-html/unnamed-chunk-61-1.png" alt="(A) Normal quantile-quantile plot of the studentized residuals; (B) Scale-location plot." width="672" />
 <p class="caption">
 Figure 3.14: (A) Normal quantile-quantile plot of the studentized residuals; (B) Scale-location plot.
 </p>
@@ -1314,23 +1310,23 @@ Figure 3.14: (A) Normal quantile-quantile plot of the studentized residuals; (B)
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body" line-spacing="2">
-<div id="ref-R" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">R Core Team. <em><a href="https://www.R-project.org/">R: A language and environment for statistical computing</a></em>. (R Foundation for Statistical Computing, 2022).</div>
-</div>
-<div id="ref-RStudio" class="csl-entry">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">RStudio Team. <em><a href="http://www.rstudio.com/">RStudio: Integrated development environment for r</a></em>. (RStudio, PBC, 2022).</div>
-</div>
 <div id="ref-car" class="csl-entry">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Fox, J. &amp; Weisberg, S. <em><a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An <span>R</span> companion to applied regression</a></em>. (Sage, 2019).</div>
-</div>
-<div id="ref-readxl" class="csl-entry">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Wickham, H. &amp; Bryan, J. <em><a href="https://CRAN.R-project.org/package=readxl">Readxl: Read excel files</a></em>. (2022).</div>
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Fox, J. &amp; Weisberg, S. <em><a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An <span>R</span> companion to applied regression</a></em>. (Sage, 2019).</div>
 </div>
 <div id="ref-ShapiroSensitivities" class="csl-entry">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Royston, P. <a href="https://doi.org/10.1007/bf01891203">Approximating the shapiro-wilk w-test for non-normality</a>. <em>Statistics and Computing</em> <strong>2</strong>, 117–119 (1992).</div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Royston, P. <a href="https://doi.org/10.1007/bf01891203">Approximating the shapiro-wilk w-test for non-normality</a>. <em>Statistics and Computing</em> <strong>2</strong>, 117–119 (1992).</div>
+</div>
+<div id="ref-R" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">R Core Team. <em><a href="https://www.R-project.org/">R: A language and environment for statistical computing</a></em>. (R Foundation for Statistical Computing, 2022).</div>
+</div>
+<div id="ref-RStudio" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">RStudio Team. <em><a href="http://www.rstudio.com/">RStudio: Integrated development environment for r</a></em>. (RStudio, PBC, 2022).</div>
 </div>
 <div id="ref-emmeans" class="csl-entry">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Lenth, R. V. <em><a href="https://CRAN.R-project.org/package=emmeans">Emmeans: Estimated marginal means, aka least-squares means</a></em>. (2022).</div>
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Lenth, R. V. <em><a href="https://CRAN.R-project.org/package=emmeans">Emmeans: Estimated marginal means, aka least-squares means</a></em>. (2022).</div>
+</div>
+<div id="ref-readxl" class="csl-entry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Wickham, H. &amp; Bryan, J. <em><a href="https://CRAN.R-project.org/package=readxl">Readxl: Read excel files</a></em>. (2022).</div>
 </div>
 </div>
             </section>

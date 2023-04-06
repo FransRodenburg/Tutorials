@@ -86,3 +86,10 @@ csv
 Excel
 quarto
 running-code
+fig:boxplot-upgrade-ANOVA
+fig:unnamed-chunk-19
+fig:unnamed-chunk-28
+fig:unnamed-chunk-29
+fig:unnamed-chunk-31
+fig:unnamed-chunk-33
+fig:unnamed-chunk-35
